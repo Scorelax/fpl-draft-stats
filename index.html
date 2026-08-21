@@ -22,7 +22,7 @@
       var(--ink);
     color:var(--text);font-family:'Inter',system-ui,sans-serif;line-height:1.5;
     -webkit-font-smoothing:antialiased;overflow-x:hidden}
-  .wrap{max-width:1120px;margin:0 auto;padding:0 24px}
+  .wrap{max-width:1400px;margin:0 auto;padding:0 24px}
   .disp{font-family:'Archivo',sans-serif;font-weight:900;letter-spacing:-.02em;line-height:.9}
   .tnum{font-variant-numeric:tabular-nums}
   .eyebrow{font-family:'Archivo',sans-serif;font-weight:700;text-transform:uppercase;letter-spacing:.22em;font-size:11px;color:var(--muted)}
@@ -79,7 +79,7 @@
 
   .subhead{font-family:'Archivo',sans-serif;font-weight:800;font-size:15px;text-transform:uppercase;
     letter-spacing:.06em;color:var(--muted);margin:0 0 14px}
-  .seasongrid{display:grid;grid-template-columns:minmax(0,3fr) minmax(0,2fr);gap:20px;align-items:start}
+  .seasongrid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:28px;align-items:start}
   .seasongrid>div{min-width:0}
   @media(max-width:980px){.seasongrid{grid-template-columns:1fr}}
   .compact table{min-width:0;font-size:12.5px}
@@ -473,24 +473,9 @@ function renderSeason(s){
     <td>${r.pick}</td>
     <td>${NF(r.pf)}</td>
     <td>${NF(r.pa)}</td>
-    <td>${(r.pf/r.gp).toFixed(1)}</td>
-    <td>${(r.pa/r.gp).toFixed(1)}</td>
     <td class="${r.pf-r.pa>0?'pl':'mi'}">${r.pf-r.pa>0?'+':''}${r.pf-r.pa}</td>
     <td>${r.w}-${r.d}-${r.l}</td>
-    <td><b>${r.tp}</b></td>
-    <td>${r.winStreak}</td>
-    <td>${r.lossStreak}</td>
-    <td>${r.minWin!=null?r.minWin:'–'}</td>
-    <td>${r.maxLoss!=null?r.maxLoss:'–'}</td>
-    <td>${r.avgGW!=null?r.avgGW.toFixed(1):'–'}</td>
-    <td>${r.duelT4}</td>
-    <td>${r.duelB4}</td>
-    <td>${r.metT4}</td>
-    <td>${r.metB4}</td>
-    <td>${r.metWinner}</td>
-    <td>${r.metLoser}</td>
-    <td>${r.wonGW}</td>
-    <td>${r.lostGW}</td></tr>`;});
+    <td><b>${r.tp}</b></td></tr>`;});
 
   const gwMgrs=tab.map(r=>r.m);
   const gwHead=`<th>GW</th>`+gwMgrs.map(m=>`<th>${m}</th>`).join("");
@@ -506,6 +491,31 @@ function renderSeason(s){
     gwRows+="</tr>";
   });
 
+  function seasonProfileHTML(r){
+    return `
+    <div class="profcard">
+      <div class="top"><span class="nm">${r.m}</span>
+        <span class="rank">#${r.place} this season · ${r.w}-${r.d}-${r.l} · ${r.tp} table points</span></div>
+      <div class="grid g3" style="margin-top:20px">
+        <div class="stat"><div class="k tnum">${(r.pf/r.gp).toFixed(1)}</div><div class="l">Avg points</div></div>
+        <div class="stat"><div class="k tnum">${(r.pa/r.gp).toFixed(1)}</div><div class="l">Avg met</div></div>
+        <div class="stat"><div class="k tnum">${r.winStreak}</div><div class="l">Longest win streak</div></div>
+        <div class="stat"><div class="k tnum">${r.lossStreak}</div><div class="l">Longest loss streak</div></div>
+        <div class="stat"><div class="k tnum">${r.minWin!=null?r.minWin:'–'}</div><div class="l">Fewest pts, still won</div></div>
+        <div class="stat"><div class="k tnum">${r.maxLoss!=null?r.maxLoss:'–'}</div><div class="l">Most pts, still lost</div></div>
+        <div class="stat"><div class="k tnum">${r.avgGW!=null?r.avgGW.toFixed(1):'–'}</div><div class="l">Avg GW placement</div></div>
+        <div class="stat"><div class="k tnum">${r.wonGW}</div><div class="l">GWs won outright</div></div>
+        <div class="stat"><div class="k tnum">${r.lostGW}</div><div class="l">GWs lost outright</div></div>
+        <div class="stat"><div class="k tnum">${r.duelT4}</div><div class="l">Duels in top half</div></div>
+        <div class="stat"><div class="k tnum">${r.duelB4}</div><div class="l">Duels in bottom half</div></div>
+        <div class="stat"><div class="k tnum">${r.metT4}</div><div class="l">Met opponent in top half</div></div>
+        <div class="stat"><div class="k tnum">${r.metB4}</div><div class="l">Met opponent in bottom half</div></div>
+        <div class="stat"><div class="k tnum">${r.metWinner}</div><div class="l">Met the GW winner</div></div>
+        <div class="stat"><div class="k tnum">${r.metLoser}</div><div class="l">Met the GW loser</div></div>
+      </div>
+    </div>`;
+  }
+
   document.getElementById("seasonView").innerHTML=`
     <div class="grid g3" style="margin-bottom:16px">
       <div class="rec"><div class="cap">Champion</div><div class="who big">${champ.m}</div><div class="det">${champ.tp} table points · drafted No. ${champ.pick}</div></div>
@@ -514,24 +524,18 @@ function renderSeason(s){
     </div>
     <div class="seasongrid">
       <div>
-        <div class="tablewrap compact"><table>
+        <div class="tablewrap"><table>
           <thead><tr>
-            <th>Finish</th><th>Pick</th><th>Points</th><th title="Total points scored by opponents (points against)">Met</th>
-            <th>Avg</th><th title="Average points scored by opponents per round">Avg met</th>
-            <th title="Goal difference: points scored minus points met">GD</th><th>W-D-L</th><th>Table</th>
-            <th title="Longest streak of consecutive wins">Win str</th><th title="Longest streak of consecutive losses">Loss str</th>
-            <th title="Fewest points that was still enough to win a gameweek">Min win</th><th title="Most points scored in a gameweek and still lost">Max loss</th>
-            <th title="Average finishing position each gameweek (1 = top score that round, 8 = bottom)">Avg GW</th>
-            <th title="Rounds where both managers finished in the top half that round">Duel T4</th>
-            <th title="Rounds where both managers finished in the bottom half that round">Duel B4</th>
-            <th title="Rounds where the opponent finished in the top half that round">Met T4</th>
-            <th title="Rounds where the opponent finished in the bottom half that round">Met B4</th>
-            <th title="Rounds where the opponent was the outright gameweek winner">Met 1st</th>
-            <th title="Rounds where the opponent finished outright last that round">Met last</th>
-            <th title="Rounds finished as outright gameweek winner">Won GW</th>
-            <th title="Rounds finished outright last that round">Lost GW</th>
+            <th>Finish</th><th>Pick</th><th>Points</th>
+            <th title="Total points scored by opponents (points against)">Met</th>
+            <th title="Goal difference: points scored minus points met">GD</th>
+            <th>W-D-L</th><th>Table</th>
           </tr></thead>
           <tbody>${rows}</tbody></table></div>
+
+        <div class="subhead" style="margin-top:28px">Manager profile</div>
+        <div style="margin-bottom:16px"><select id="seasonMgrSel">${tab.map(r=>`<option value="${r.m}">${r.m}</option>`).join("")}</select></div>
+        <div id="seasonProfile">${seasonProfileHTML(champ)}</div>
       </div>
       <div>
         <div class="subhead">Gameweek by gameweek</div>
@@ -541,6 +545,12 @@ function renderSeason(s){
         <div class="gwlegend"><span><i class="w"></i> Win</span><span><i class="d"></i> Draw</span><span><i class="l"></i> Loss</span></div>
       </div>
     </div>`;
+
+  document.getElementById("seasonMgrSel").value=champ.m;
+  document.getElementById("seasonMgrSel").onchange=function(){
+    const r=tab.find(x=>x.m===this.value);
+    document.getElementById("seasonProfile").innerHTML=seasonProfileHTML(r);
+  };
 }
 renderStandingsTab("all");
 
