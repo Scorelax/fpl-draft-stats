@@ -41,16 +41,16 @@
   .hero .eyebrow{margin-bottom:18px}
   .hero h1{font-size:clamp(42px,9vw,96px);text-transform:uppercase}
   .hero h1 .thin{-webkit-text-stroke:1.5px var(--line-strong);color:transparent;display:block}
-  .champ{position:relative;border:1px solid var(--line);border-radius:20px;overflow:hidden;
-    background:linear-gradient(160deg,var(--panel-2),var(--panel));padding:28px 30px;margin-top:40px}
-  .champ::before{content:"";position:absolute;inset:0;background:
-    radial-gradient(560px 220px at 85% -40%, rgba(255,201,77,.26), transparent 60%);pointer-events:none}
-  .champ .tag{display:inline-flex;align-items:center;gap:8px;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.16em;color:var(--gold)}
-  .champ .tag .flame{width:7px;height:7px;border-radius:50%;background:var(--gold);box-shadow:0 0 12px var(--gold)}
-  .champ .name{font-size:clamp(46px,10vw,84px);margin:8px 0 2px}
-  .champ .mini{display:flex;flex-wrap:wrap;gap:30px;margin-top:20px;padding-top:18px;border-top:1px solid var(--line)}
-  .champ .mini .k{font-family:'Archivo',sans-serif;font-weight:900;font-size:22px}
-  .champ .mini .l{font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.12em;margin-top:2px}
+  .hofcard{position:relative;border:1px solid var(--line);border-radius:18px;overflow:hidden;
+    background:linear-gradient(160deg,var(--panel-2),var(--panel));padding:22px}
+  .hofcard.first::before{content:"";position:absolute;inset:0;background:
+    radial-gradient(360px 160px at 85% -40%, rgba(255,201,77,.22), transparent 60%);pointer-events:none}
+  .hofcard .tag{position:relative;display:flex;align-items:center;gap:9px;font-size:11px;font-weight:700;
+    text-transform:uppercase;letter-spacing:.14em;color:var(--gold)}
+  .hofcard .name{position:relative;font-size:clamp(22px,3vw,30px);margin:10px 0 2px}
+  .hofcard .mini{position:relative;display:flex;flex-wrap:wrap;gap:14px;margin-top:16px;padding-top:14px;border-top:1px solid var(--line)}
+  .hofcard .mini .k{font-family:'Archivo',sans-serif;font-weight:900;font-size:17px}
+  .hofcard .mini .l{font-size:10px;color:var(--muted);text-transform:uppercase;letter-spacing:.1em;margin-top:2px}
 
   section.block{padding:56px 0 4px}
   .head{display:flex;align-items:flex-end;justify-content:space-between;gap:16px;margin-bottom:22px;flex-wrap:wrap}
@@ -166,8 +166,7 @@
 <main class="wrap">
   <section class="hero">
     <div class="eyebrow rise">All-time · Draft H2H · 6 seasons</div>
-    <h1 class="disp rise" style="animation-delay:.05s">Hall of<span class="thin">Fame</span></h1>
-    <div class="champ rise" id="champ" style="animation-delay:.18s"></div>
+    <h1 class="disp rise" style="animation-delay:.05s">Draft<span class="thin">liga</span></h1>
   </section>
 
   <section class="block" id="seasons">
@@ -190,6 +189,11 @@
 
   <section class="block" id="records">
     <div class="head"><h2 class="disp">Records</h2></div>
+
+    <div class="subhead">Hall of fame</div>
+    <div class="grid g3" id="hofGrid" style="margin-bottom:32px"></div>
+
+    <div class="subhead">All-time records</div>
     <div class="grid g3" id="recordsGrid"></div>
   </section>
 </main>
@@ -289,20 +293,23 @@ function fiveRound(m){
   return{best,worst};
 }
 
-// ---------- RENDER: hero champion ----------
+// ---------- RENDER: hall of fame (top 3 all-time) ----------
 (function(){
-  const top=[...managers].sort((x,y)=>A[y].tp-A[x].tp||A[y].pf-A[x].pf)[0];
-  const a=A[top];
-  document.getElementById("champ").innerHTML=`
-    <div class="tag"><span class="flame"></span> No. 1 · most table points all-time</div>
-    <div class="name disp">${top}</div>
-    <div class="mini">
-      <div><div class="k tnum">${a.tp}</div><div class="l">Table pts</div></div>
-      <div><div class="k tnum">${NF(a.pf)}</div><div class="l">Points</div></div>
-      <div><div class="k tnum">${a.winp.toFixed(1)}%</div><div class="l">Win rate</div></div>
-      <div><div class="k tnum">${a.w}-${a.d}-${a.l}</div><div class="l">W-D-L</div></div>
-      <div><div class="k tnum">${a.titles}</div><div class="l">Titles</div></div>
+  const top3=[...managers].sort((x,y)=>A[y].tp-A[x].tp||A[y].pf-A[x].pf).slice(0,3);
+  document.getElementById("hofGrid").innerHTML=top3.map((m,i)=>{
+    const a=A[m];
+    return `<div class="hofcard${i===0?' first':''}">
+      <div class="tag"><span class="pos p${i+1}">${i+1}</span> All-time · table points</div>
+      <div class="name disp">${m}</div>
+      <div class="mini">
+        <div><div class="k tnum">${a.tp}</div><div class="l">Table pts</div></div>
+        <div><div class="k tnum">${NF(a.pf)}</div><div class="l">Points</div></div>
+        <div><div class="k tnum">${a.winp.toFixed(1)}%</div><div class="l">Win rate</div></div>
+        <div><div class="k tnum">${a.w}-${a.d}-${a.l}</div><div class="l">W-D-L</div></div>
+        <div><div class="k tnum">${a.titles}</div><div class="l">Titles</div></div>
+      </div>
     </div>`;
+  }).join("");
 })();
 
 // ---------- RENDER: all-time table ----------
