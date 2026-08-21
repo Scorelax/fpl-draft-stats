@@ -78,7 +78,13 @@
     border:1px solid rgba(255,201,77,.4);border-radius:100px;padding:1px 7px;vertical-align:middle}
 
   .subhead{font-family:'Archivo',sans-serif;font-weight:800;font-size:15px;text-transform:uppercase;
-    letter-spacing:.06em;color:var(--muted);margin:28px 0 14px}
+    letter-spacing:.06em;color:var(--muted);margin:0 0 14px}
+  .seasongrid{display:grid;grid-template-columns:minmax(0,3fr) minmax(0,2fr);gap:20px;align-items:start}
+  .seasongrid>div{min-width:0}
+  @media(max-width:980px){.seasongrid{grid-template-columns:1fr}}
+  .compact table{min-width:0;font-size:12.5px}
+  .compact thead th{padding:9px 8px}
+  .compact tbody td{padding:8px 8px}
   .gwtable th,.gwtable td{text-align:center;cursor:default}
   .gwtable th:first-child,.gwtable td:first-child{text-align:left}
   .gwtable td{font-weight:700}
@@ -402,28 +408,94 @@ function renderStandingsTab(s){
 }
 function renderSeason(s){
   const mgrs=[...new Set(played.filter(x=>x.season===s).map(x=>x.manager))];
+
+  // per-round league context (rank, top/bottom half, outright winner/loser) for duel-type stats
+  const rounds=[...new Set(played.filter(x=>x.season===s).map(x=>x.round))].sort((a,b)=>a-b);
+  const roundCtx={};
+  rounds.forEach(rnd=>{
+    const list=played.filter(x=>x.season===s&&x.round===rnd);
+    const maxP=Math.max(...list.map(x=>x.points)),minP=Math.min(...list.map(x=>x.points));
+    const sorted=[...list].sort((a,b)=>b.points-a.points);
+    const half=Math.floor(sorted.length/2);
+    const topSet=new Set(sorted.slice(0,half).map(x=>x.manager));
+    const bottomSet=new Set(sorted.slice(sorted.length-half).map(x=>x.manager));
+    const winners=new Set(list.filter(x=>x.points===maxP).map(x=>x.manager));
+    const losers=new Set(list.filter(x=>x.points===minP).map(x=>x.manager));
+    const rank={};
+    list.forEach(x=>{
+      const higher=list.filter(o=>o.manager!==x.manager&&o.points>x.points).length;
+      const tied=list.filter(o=>o.manager!==x.manager&&o.points===x.points).length;
+      rank[x.manager]=1+higher+tied*0.5;
+    });
+    roundCtx[rnd]={topSet,bottomSet,winners,losers,rank};
+  });
+
   const tab=mgrs.map(m=>{
-    const sm=played.filter(x=>x.manager===m&&x.season===s);
+    const sm=played.filter(x=>x.manager===m&&x.season===s).sort((a,b)=>a.round-b.round);
     const pf=sm.reduce((t,x)=>t+x.points,0),pa=sm.reduce((t,x)=>t+x.opp,0);
     const w=sm.filter(x=>x.points>x.opp).length,d=sm.filter(x=>x.points===x.opp).length,l=sm.filter(x=>x.points<x.opp).length;
     const dd=D.find(x=>x.manager===m&&x.season===s);
-    return{m,pf,pa,w,d,l,tp:w*3+d,pick:dd?dd.pick:"–",place:dd?dd.placement:99,gp:sm.length};
+
+    const seq=sm.map(x=>x.points>x.opp?"W":(x.points===x.opp?"D":"L"));
+    const winStreak=longestRun(seq,"W"),lossStreak=longestRun(seq,"L");
+    const winPts=sm.filter(x=>x.points>x.opp).map(x=>x.points);
+    const lossPts=sm.filter(x=>x.points<x.opp).map(x=>x.points);
+    const minWin=winPts.length?Math.min(...winPts):null;
+    const maxLoss=lossPts.length?Math.max(...lossPts):null;
+
+    let posSum=0,posN=0,duelT4=0,duelB4=0,metT4=0,metB4=0,metWinner=0,metLoser=0,wonGW=0,lostGW=0;
+    sm.forEach(x=>{
+      const ctx=roundCtx[x.round];if(!ctx)return;
+      posSum+=ctx.rank[m];posN++;
+      const meTop=ctx.topSet.has(m),meBot=ctx.bottomSet.has(m);
+      const oppTop=ctx.topSet.has(x.opponent),oppBot=ctx.bottomSet.has(x.opponent);
+      if(meTop&&oppTop)duelT4++;
+      if(meBot&&oppBot)duelB4++;
+      if(oppTop)metT4++;
+      if(oppBot)metB4++;
+      if(ctx.winners.has(x.opponent))metWinner++;
+      if(ctx.losers.has(x.opponent))metLoser++;
+      if(ctx.winners.has(m))wonGW++;
+      if(ctx.losers.has(m))lostGW++;
+    });
+    const avgGW=posN?posSum/posN:null;
+
+    return{m,pf,pa,w,d,l,tp:w*3+d,pick:dd?dd.pick:"–",place:dd?dd.placement:99,gp:sm.length,
+      winStreak,lossStreak,minWin,maxLoss,avgGW,duelT4,duelB4,metT4,metB4,metWinner,metLoser,wonGW,lostGW};
   }).sort((a,b)=>a.place-b.place);
+
   const champ=tab[0];
   const topScore=played.filter(x=>x.season===s).sort((a,b)=>b.points-a.points)[0];
   const topPts=tab.slice().sort((a,b)=>b.pf-a.pf)[0];
   let rows="";
   tab.forEach(r=>{rows+=`<tr>
     <td><span class="pos ${r.place<=3?'p'+r.place:'pn'}">${r.place}</span>${r.m}${r.place===1?'<span class="badge-t">★</span>':''}</td>
-    <td>${r.pick}</td><td>${NF(r.pf)}</td><td>${(r.pf/r.gp).toFixed(1)}</td>
+    <td>${r.pick}</td>
+    <td>${NF(r.pf)}</td>
+    <td>${NF(r.pa)}</td>
+    <td>${(r.pf/r.gp).toFixed(1)}</td>
+    <td>${(r.pa/r.gp).toFixed(1)}</td>
     <td class="${r.pf-r.pa>0?'pl':'mi'}">${r.pf-r.pa>0?'+':''}${r.pf-r.pa}</td>
-    <td>${r.w}-${r.d}-${r.l}</td><td><b>${r.tp}</b></td></tr>`;});
+    <td>${r.w}-${r.d}-${r.l}</td>
+    <td><b>${r.tp}</b></td>
+    <td>${r.winStreak}</td>
+    <td>${r.lossStreak}</td>
+    <td>${r.minWin!=null?r.minWin:'–'}</td>
+    <td>${r.maxLoss!=null?r.maxLoss:'–'}</td>
+    <td>${r.avgGW!=null?r.avgGW.toFixed(1):'–'}</td>
+    <td>${r.duelT4}</td>
+    <td>${r.duelB4}</td>
+    <td>${r.metT4}</td>
+    <td>${r.metB4}</td>
+    <td>${r.metWinner}</td>
+    <td>${r.metLoser}</td>
+    <td>${r.wonGW}</td>
+    <td>${r.lostGW}</td></tr>`;});
 
   const gwMgrs=tab.map(r=>r.m);
-  const gwRounds=[...new Set(played.filter(x=>x.season===s).map(x=>x.round))].sort((a,b)=>a-b);
   const gwHead=`<th>GW</th>`+gwMgrs.map(m=>`<th>${m}</th>`).join("");
   let gwRows="";
-  gwRounds.forEach(rnd=>{
+  rounds.forEach(rnd=>{
     gwRows+=`<tr><td>${rnd}</td>`;
     gwMgrs.forEach(m=>{
       const g=played.find(x=>x.season===s&&x.round===rnd&&x.manager===m);
@@ -440,15 +512,35 @@ function renderSeason(s){
       <div class="rec"><div class="cap">Most points</div><div class="who">${topPts.m}</div><div class="det">${NF(topPts.pf)} points</div></div>
       <div class="rec"><div class="cap">Highest round score</div><div class="who">${topScore.points}</div><div class="det">${topScore.manager} · round ${topScore.round}</div></div>
     </div>
-    <div class="tablewrap"><table>
-      <thead><tr><th>Finish</th><th>Pick</th><th>Points</th><th>Avg</th><th>±</th><th>W-D-L</th><th>Table</th></tr></thead>
-      <tbody>${rows}</tbody></table></div>
-
-    <div class="subhead">Gameweek by gameweek</div>
-    <div class="tablewrap"><table class="gwtable">
-      <thead><tr>${gwHead}</tr></thead>
-      <tbody>${gwRows}</tbody></table></div>
-    <div class="gwlegend"><span><i class="w"></i> Win</span><span><i class="d"></i> Draw</span><span><i class="l"></i> Loss</span></div>`;
+    <div class="seasongrid">
+      <div>
+        <div class="tablewrap compact"><table>
+          <thead><tr>
+            <th>Finish</th><th>Pick</th><th>Points</th><th title="Total points scored by opponents (points against)">Met</th>
+            <th>Avg</th><th title="Average points scored by opponents per round">Avg met</th>
+            <th title="Goal difference: points scored minus points met">GD</th><th>W-D-L</th><th>Table</th>
+            <th title="Longest streak of consecutive wins">Win str</th><th title="Longest streak of consecutive losses">Loss str</th>
+            <th title="Fewest points that was still enough to win a gameweek">Min win</th><th title="Most points scored in a gameweek and still lost">Max loss</th>
+            <th title="Average finishing position each gameweek (1 = top score that round, 8 = bottom)">Avg GW</th>
+            <th title="Rounds where both managers finished in the top half that round">Duel T4</th>
+            <th title="Rounds where both managers finished in the bottom half that round">Duel B4</th>
+            <th title="Rounds where the opponent finished in the top half that round">Met T4</th>
+            <th title="Rounds where the opponent finished in the bottom half that round">Met B4</th>
+            <th title="Rounds where the opponent was the outright gameweek winner">Met 1st</th>
+            <th title="Rounds where the opponent finished outright last that round">Met last</th>
+            <th title="Rounds finished as outright gameweek winner">Won GW</th>
+            <th title="Rounds finished outright last that round">Lost GW</th>
+          </tr></thead>
+          <tbody>${rows}</tbody></table></div>
+      </div>
+      <div>
+        <div class="subhead">Gameweek by gameweek</div>
+        <div class="tablewrap compact"><table class="gwtable">
+          <thead><tr>${gwHead}</tr></thead>
+          <tbody>${gwRows}</tbody></table></div>
+        <div class="gwlegend"><span><i class="w"></i> Win</span><span><i class="d"></i> Draw</span><span><i class="l"></i> Loss</span></div>
+      </div>
+    </div>`;
 }
 renderStandingsTab("all");
 
