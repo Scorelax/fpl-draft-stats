@@ -1,0 +1,1825 @@
+season,round,manager,points,opponent,opponent_points
+2020/21,1,Morten,57,Simon,32
+2020/21,1,Vegard,15,Henrik,33
+2020/21,1,David,51,Seb,25
+2020/21,1,Kriss,30,Sandra,38
+2020/21,1,Simon,32,Morten,57
+2020/21,1,Sandra,38,Kriss,30
+2020/21,1,Seb,25,David,51
+2020/21,1,Henrik,33,Vegard,15
+2020/21,2,Morten,44,Henrik,49
+2020/21,2,Vegard,30,Sandra,37
+2020/21,2,David,41,Kriss,86
+2020/21,2,Kriss,86,David,41
+2020/21,2,Simon,67,Seb,44
+2020/21,2,Sandra,37,Vegard,30
+2020/21,2,Seb,44,Simon,67
+2020/21,2,Henrik,49,Morten,44
+2020/21,3,Morten,38,Vegard,34
+2020/21,3,Vegard,34,Morten,38
+2020/21,3,David,57,Henrik,46
+2020/21,3,Kriss,51,Simon,40
+2020/21,3,Simon,40,Kriss,51
+2020/21,3,Sandra,21,Seb,25
+2020/21,3,Seb,25,Sandra,21
+2020/21,3,Henrik,46,David,57
+2020/21,4,Morten,22,Seb,47
+2020/21,4,Vegard,39,Simon,25
+2020/21,4,David,75,Sandra,38
+2020/21,4,Kriss,49,Henrik,50
+2020/21,4,Simon,25,Vegard,39
+2020/21,4,Sandra,38,David,75
+2020/21,4,Seb,47,Morten,22
+2020/21,4,Henrik,50,Kriss,49
+2020/21,5,Morten,36,David,33
+2020/21,5,Vegard,43,Kriss,64
+2020/21,5,David,33,Morten,36
+2020/21,5,Kriss,64,Vegard,43
+2020/21,5,Simon,45,Sandra,31
+2020/21,5,Sandra,31,Simon,45
+2020/21,5,Seb,42,Henrik,57
+2020/21,5,Henrik,57,Seb,42
+2020/21,6,Morten,46,Kriss,35
+2020/21,6,Vegard,31,Seb,40
+2020/21,6,David,42,Simon,18
+2020/21,6,Kriss,35,Morten,46
+2020/21,6,Simon,18,David,42
+2020/21,6,Sandra,45,Henrik,34
+2020/21,6,Seb,40,Vegard,31
+2020/21,6,Henrik,34,Sandra,45
+2020/21,7,Morten,76,Sandra,56
+2020/21,7,Vegard,39,David,57
+2020/21,7,David,57,Vegard,39
+2020/21,7,Kriss,54,Seb,38
+2020/21,7,Simon,33,Henrik,25
+2020/21,7,Sandra,56,Morten,76
+2020/21,7,Seb,38,Kriss,54
+2020/21,7,Henrik,25,Simon,33
+2020/21,8,Morten,29,Simon,42
+2020/21,8,Vegard,28,Henrik,60
+2020/21,8,David,65,Seb,58
+2020/21,8,Kriss,44,Sandra,29
+2020/21,8,Simon,42,Morten,29
+2020/21,8,Sandra,29,Kriss,44
+2020/21,8,Seb,58,David,65
+2020/21,8,Henrik,60,Vegard,28
+2020/21,9,Morten,26,Henrik,44
+2020/21,9,Vegard,43,Sandra,57
+2020/21,9,David,24,Kriss,38
+2020/21,9,Kriss,38,David,24
+2020/21,9,Simon,48,Seb,53
+2020/21,9,Sandra,57,Vegard,43
+2020/21,9,Seb,53,Simon,48
+2020/21,9,Henrik,44,Morten,26
+2020/21,10,Morten,44,Vegard,44
+2020/21,10,Vegard,44,Morten,44
+2020/21,10,David,33,Henrik,36
+2020/21,10,Kriss,21,Simon,49
+2020/21,10,Simon,49,Kriss,21
+2020/21,10,Sandra,46,Seb,33
+2020/21,10,Seb,33,Sandra,46
+2020/21,10,Henrik,36,David,33
+2020/21,11,Morten,46,Seb,42
+2020/21,11,Vegard,41,Simon,61
+2020/21,11,David,38,Sandra,40
+2020/21,11,Kriss,38,Henrik,44
+2020/21,11,Simon,61,Vegard,41
+2020/21,11,Sandra,40,David,38
+2020/21,11,Seb,42,Morten,46
+2020/21,11,Henrik,44,Kriss,38
+2020/21,12,Morten,44,David,38
+2020/21,12,Vegard,27,Kriss,40
+2020/21,12,David,38,Morten,44
+2020/21,12,Kriss,40,Vegard,27
+2020/21,12,Simon,59,Sandra,31
+2020/21,12,Sandra,31,Simon,59
+2020/21,12,Seb,34,Henrik,45
+2020/21,12,Henrik,45,Seb,34
+2020/21,13,Morten,32,Kriss,40
+2020/21,13,Vegard,36,Seb,43
+2020/21,13,David,48,Simon,28
+2020/21,13,Kriss,40,Morten,32
+2020/21,13,Simon,28,David,48
+2020/21,13,Sandra,32,Henrik,43
+2020/21,13,Seb,43,Vegard,36
+2020/21,13,Henrik,43,Sandra,32
+2020/21,14,Morten,47,Sandra,47
+2020/21,14,Vegard,56,David,74
+2020/21,14,David,74,Vegard,56
+2020/21,14,Kriss,44,Seb,32
+2020/21,14,Simon,38,Henrik,51
+2020/21,14,Sandra,47,Morten,47
+2020/21,14,Seb,32,Kriss,44
+2020/21,14,Henrik,51,Simon,38
+2020/21,15,Morten,32,Simon,50
+2020/21,15,Vegard,29,Henrik,60
+2020/21,15,David,44,Seb,35
+2020/21,15,Kriss,56,Sandra,47
+2020/21,15,Simon,50,Morten,32
+2020/21,15,Sandra,47,Kriss,56
+2020/21,15,Seb,35,David,44
+2020/21,15,Henrik,60,Vegard,29
+2020/21,16,Morten,18,Henrik,39
+2020/21,16,Vegard,33,Sandra,41
+2020/21,16,David,45,Kriss,38
+2020/21,16,Kriss,38,David,45
+2020/21,16,Simon,46,Seb,50
+2020/21,16,Sandra,41,Vegard,33
+2020/21,16,Seb,50,Simon,46
+2020/21,16,Henrik,39,Morten,18
+2020/21,17,Morten,34,Vegard,34
+2020/21,17,Vegard,34,Morten,34
+2020/21,17,David,34,Henrik,31
+2020/21,17,Kriss,59,Simon,60
+2020/21,17,Simon,60,Kriss,59
+2020/21,17,Sandra,40,Seb,59
+2020/21,17,Seb,59,Sandra,40
+2020/21,17,Henrik,31,David,34
+2020/21,18,Morten,28,Seb,24
+2020/21,18,Vegard,25,Simon,38
+2020/21,18,David,18,Sandra,25
+2020/21,18,Kriss,36,Henrik,28
+2020/21,18,Simon,38,Vegard,25
+2020/21,18,Sandra,25,David,18
+2020/21,18,Seb,24,Morten,28
+2020/21,18,Henrik,28,Kriss,36
+2020/21,19,Morten,106,David,75
+2020/21,19,Vegard,98,Kriss,89
+2020/21,19,David,75,Morten,106
+2020/21,19,Kriss,89,Vegard,98
+2020/21,19,Simon,87,Sandra,56
+2020/21,19,Sandra,56,Simon,87
+2020/21,19,Seb,66,Henrik,62
+2020/21,19,Henrik,62,Seb,66
+2020/21,20,Morten,25,Kriss,74
+2020/21,20,Vegard,55,Seb,43
+2020/21,20,David,47,Simon,35
+2020/21,20,Kriss,74,Morten,25
+2020/21,20,Simon,35,David,47
+2020/21,20,Sandra,43,Henrik,27
+2020/21,20,Seb,43,Vegard,55
+2020/21,20,Henrik,27,Sandra,43
+2020/21,21,Morten,33,Sandra,39
+2020/21,21,Vegard,37,David,55
+2020/21,21,David,55,Vegard,37
+2020/21,21,Kriss,34,Seb,23
+2020/21,21,Simon,41,Henrik,17
+2020/21,21,Sandra,39,Morten,33
+2020/21,21,Seb,23,Kriss,34
+2020/21,21,Henrik,17,Simon,41
+2020/21,22,Morten,29,Simon,37
+2020/21,22,Vegard,43,Henrik,57
+2020/21,22,David,40,Seb,40
+2020/21,22,Kriss,45,Sandra,47
+2020/21,22,Simon,37,Morten,29
+2020/21,22,Sandra,47,Kriss,45
+2020/21,22,Seb,40,David,40
+2020/21,22,Henrik,57,Vegard,43
+2020/21,23,Morten,34,Henrik,64
+2020/21,23,Vegard,40,Sandra,45
+2020/21,23,David,37,Kriss,40
+2020/21,23,Kriss,40,David,37
+2020/21,23,Simon,68,Seb,46
+2020/21,23,Sandra,45,Vegard,40
+2020/21,23,Seb,46,Simon,68
+2020/21,23,Henrik,64,Morten,34
+2020/21,24,Morten,83,Vegard,70
+2020/21,24,Vegard,70,Morten,83
+2020/21,24,David,45,Henrik,59
+2020/21,24,Kriss,50,Simon,65
+2020/21,24,Simon,65,Kriss,50
+2020/21,24,Sandra,52,Seb,36
+2020/21,24,Seb,36,Sandra,52
+2020/21,24,Henrik,59,David,45
+2020/21,25,Morten,40,Seb,37
+2020/21,25,Vegard,54,Simon,56
+2020/21,25,David,41,Sandra,41
+2020/21,25,Kriss,28,Henrik,71
+2020/21,25,Simon,56,Vegard,54
+2020/21,25,Sandra,41,David,41
+2020/21,25,Seb,37,Morten,40
+2020/21,25,Henrik,71,Kriss,28
+2020/21,26,Morten,60,David,44
+2020/21,26,Vegard,75,Kriss,72
+2020/21,26,David,44,Morten,60
+2020/21,26,Kriss,72,Vegard,75
+2020/21,26,Simon,65,Sandra,65
+2020/21,26,Sandra,65,Simon,65
+2020/21,26,Seb,71,Henrik,98
+2020/21,26,Henrik,98,Seb,71
+2020/21,27,Morten,33,Kriss,36
+2020/21,27,Vegard,62,Seb,37
+2020/21,27,David,33,Simon,61
+2020/21,27,Kriss,36,Morten,33
+2020/21,27,Simon,61,David,33
+2020/21,27,Sandra,55,Henrik,77
+2020/21,27,Seb,37,Vegard,62
+2020/21,27,Henrik,77,Sandra,55
+2020/21,28,Morten,66,Sandra,31
+2020/21,28,Vegard,38,David,28
+2020/21,28,David,28,Vegard,38
+2020/21,28,Kriss,35,Seb,63
+2020/21,28,Simon,25,Henrik,36
+2020/21,28,Sandra,31,Morten,66
+2020/21,28,Seb,63,Kriss,35
+2020/21,28,Henrik,36,Simon,25
+2020/21,29,Morten,29,Simon,32
+2020/21,29,Vegard,26,Henrik,9
+2020/21,29,David,33,Seb,31
+2020/21,29,Kriss,41,Sandra,14
+2020/21,29,Simon,32,Morten,29
+2020/21,29,Sandra,14,Kriss,41
+2020/21,29,Seb,31,David,33
+2020/21,29,Henrik,9,Vegard,26
+2020/21,30,Morten,23,Henrik,28
+2020/21,30,Vegard,37,Sandra,40
+2020/21,30,David,31,Kriss,28
+2020/21,30,Kriss,28,David,31
+2020/21,30,Simon,41,Seb,60
+2020/21,30,Sandra,40,Vegard,37
+2020/21,30,Seb,60,Simon,41
+2020/21,30,Henrik,28,Morten,23
+2020/21,31,Morten,43,Vegard,25
+2020/21,31,Vegard,25,Morten,43
+2020/21,31,David,48,Henrik,47
+2020/21,31,Kriss,42,Simon,54
+2020/21,31,Simon,54,Kriss,42
+2020/21,31,Sandra,38,Seb,67
+2020/21,31,Seb,67,Sandra,38
+2020/21,31,Henrik,47,David,48
+2020/21,32,Morten,48,Seb,46
+2020/21,32,Vegard,47,Simon,41
+2020/21,32,David,38,Sandra,27
+2020/21,32,Kriss,60,Henrik,25
+2020/21,32,Simon,41,Vegard,47
+2020/21,32,Sandra,27,David,38
+2020/21,32,Seb,46,Morten,48
+2020/21,32,Henrik,25,Kriss,60
+2020/21,33,Morten,32,David,31
+2020/21,33,Vegard,27,Kriss,24
+2020/21,33,David,31,Morten,32
+2020/21,33,Kriss,24,Vegard,27
+2020/21,33,Simon,33,Sandra,57
+2020/21,33,Sandra,57,Simon,33
+2020/21,33,Seb,30,Henrik,42
+2020/21,33,Henrik,42,Seb,30
+2020/21,34,Morten,38,Kriss,45
+2020/21,34,Vegard,48,Seb,47
+2020/21,34,David,32,Simon,37
+2020/21,34,Kriss,45,Morten,38
+2020/21,34,Simon,37,David,32
+2020/21,34,Sandra,31,Henrik,32
+2020/21,34,Seb,47,Vegard,48
+2020/21,34,Henrik,32,Sandra,31
+2020/21,35,Morten,76,Sandra,62
+2020/21,35,Vegard,39,David,61
+2020/21,35,David,61,Vegard,39
+2020/21,35,Kriss,68,Seb,94
+2020/21,35,Simon,60,Henrik,87
+2020/21,35,Sandra,62,Morten,76
+2020/21,35,Seb,94,Kriss,68
+2020/21,35,Henrik,87,Simon,60
+2020/21,36,Morten,39,Simon,50
+2020/21,36,Vegard,21,Henrik,36
+2020/21,36,David,30,Seb,56
+2020/21,36,Kriss,42,Sandra,28
+2020/21,36,Simon,50,Morten,39
+2020/21,36,Sandra,28,Kriss,42
+2020/21,36,Seb,56,David,30
+2020/21,36,Henrik,36,Vegard,21
+2020/21,37,Morten,42,Henrik,37
+2020/21,37,Vegard,41,Sandra,34
+2020/21,37,David,57,Kriss,37
+2020/21,37,Kriss,37,David,57
+2020/21,37,Simon,33,Seb,31
+2020/21,37,Sandra,34,Vegard,41
+2020/21,37,Seb,31,Simon,33
+2020/21,37,Henrik,37,Morten,42
+2020/21,38,Morten,43,Vegard,50
+2020/21,38,Vegard,50,Morten,43
+2020/21,38,David,58,Henrik,31
+2020/21,38,Kriss,37,Simon,57
+2020/21,38,Simon,57,Kriss,37
+2020/21,38,Sandra,35,Seb,63
+2020/21,38,Seb,63,Sandra,35
+2020/21,38,Henrik,31,David,58
+2021/22,1,Morten,76,David,54
+2021/22,1,Leo,23,Kriss,50
+2021/22,1,David,54,Morten,76
+2021/22,1,Kriss,50,Leo,23
+2021/22,1,Simon,51,Christian,44
+2021/22,1,Christian,44,Simon,51
+2021/22,1,Seb,41,Henrik,34
+2021/22,1,Henrik,34,Seb,41
+2021/22,2,Morten,66,Henrik,49
+2021/22,2,Leo,58,Christian,43
+2021/22,2,David,43,Simon,38
+2021/22,2,Kriss,50,Seb,61
+2021/22,2,Simon,38,David,43
+2021/22,2,Christian,43,Leo,58
+2021/22,2,Seb,61,Kriss,50
+2021/22,2,Henrik,49,Morten,66
+2021/22,3,Morten,48,Kriss,50
+2021/22,3,Leo,50,Simon,36
+2021/22,3,David,35,Seb,43
+2021/22,3,Kriss,50,Morten,48
+2021/22,3,Simon,36,Leo,50
+2021/22,3,Christian,53,Henrik,40
+2021/22,3,Seb,43,David,35
+2021/22,3,Henrik,40,Christian,53
+2021/22,4,Morten,43,Christian,56
+2021/22,4,Leo,41,Seb,50
+2021/22,4,David,38,Henrik,39
+2021/22,4,Kriss,68,Simon,37
+2021/22,4,Simon,37,Kriss,68
+2021/22,4,Christian,56,Morten,43
+2021/22,4,Seb,50,Leo,41
+2021/22,4,Henrik,39,David,38
+2021/22,5,Morten,36,Simon,47
+2021/22,5,Leo,32,Henrik,63
+2021/22,5,David,44,Kriss,46
+2021/22,5,Kriss,46,David,44
+2021/22,5,Simon,47,Morten,36
+2021/22,5,Christian,37,Seb,60
+2021/22,5,Seb,60,Christian,37
+2021/22,5,Henrik,63,Leo,32
+2021/22,6,Morten,49,Leo,36
+2021/22,6,Leo,36,Morten,49
+2021/22,6,David,55,Christian,46
+2021/22,6,Kriss,46,Henrik,21
+2021/22,6,Simon,30,Seb,64
+2021/22,6,Christian,46,David,55
+2021/22,6,Seb,64,Simon,30
+2021/22,6,Henrik,21,Kriss,46
+2021/22,7,Morten,28,Seb,39
+2021/22,7,Leo,34,David,54
+2021/22,7,David,54,Leo,34
+2021/22,7,Kriss,47,Christian,44
+2021/22,7,Simon,46,Henrik,22
+2021/22,7,Christian,44,Kriss,47
+2021/22,7,Seb,39,Morten,28
+2021/22,7,Henrik,22,Simon,46
+2021/22,8,Morten,53,David,47
+2021/22,8,Leo,39,Kriss,48
+2021/22,8,David,47,Morten,53
+2021/22,8,Kriss,48,Leo,39
+2021/22,8,Simon,40,Christian,47
+2021/22,8,Christian,47,Simon,40
+2021/22,8,Seb,50,Henrik,30
+2021/22,8,Henrik,30,Seb,50
+2021/22,9,Morten,35,Henrik,39
+2021/22,9,Leo,36,Christian,25
+2021/22,9,David,52,Simon,56
+2021/22,9,Kriss,50,Seb,67
+2021/22,9,Simon,56,David,52
+2021/22,9,Christian,25,Leo,36
+2021/22,9,Seb,67,Kriss,50
+2021/22,9,Henrik,39,Morten,35
+2021/22,10,Morten,33,Kriss,36
+2021/22,10,Leo,62,Simon,40
+2021/22,10,David,38,Seb,42
+2021/22,10,Kriss,36,Morten,33
+2021/22,10,Simon,40,Leo,62
+2021/22,10,Christian,27,Henrik,35
+2021/22,10,Seb,42,David,38
+2021/22,10,Henrik,35,Christian,27
+2021/22,11,Morten,24,Christian,34
+2021/22,11,Leo,54,Seb,33
+2021/22,11,David,48,Henrik,22
+2021/22,11,Kriss,50,Simon,30
+2021/22,11,Simon,30,Kriss,50
+2021/22,11,Christian,34,Morten,24
+2021/22,11,Seb,33,Leo,54
+2021/22,11,Henrik,22,David,48
+2021/22,12,Morten,42,Simon,47
+2021/22,12,Leo,42,Henrik,57
+2021/22,12,David,55,Kriss,40
+2021/22,12,Kriss,40,David,55
+2021/22,12,Simon,47,Morten,42
+2021/22,12,Christian,49,Seb,32
+2021/22,12,Seb,32,Christian,49
+2021/22,12,Henrik,57,Leo,42
+2021/22,13,Morten,28,Leo,26
+2021/22,13,Leo,26,Morten,28
+2021/22,13,David,55,Christian,25
+2021/22,13,Kriss,54,Henrik,44
+2021/22,13,Simon,30,Seb,62
+2021/22,13,Christian,25,David,55
+2021/22,13,Seb,62,Simon,30
+2021/22,13,Henrik,44,Kriss,54
+2021/22,14,Morten,53,Seb,37
+2021/22,14,Leo,40,David,51
+2021/22,14,David,51,Leo,40
+2021/22,14,Kriss,36,Christian,31
+2021/22,14,Simon,46,Henrik,49
+2021/22,14,Christian,31,Kriss,36
+2021/22,14,Seb,37,Morten,53
+2021/22,14,Henrik,49,Simon,46
+2021/22,15,Morten,40,David,40
+2021/22,15,Leo,40,Kriss,48
+2021/22,15,David,40,Morten,40
+2021/22,15,Kriss,48,Leo,40
+2021/22,15,Simon,44,Christian,36
+2021/22,15,Christian,36,Simon,44
+2021/22,15,Seb,30,Henrik,39
+2021/22,15,Henrik,39,Seb,30
+2021/22,16,Morten,30,Henrik,51
+2021/22,16,Leo,33,Christian,25
+2021/22,16,David,42,Simon,39
+2021/22,16,Kriss,78,Seb,54
+2021/22,16,Simon,39,David,42
+2021/22,16,Christian,25,Leo,33
+2021/22,16,Seb,54,Kriss,78
+2021/22,16,Henrik,51,Morten,30
+2021/22,17,Morten,31,Kriss,40
+2021/22,17,Leo,41,Simon,33
+2021/22,17,David,49,Seb,63
+2021/22,17,Kriss,40,Morten,31
+2021/22,17,Simon,33,Leo,41
+2021/22,17,Christian,18,Henrik,30
+2021/22,17,Seb,63,David,49
+2021/22,17,Henrik,30,Christian,18
+2021/22,18,Morten,28,Christian,35
+2021/22,18,Leo,33,Seb,38
+2021/22,18,David,36,Henrik,37
+2021/22,18,Kriss,55,Simon,17
+2021/22,18,Simon,17,Kriss,55
+2021/22,18,Christian,35,Morten,28
+2021/22,18,Seb,38,Leo,33
+2021/22,18,Henrik,37,David,36
+2021/22,19,Morten,45,Simon,36
+2021/22,19,Leo,47,Henrik,46
+2021/22,19,David,55,Kriss,64
+2021/22,19,Kriss,64,David,55
+2021/22,19,Simon,36,Morten,45
+2021/22,19,Christian,33,Seb,42
+2021/22,19,Seb,42,Christian,33
+2021/22,19,Henrik,46,Leo,47
+2021/22,20,Morten,36,Leo,47
+2021/22,20,Leo,47,Morten,36
+2021/22,20,David,17,Christian,21
+2021/22,20,Kriss,31,Henrik,41
+2021/22,20,Simon,25,Seb,44
+2021/22,20,Christian,21,David,17
+2021/22,20,Seb,44,Simon,25
+2021/22,20,Henrik,41,Kriss,31
+2021/22,21,Morten,45,Seb,38
+2021/22,21,Leo,51,David,49
+2021/22,21,David,49,Leo,51
+2021/22,21,Kriss,60,Christian,36
+2021/22,21,Simon,42,Henrik,24
+2021/22,21,Christian,36,Kriss,60
+2021/22,21,Seb,38,Morten,45
+2021/22,21,Henrik,24,Simon,42
+2021/22,22,Morten,56,David,28
+2021/22,22,Leo,43,Kriss,32
+2021/22,22,David,28,Morten,56
+2021/22,22,Kriss,32,Leo,43
+2021/22,22,Simon,62,Christian,34
+2021/22,22,Christian,34,Simon,62
+2021/22,22,Seb,52,Henrik,28
+2021/22,22,Henrik,28,Seb,52
+2021/22,23,Morten,36,Henrik,48
+2021/22,23,Leo,35,Christian,14
+2021/22,23,David,21,Simon,41
+2021/22,23,Kriss,46,Seb,47
+2021/22,23,Simon,41,David,21
+2021/22,23,Christian,14,Leo,35
+2021/22,23,Seb,47,Kriss,46
+2021/22,23,Henrik,48,Morten,36
+2021/22,24,Morten,55,Kriss,60
+2021/22,24,Leo,49,Simon,52
+2021/22,24,David,32,Seb,52
+2021/22,24,Kriss,60,Morten,55
+2021/22,24,Simon,52,Leo,49
+2021/22,24,Christian,23,Henrik,22
+2021/22,24,Seb,52,David,32
+2021/22,24,Henrik,22,Christian,23
+2021/22,25,Morten,42,Christian,37
+2021/22,25,Leo,47,Seb,42
+2021/22,25,David,42,Henrik,54
+2021/22,25,Kriss,45,Simon,49
+2021/22,25,Simon,49,Kriss,45
+2021/22,25,Christian,37,Morten,42
+2021/22,25,Seb,42,Leo,47
+2021/22,25,Henrik,54,David,42
+2021/22,26,Morten,75,Simon,62
+2021/22,26,Leo,34,Henrik,39
+2021/22,26,David,101,Kriss,62
+2021/22,26,Kriss,62,David,101
+2021/22,26,Simon,62,Morten,75
+2021/22,26,Christian,71,Seb,54
+2021/22,26,Seb,54,Christian,71
+2021/22,26,Henrik,39,Leo,34
+2021/22,27,Morten,41,Leo,33
+2021/22,27,Leo,33,Morten,41
+2021/22,27,David,30,Christian,32
+2021/22,27,Kriss,41,Henrik,32
+2021/22,27,Simon,49,Seb,32
+2021/22,27,Christian,32,David,30
+2021/22,27,Seb,32,Simon,49
+2021/22,27,Henrik,32,Kriss,41
+2021/22,28,Morten,100,Seb,76
+2021/22,28,Leo,45,David,94
+2021/22,28,David,94,Leo,45
+2021/22,28,Kriss,74,Christian,36
+2021/22,28,Simon,54,Henrik,42
+2021/22,28,Christian,36,Kriss,74
+2021/22,28,Seb,76,Morten,100
+2021/22,28,Henrik,42,Simon,54
+2021/22,29,Morten,67,David,57
+2021/22,29,Leo,39,Kriss,86
+2021/22,29,David,57,Morten,67
+2021/22,29,Kriss,86,Leo,39
+2021/22,29,Simon,44,Christian,47
+2021/22,29,Christian,47,Simon,44
+2021/22,29,Seb,53,Henrik,59
+2021/22,29,Henrik,59,Seb,53
+2021/22,30,Morten,27,Henrik,6
+2021/22,30,Leo,11,Christian,19
+2021/22,30,David,21,Simon,23
+2021/22,30,Kriss,20,Seb,38
+2021/22,30,Simon,23,David,21
+2021/22,30,Christian,19,Leo,11
+2021/22,30,Seb,38,Kriss,20
+2021/22,30,Henrik,6,Morten,27
+2021/22,31,Morten,49,Kriss,37
+2021/22,31,Leo,57,Simon,42
+2021/22,31,David,42,Seb,45
+2021/22,31,Kriss,37,Morten,49
+2021/22,31,Simon,42,Leo,57
+2021/22,31,Christian,42,Henrik,26
+2021/22,31,Seb,45,David,42
+2021/22,31,Henrik,26,Christian,42
+2021/22,32,Morten,39,Christian,63
+2021/22,32,Leo,42,Seb,37
+2021/22,32,David,36,Henrik,62
+2021/22,32,Kriss,40,Simon,22
+2021/22,32,Simon,22,Kriss,40
+2021/22,32,Christian,63,Morten,39
+2021/22,32,Seb,37,Leo,42
+2021/22,32,Henrik,62,David,36
+2021/22,33,Morten,50,Simon,56
+2021/22,33,Leo,33,Henrik,84
+2021/22,33,David,59,Kriss,56
+2021/22,33,Kriss,56,David,59
+2021/22,33,Simon,56,Morten,50
+2021/22,33,Christian,46,Seb,60
+2021/22,33,Seb,60,Christian,46
+2021/22,33,Henrik,84,Leo,33
+2021/22,34,Morten,52,Leo,57
+2021/22,34,Leo,57,Morten,52
+2021/22,34,David,40,Christian,42
+2021/22,34,Kriss,49,Henrik,66
+2021/22,34,Simon,37,Seb,58
+2021/22,34,Christian,42,David,40
+2021/22,34,Seb,58,Simon,37
+2021/22,34,Henrik,66,Kriss,49
+2021/22,35,Morten,40,Seb,61
+2021/22,35,Leo,44,David,34
+2021/22,35,David,34,Leo,44
+2021/22,35,Kriss,22,Christian,54
+2021/22,35,Simon,44,Henrik,32
+2021/22,35,Christian,54,Kriss,22
+2021/22,35,Seb,61,Morten,40
+2021/22,35,Henrik,32,Simon,44
+2021/22,36,Morten,61,David,52
+2021/22,36,Leo,91,Kriss,84
+2021/22,36,David,52,Morten,61
+2021/22,36,Kriss,84,Leo,91
+2021/22,36,Simon,96,Christian,55
+2021/22,36,Christian,55,Simon,96
+2021/22,36,Seb,102,Henrik,74
+2021/22,36,Henrik,74,Seb,102
+2021/22,37,Morten,37,Henrik,36
+2021/22,37,Leo,54,Christian,10
+2021/22,37,David,62,Simon,86
+2021/22,37,Kriss,50,Seb,45
+2021/22,37,Simon,86,David,62
+2021/22,37,Christian,10,Leo,54
+2021/22,37,Seb,45,Kriss,50
+2021/22,37,Henrik,36,Morten,37
+2021/22,38,Morten,40,Kriss,63
+2021/22,38,Leo,45,Simon,69
+2021/22,38,David,46,Seb,61
+2021/22,38,Kriss,63,Morten,40
+2021/22,38,Simon,69,Leo,45
+2021/22,38,Christian,35,Henrik,25
+2021/22,38,Seb,61,David,46
+2021/22,38,Henrik,25,Christian,35
+2022/23,1,Morten,50,Vegard,47
+2022/23,1,Henrik R,16,Henrik,45
+2022/23,1,David,47,Seb,51
+2022/23,1,Kriss,36,Simon,42
+2022/23,1,Simon,42,Kriss,36
+2022/23,1,Vegard,47,Morten,50
+2022/23,1,Seb,51,David,47
+2022/23,1,Henrik,45,Henrik R,16
+2022/23,2,Morten,38,David,45
+2022/23,2,Henrik R,21,Simon,40
+2022/23,2,David,45,Morten,38
+2022/23,2,Kriss,39,Seb,47
+2022/23,2,Simon,40,Henrik R,21
+2022/23,2,Vegard,35,Henrik,25
+2022/23,2,Seb,47,Kriss,39
+2022/23,2,Henrik,25,Vegard,35
+2022/23,3,Morten,37,Kriss,67
+2022/23,3,Henrik R,34,David,45
+2022/23,3,David,45,Henrik R,34
+2022/23,3,Kriss,67,Morten,37
+2022/23,3,Simon,56,Henrik,36
+2022/23,3,Vegard,53,Seb,48
+2022/23,3,Seb,48,Vegard,53
+2022/23,3,Henrik,36,Simon,56
+2022/23,4,Morten,57,Henrik R,61
+2022/23,4,Henrik R,61,Morten,57
+2022/23,4,David,25,Vegard,46
+2022/23,4,Kriss,56,Henrik,39
+2022/23,4,Simon,44,Seb,63
+2022/23,4,Vegard,46,David,25
+2022/23,4,Seb,63,Simon,44
+2022/23,4,Henrik,39,Kriss,56
+2022/23,5,Morten,41,Henrik,49
+2022/23,5,Henrik R,39,Seb,48
+2022/23,5,David,32,Simon,32
+2022/23,5,Kriss,43,Vegard,35
+2022/23,5,Simon,32,David,32
+2022/23,5,Vegard,35,Kriss,43
+2022/23,5,Seb,48,Henrik R,39
+2022/23,5,Henrik,49,Morten,41
+2022/23,6,Morten,41,Simon,46
+2022/23,6,Henrik R,32,Vegard,49
+2022/23,6,David,28,Kriss,43
+2022/23,6,Kriss,43,David,28
+2022/23,6,Simon,46,Morten,41
+2022/23,6,Vegard,49,Henrik R,32
+2022/23,6,Seb,31,Henrik,40
+2022/23,6,Henrik,40,Seb,31
+2022/23,7,Morten,,Seb,
+2022/23,7,Henrik R,,Kriss,
+2022/23,7,David,,Henrik,
+2022/23,7,Kriss,,Henrik R,
+2022/23,7,Simon,,Vegard,
+2022/23,7,Vegard,,Simon,
+2022/23,7,Seb,,Morten,
+2022/23,7,Henrik,,David,
+2022/23,8,Morten,14,Vegard,12
+2022/23,8,Henrik R,25,Henrik,30
+2022/23,8,David,38,Seb,65
+2022/23,8,Kriss,40,Simon,32
+2022/23,8,Simon,32,Kriss,40
+2022/23,8,Vegard,12,Morten,14
+2022/23,8,Seb,65,David,38
+2022/23,8,Henrik,30,Henrik R,25
+2022/23,9,Morten,62,David,42
+2022/23,9,Henrik R,51,Simon,28
+2022/23,9,David,42,Morten,62
+2022/23,9,Kriss,55,Seb,22
+2022/23,9,Simon,28,Henrik R,51
+2022/23,9,Vegard,32,Henrik,38
+2022/23,9,Seb,22,Kriss,55
+2022/23,9,Henrik,38,Vegard,32
+2022/23,10,Morten,43,Kriss,69
+2022/23,10,Henrik R,32,David,47
+2022/23,10,David,47,Henrik R,32
+2022/23,10,Kriss,69,Morten,43
+2022/23,10,Simon,39,Henrik,15
+2022/23,10,Vegard,46,Seb,59
+2022/23,10,Seb,59,Vegard,46
+2022/23,10,Henrik,15,Simon,39
+2022/23,11,Morten,31,Henrik R,29
+2022/23,11,Henrik R,29,Morten,31
+2022/23,11,David,51,Vegard,34
+2022/23,11,Kriss,78,Henrik,53
+2022/23,11,Simon,32,Seb,50
+2022/23,11,Vegard,34,David,51
+2022/23,11,Seb,50,Simon,32
+2022/23,11,Henrik,53,Kriss,78
+2022/23,12,Morten,30,Henrik,51
+2022/23,12,Henrik R,41,Seb,33
+2022/23,12,David,31,Simon,27
+2022/23,12,Kriss,59,Vegard,47
+2022/23,12,Simon,27,David,31
+2022/23,12,Vegard,47,Kriss,59
+2022/23,12,Seb,33,Henrik R,41
+2022/23,12,Henrik,51,Morten,30
+2022/23,13,Morten,40,Simon,28
+2022/23,13,Henrik R,40,Vegard,32
+2022/23,13,David,37,Kriss,34
+2022/23,13,Kriss,34,David,37
+2022/23,13,Simon,28,Morten,40
+2022/23,13,Vegard,32,Henrik R,40
+2022/23,13,Seb,26,Henrik,33
+2022/23,13,Henrik,33,Seb,26
+2022/23,14,Morten,41,Seb,35
+2022/23,14,Henrik R,39,Kriss,60
+2022/23,14,David,79,Henrik,35
+2022/23,14,Kriss,60,Henrik R,39
+2022/23,14,Simon,49,Vegard,52
+2022/23,14,Vegard,52,Simon,49
+2022/23,14,Seb,35,Morten,41
+2022/23,14,Henrik,35,David,79
+2022/23,15,Morten,26,Vegard,28
+2022/23,15,Henrik R,36,Henrik,41
+2022/23,15,David,32,Seb,36
+2022/23,15,Kriss,50,Simon,61
+2022/23,15,Simon,61,Kriss,50
+2022/23,15,Vegard,28,Morten,26
+2022/23,15,Seb,36,David,32
+2022/23,15,Henrik,41,Henrik R,36
+2022/23,16,Morten,55,David,23
+2022/23,16,Henrik R,46,Simon,16
+2022/23,16,David,23,Morten,55
+2022/23,16,Kriss,60,Seb,32
+2022/23,16,Simon,16,Henrik R,46
+2022/23,16,Vegard,45,Henrik,44
+2022/23,16,Seb,32,Kriss,60
+2022/23,16,Henrik,44,Vegard,45
+2022/23,17,Morten,39,Kriss,77
+2022/23,17,Henrik R,36,David,49
+2022/23,17,David,49,Henrik R,36
+2022/23,17,Kriss,77,Morten,39
+2022/23,17,Simon,24,Henrik,36
+2022/23,17,Vegard,53,Seb,37
+2022/23,17,Seb,37,Vegard,53
+2022/23,17,Henrik,36,Simon,24
+2022/23,18,Morten,31,Henrik R,20
+2022/23,18,Henrik R,20,Morten,31
+2022/23,18,David,33,Vegard,54
+2022/23,18,Kriss,44,Henrik,27
+2022/23,18,Simon,32,Seb,47
+2022/23,18,Vegard,54,David,33
+2022/23,18,Seb,47,Simon,32
+2022/23,18,Henrik,27,Kriss,44
+2022/23,19,Morten,48,Henrik,34
+2022/23,19,Henrik R,35,Seb,38
+2022/23,19,David,37,Simon,52
+2022/23,19,Kriss,72,Vegard,47
+2022/23,19,Simon,52,David,37
+2022/23,19,Vegard,47,Kriss,72
+2022/23,19,Seb,38,Henrik R,35
+2022/23,19,Henrik,34,Morten,48
+2022/23,20,Morten,64,Simon,34
+2022/23,20,Henrik R,31,Vegard,63
+2022/23,20,David,42,Kriss,75
+2022/23,20,Kriss,75,David,42
+2022/23,20,Simon,34,Morten,64
+2022/23,20,Vegard,63,Henrik R,31
+2022/23,20,Seb,42,Henrik,40
+2022/23,20,Henrik,40,Seb,42
+2022/23,21,Morten,61,Seb,57
+2022/23,21,Henrik R,42,Kriss,56
+2022/23,21,David,37,Henrik,34
+2022/23,21,Kriss,56,Henrik R,42
+2022/23,21,Simon,34,Vegard,45
+2022/23,21,Vegard,45,Simon,34
+2022/23,21,Seb,57,Morten,61
+2022/23,21,Henrik,34,David,37
+2022/23,22,Morten,38,Vegard,47
+2022/23,22,Henrik R,52,Henrik,48
+2022/23,22,David,47,Seb,32
+2022/23,22,Kriss,34,Simon,36
+2022/23,22,Simon,36,Kriss,34
+2022/23,22,Vegard,47,Morten,38
+2022/23,22,Seb,32,David,47
+2022/23,22,Henrik,48,Henrik R,52
+2022/23,23,Morten,52,David,58
+2022/23,23,Henrik R,48,Simon,47
+2022/23,23,David,58,Morten,52
+2022/23,23,Kriss,51,Seb,41
+2022/23,23,Simon,47,Henrik R,48
+2022/23,23,Vegard,42,Henrik,43
+2022/23,23,Seb,41,Kriss,51
+2022/23,23,Henrik,43,Vegard,42
+2022/23,24,Morten,32,Kriss,42
+2022/23,24,Henrik R,33,David,49
+2022/23,24,David,49,Henrik R,33
+2022/23,24,Kriss,42,Morten,32
+2022/23,24,Simon,22,Henrik,28
+2022/23,24,Vegard,52,Seb,49
+2022/23,24,Seb,49,Vegard,52
+2022/23,24,Henrik,28,Simon,22
+2022/23,25,Morten,43,Henrik R,43
+2022/23,25,Henrik R,43,Morten,43
+2022/23,25,David,49,Vegard,45
+2022/23,25,Kriss,67,Henrik,46
+2022/23,25,Simon,33,Seb,90
+2022/23,25,Vegard,45,David,49
+2022/23,25,Seb,90,Simon,33
+2022/23,25,Henrik,46,Kriss,67
+2022/23,26,Morten,29,Henrik,59
+2022/23,26,Henrik R,60,Seb,38
+2022/23,26,David,36,Simon,32
+2022/23,26,Kriss,34,Vegard,62
+2022/23,26,Simon,32,David,36
+2022/23,26,Vegard,62,Kriss,34
+2022/23,26,Seb,38,Henrik R,60
+2022/23,26,Henrik,59,Morten,29
+2022/23,27,Morten,57,Simon,60
+2022/23,27,Henrik R,47,Vegard,51
+2022/23,27,David,45,Kriss,45
+2022/23,27,Kriss,45,David,45
+2022/23,27,Simon,60,Morten,57
+2022/23,27,Vegard,51,Henrik R,47
+2022/23,27,Seb,64,Henrik,45
+2022/23,27,Henrik,45,Seb,64
+2022/23,28,Morten,33,Seb,42
+2022/23,28,Henrik R,27,Kriss,34
+2022/23,28,David,50,Henrik,26
+2022/23,28,Kriss,34,Henrik R,27
+2022/23,28,Simon,28,Vegard,27
+2022/23,28,Vegard,27,Simon,28
+2022/23,28,Seb,42,Morten,33
+2022/23,28,Henrik,26,David,50
+2022/23,29,Morten,53,Vegard,90
+2022/23,29,Henrik R,75,Henrik,82
+2022/23,29,David,49,Seb,81
+2022/23,29,Kriss,57,Simon,82
+2022/23,29,Simon,82,Kriss,57
+2022/23,29,Vegard,90,Morten,53
+2022/23,29,Seb,81,David,49
+2022/23,29,Henrik,82,Henrik R,75
+2022/23,30,Morten,31,David,43
+2022/23,30,Henrik R,29,Simon,34
+2022/23,30,David,43,Morten,31
+2022/23,30,Kriss,31,Seb,58
+2022/23,30,Simon,34,Henrik R,29
+2022/23,30,Vegard,46,Henrik,44
+2022/23,30,Seb,58,Kriss,31
+2022/23,30,Henrik,44,Vegard,46
+2022/23,31,Morten,35,Kriss,50
+2022/23,31,Henrik R,47,David,44
+2022/23,31,David,44,Henrik R,47
+2022/23,31,Kriss,50,Morten,35
+2022/23,31,Simon,45,Henrik,55
+2022/23,31,Vegard,29,Seb,75
+2022/23,31,Seb,75,Vegard,29
+2022/23,31,Henrik,55,Simon,45
+2022/23,32,Morten,21,Henrik R,34
+2022/23,32,Henrik R,34,Morten,21
+2022/23,32,David,35,Vegard,49
+2022/23,32,Kriss,40,Henrik,51
+2022/23,32,Simon,40,Seb,39
+2022/23,32,Vegard,49,David,35
+2022/23,32,Seb,39,Simon,40
+2022/23,32,Henrik,51,Kriss,40
+2022/23,33,Morten,30,Henrik,24
+2022/23,33,Henrik R,27,Seb,46
+2022/23,33,David,38,Simon,52
+2022/23,33,Kriss,47,Vegard,39
+2022/23,33,Simon,52,David,38
+2022/23,33,Vegard,39,Kriss,47
+2022/23,33,Seb,46,Henrik R,27
+2022/23,33,Henrik,24,Morten,30
+2022/23,34,Morten,97,Simon,54
+2022/23,34,Henrik R,64,Vegard,58
+2022/23,34,David,46,Kriss,71
+2022/23,34,Kriss,71,David,46
+2022/23,34,Simon,54,Morten,97
+2022/23,34,Vegard,58,Henrik R,64
+2022/23,34,Seb,64,Henrik,65
+2022/23,34,Henrik,65,Seb,64
+2022/23,35,Morten,24,Seb,34
+2022/23,35,Henrik R,33,Kriss,48
+2022/23,35,David,19,Henrik,48
+2022/23,35,Kriss,48,Henrik R,33
+2022/23,35,Simon,28,Vegard,62
+2022/23,35,Vegard,62,Simon,28
+2022/23,35,Seb,34,Morten,24
+2022/23,35,Henrik,48,David,19
+2022/23,36,Morten,53,Vegard,61
+2022/23,36,Henrik R,51,Henrik,75
+2022/23,36,David,64,Seb,51
+2022/23,36,Kriss,56,Simon,47
+2022/23,36,Simon,47,Kriss,56
+2022/23,36,Vegard,61,Morten,53
+2022/23,36,Seb,51,David,64
+2022/23,36,Henrik,75,Henrik R,51
+2022/23,37,Morten,57,David,54
+2022/23,37,Henrik R,68,Simon,48
+2022/23,37,David,54,Morten,57
+2022/23,37,Kriss,43,Seb,56
+2022/23,37,Simon,48,Henrik R,68
+2022/23,37,Vegard,60,Henrik,40
+2022/23,37,Seb,56,Kriss,43
+2022/23,37,Henrik,40,Vegard,60
+2022/23,38,Morten,49,Kriss,79
+2022/23,38,Henrik R,17,David,33
+2022/23,38,David,33,Henrik R,17
+2022/23,38,Kriss,79,Morten,49
+2022/23,38,Simon,54,Henrik,44
+2022/23,38,Vegard,35,Seb,36
+2022/23,38,Seb,36,Vegard,35
+2022/23,38,Henrik,44,Simon,54
+2023/24,1,Morten,39,Kriss,37
+2023/24,1,Henrik R,39,Aina,32
+2023/24,1,David,57,Henrik,38
+2023/24,1,Kriss,37,Morten,39
+2023/24,1,Simon,38,Seb,45
+2023/24,1,Aina,32,Henrik R,39
+2023/24,1,Seb,45,Simon,38
+2023/24,1,Henrik,38,David,57
+2023/24,2,Morten,26,David,65
+2023/24,2,Henrik R,34,Henrik,33
+2023/24,2,David,65,Morten,26
+2023/24,2,Kriss,49,Seb,52
+2023/24,2,Simon,32,Aina,34
+2023/24,2,Aina,34,Simon,32
+2023/24,2,Seb,52,Kriss,49
+2023/24,2,Henrik,33,Henrik R,34
+2023/24,3,Morten,41,Henrik,38
+2023/24,3,Henrik R,40,Seb,38
+2023/24,3,David,30,Simon,50
+2023/24,3,Kriss,41,Aina,32
+2023/24,3,Simon,50,David,30
+2023/24,3,Aina,32,Kriss,41
+2023/24,3,Seb,38,Henrik R,40
+2023/24,3,Henrik,38,Morten,41
+2023/24,4,Morten,39,Seb,75
+2023/24,4,Henrik R,42,Simon,32
+2023/24,4,David,59,Aina,33
+2023/24,4,Kriss,43,Henrik,31
+2023/24,4,Simon,32,Henrik R,42
+2023/24,4,Aina,33,David,59
+2023/24,4,Seb,75,Morten,39
+2023/24,4,Henrik,31,Kriss,43
+2023/24,5,Morten,19,Simon,49
+2023/24,5,Henrik R,50,Kriss,41
+2023/24,5,David,41,Seb,45
+2023/24,5,Kriss,41,Henrik R,50
+2023/24,5,Simon,49,Morten,19
+2023/24,5,Aina,39,Henrik,37
+2023/24,5,Seb,45,David,41
+2023/24,5,Henrik,37,Aina,39
+2023/24,6,Morten,32,Aina,48
+2023/24,6,Henrik R,75,David,40
+2023/24,6,David,40,Henrik R,75
+2023/24,6,Kriss,58,Simon,48
+2023/24,6,Simon,48,Kriss,58
+2023/24,6,Aina,48,Morten,32
+2023/24,6,Seb,50,Henrik,42
+2023/24,6,Henrik,42,Seb,50
+2023/24,7,Morten,33,Henrik R,49
+2023/24,7,Henrik R,49,Morten,33
+2023/24,7,David,52,Kriss,60
+2023/24,7,Kriss,60,David,52
+2023/24,7,Simon,43,Henrik,75
+2023/24,7,Aina,34,Seb,60
+2023/24,7,Seb,60,Aina,34
+2023/24,7,Henrik,75,Simon,43
+2023/24,8,Morten,50,Kriss,54
+2023/24,8,Henrik R,33,Aina,31
+2023/24,8,David,44,Henrik,47
+2023/24,8,Kriss,54,Morten,50
+2023/24,8,Simon,32,Seb,31
+2023/24,8,Aina,31,Henrik R,33
+2023/24,8,Seb,31,Simon,32
+2023/24,8,Henrik,47,David,44
+2023/24,9,Morten,19,David,34
+2023/24,9,Henrik R,55,Henrik,25
+2023/24,9,David,34,Morten,19
+2023/24,9,Kriss,49,Seb,56
+2023/24,9,Simon,56,Aina,50
+2023/24,9,Aina,50,Simon,56
+2023/24,9,Seb,56,Kriss,49
+2023/24,9,Henrik,25,Henrik R,55
+2023/24,10,Morten,32,Henrik,41
+2023/24,10,Henrik R,70,Seb,41
+2023/24,10,David,64,Simon,84
+2023/24,10,Kriss,37,Aina,29
+2023/24,10,Simon,84,David,64
+2023/24,10,Aina,29,Kriss,37
+2023/24,10,Seb,41,Henrik R,70
+2023/24,10,Henrik,41,Morten,32
+2023/24,11,Morten,38,Seb,34
+2023/24,11,Henrik R,18,Simon,29
+2023/24,11,David,44,Aina,48
+2023/24,11,Kriss,51,Henrik,32
+2023/24,11,Simon,29,Henrik R,18
+2023/24,11,Aina,48,David,44
+2023/24,11,Seb,34,Morten,38
+2023/24,11,Henrik,32,Kriss,51
+2023/24,12,Morten,47,Simon,48
+2023/24,12,Henrik R,47,Kriss,20
+2023/24,12,David,58,Seb,43
+2023/24,12,Kriss,20,Henrik R,47
+2023/24,12,Simon,48,Morten,47
+2023/24,12,Aina,50,Henrik,25
+2023/24,12,Seb,43,David,58
+2023/24,12,Henrik,25,Aina,50
+2023/24,13,Morten,33,Aina,27
+2023/24,13,Henrik R,47,David,31
+2023/24,13,David,31,Henrik R,47
+2023/24,13,Kriss,35,Simon,29
+2023/24,13,Simon,29,Kriss,35
+2023/24,13,Aina,27,Morten,33
+2023/24,13,Seb,46,Henrik,36
+2023/24,13,Henrik,36,Seb,46
+2023/24,14,Morten,41,Henrik R,38
+2023/24,14,Henrik R,38,Morten,41
+2023/24,14,David,45,Kriss,29
+2023/24,14,Kriss,29,David,45
+2023/24,14,Simon,29,Henrik,32
+2023/24,14,Aina,42,Seb,47
+2023/24,14,Seb,47,Aina,42
+2023/24,14,Henrik,32,Simon,29
+2023/24,15,Morten,26,Kriss,37
+2023/24,15,Henrik R,39,Aina,57
+2023/24,15,David,23,Henrik,40
+2023/24,15,Kriss,37,Morten,26
+2023/24,15,Simon,41,Seb,39
+2023/24,15,Aina,57,Henrik R,39
+2023/24,15,Seb,39,Simon,41
+2023/24,15,Henrik,40,David,23
+2023/24,16,Morten,39,David,38
+2023/24,16,Henrik R,15,Henrik,32
+2023/24,16,David,38,Morten,39
+2023/24,16,Kriss,23,Seb,39
+2023/24,16,Simon,31,Aina,55
+2023/24,16,Aina,55,Simon,31
+2023/24,16,Seb,39,Kriss,23
+2023/24,16,Henrik,32,Henrik R,15
+2023/24,17,Morten,45,Henrik,29
+2023/24,17,Henrik R,52,Seb,65
+2023/24,17,David,36,Simon,17
+2023/24,17,Kriss,42,Aina,53
+2023/24,17,Simon,17,David,36
+2023/24,17,Aina,53,Kriss,42
+2023/24,17,Seb,65,Henrik R,52
+2023/24,17,Henrik,29,Morten,45
+2023/24,18,Morten,23,Seb,38
+2023/24,18,Henrik R,21,Simon,36
+2023/24,18,David,27,Aina,32
+2023/24,18,Kriss,25,Henrik,37
+2023/24,18,Simon,36,Henrik R,21
+2023/24,18,Aina,32,David,27
+2023/24,18,Seb,38,Morten,23
+2023/24,18,Henrik,37,Kriss,25
+2023/24,19,Morten,38,Simon,51
+2023/24,19,Henrik R,39,Kriss,30
+2023/24,19,David,34,Seb,55
+2023/24,19,Kriss,30,Henrik R,39
+2023/24,19,Simon,51,Morten,38
+2023/24,19,Aina,33,Henrik,38
+2023/24,19,Seb,55,David,34
+2023/24,19,Henrik,38,Aina,33
+2023/24,20,Morten,45,Aina,16
+2023/24,20,Henrik R,48,David,28
+2023/24,20,David,28,Henrik R,48
+2023/24,20,Kriss,44,Simon,59
+2023/24,20,Simon,59,Kriss,44
+2023/24,20,Aina,16,Morten,45
+2023/24,20,Seb,64,Henrik,33
+2023/24,20,Henrik,33,Seb,64
+2023/24,21,Morten,52,Henrik R,59
+2023/24,21,Henrik R,59,Morten,52
+2023/24,21,David,30,Kriss,59
+2023/24,21,Kriss,59,David,30
+2023/24,21,Simon,45,Henrik,34
+2023/24,21,Aina,54,Seb,40
+2023/24,21,Seb,40,Aina,54
+2023/24,21,Henrik,34,Simon,45
+2023/24,22,Morten,44,Kriss,49
+2023/24,22,Henrik R,49,Aina,44
+2023/24,22,David,48,Henrik,21
+2023/24,22,Kriss,49,Morten,44
+2023/24,22,Simon,18,Seb,74
+2023/24,22,Aina,44,Henrik R,49
+2023/24,22,Seb,74,Simon,18
+2023/24,22,Henrik,21,David,48
+2023/24,23,Morten,38,David,47
+2023/24,23,Henrik R,58,Henrik,33
+2023/24,23,David,47,Morten,38
+2023/24,23,Kriss,49,Seb,15
+2023/24,23,Simon,29,Aina,45
+2023/24,23,Aina,45,Simon,29
+2023/24,23,Seb,15,Kriss,49
+2023/24,23,Henrik,33,Henrik R,58
+2023/24,24,Morten,30,Henrik,31
+2023/24,24,Henrik R,59,Seb,28
+2023/24,24,David,50,Simon,42
+2023/24,24,Kriss,46,Aina,32
+2023/24,24,Simon,42,David,50
+2023/24,24,Aina,32,Kriss,46
+2023/24,24,Seb,28,Henrik R,59
+2023/24,24,Henrik,31,Morten,30
+2023/24,25,Morten,38,Seb,50
+2023/24,25,Henrik R,54,Simon,61
+2023/24,25,David,52,Aina,34
+2023/24,25,Kriss,73,Henrik,57
+2023/24,25,Simon,61,Henrik R,54
+2023/24,25,Aina,34,David,52
+2023/24,25,Seb,50,Morten,38
+2023/24,25,Henrik,57,Kriss,73
+2023/24,26,Morten,43,Simon,51
+2023/24,26,Henrik R,24,Kriss,41
+2023/24,26,David,46,Seb,38
+2023/24,26,Kriss,41,Henrik R,24
+2023/24,26,Simon,51,Morten,43
+2023/24,26,Aina,21,Henrik,30
+2023/24,26,Seb,38,David,46
+2023/24,26,Henrik,30,Aina,21
+2023/24,27,Morten,63,Aina,25
+2023/24,27,Henrik R,57,David,50
+2023/24,27,David,50,Henrik R,57
+2023/24,27,Kriss,51,Simon,46
+2023/24,27,Simon,46,Kriss,51
+2023/24,27,Aina,25,Morten,63
+2023/24,27,Seb,41,Henrik,53
+2023/24,27,Henrik,53,Seb,41
+2023/24,28,Morten,46,Henrik R,46
+2023/24,28,Henrik R,46,Morten,46
+2023/24,28,David,29,Kriss,44
+2023/24,28,Kriss,44,David,29
+2023/24,28,Simon,24,Henrik,42
+2023/24,28,Aina,37,Seb,43
+2023/24,28,Seb,43,Aina,37
+2023/24,28,Henrik,42,Simon,24
+2023/24,29,Morten,30,Kriss,22
+2023/24,29,Henrik R,13,Aina,8
+2023/24,29,David,24,Henrik,9
+2023/24,29,Kriss,22,Morten,30
+2023/24,29,Simon,32,Seb,10
+2023/24,29,Aina,8,Henrik R,13
+2023/24,29,Seb,10,Simon,32
+2023/24,29,Henrik,9,David,24
+2023/24,30,Morten,31,David,37
+2023/24,30,Henrik R,46,Henrik,37
+2023/24,30,David,37,Morten,31
+2023/24,30,Kriss,35,Seb,60
+2023/24,30,Simon,31,Aina,27
+2023/24,30,Aina,27,Simon,31
+2023/24,30,Seb,60,Kriss,35
+2023/24,30,Henrik,37,Henrik R,46
+2023/24,31,Morten,40,Henrik,25
+2023/24,31,Henrik R,66,Seb,43
+2023/24,31,David,48,Simon,25
+2023/24,31,Kriss,49,Aina,19
+2023/24,31,Simon,25,David,48
+2023/24,31,Aina,19,Kriss,49
+2023/24,31,Seb,43,Henrik R,66
+2023/24,31,Henrik,25,Morten,40
+2023/24,32,Morten,43,Seb,23
+2023/24,32,Henrik R,61,Simon,46
+2023/24,32,David,41,Aina,61
+2023/24,32,Kriss,40,Henrik,18
+2023/24,32,Simon,46,Henrik R,61
+2023/24,32,Aina,61,David,41
+2023/24,32,Seb,23,Morten,43
+2023/24,32,Henrik,18,Kriss,40
+2023/24,33,Morten,46,Simon,30
+2023/24,33,Henrik R,71,Kriss,45
+2023/24,33,David,30,Seb,42
+2023/24,33,Kriss,45,Henrik R,71
+2023/24,33,Simon,30,Morten,46
+2023/24,33,Aina,48,Henrik,42
+2023/24,33,Seb,42,David,30
+2023/24,33,Henrik,42,Aina,48
+2023/24,34,Morten,90,Aina,68
+2023/24,34,Henrik R,48,David,75
+2023/24,34,David,75,Henrik R,48
+2023/24,34,Kriss,65,Simon,60
+2023/24,34,Simon,60,Kriss,65
+2023/24,34,Aina,68,Morten,90
+2023/24,34,Seb,62,Henrik,72
+2023/24,34,Henrik,72,Seb,62
+2023/24,35,Morten,55,Henrik R,43
+2023/24,35,Henrik R,43,Morten,55
+2023/24,35,David,32,Kriss,29
+2023/24,35,Kriss,29,David,32
+2023/24,35,Simon,31,Henrik,34
+2023/24,35,Aina,34,Seb,54
+2023/24,35,Seb,54,Aina,34
+2023/24,35,Henrik,34,Simon,31
+2023/24,36,Morten,70,Kriss,31
+2023/24,36,Henrik R,35,Aina,35
+2023/24,36,David,91,Henrik,42
+2023/24,36,Kriss,31,Morten,70
+2023/24,36,Simon,36,Seb,50
+2023/24,36,Aina,35,Henrik R,35
+2023/24,36,Seb,50,Simon,36
+2023/24,36,Henrik,42,David,91
+2023/24,37,Morten,99,David,66
+2023/24,37,Henrik R,53,Henrik,33
+2023/24,37,David,66,Morten,99
+2023/24,37,Kriss,66,Seb,42
+2023/24,37,Simon,49,Aina,59
+2023/24,37,Aina,59,Simon,49
+2023/24,37,Seb,42,Kriss,66
+2023/24,37,Henrik,33,Henrik R,53
+2023/24,38,Morten,67,Henrik,29
+2023/24,38,Henrik R,46,Seb,62
+2023/24,38,David,50,Simon,49
+2023/24,38,Kriss,66,Aina,40
+2023/24,38,Simon,49,David,50
+2023/24,38,Aina,40,Kriss,66
+2023/24,38,Seb,62,Henrik R,46
+2023/24,38,Henrik,29,Morten,67
+2024/25,1,Morten,38,David,22
+2024/25,1,Henrik R,35,Kriss,59
+2024/25,1,David,22,Morten,38
+2024/25,1,Kriss,59,Henrik R,35
+2024/25,1,Simon,49,Aina,45
+2024/25,1,Aina,45,Simon,49
+2024/25,1,Seb,23,Henrik,42
+2024/25,1,Henrik,42,Seb,23
+2024/25,2,Morten,60,Simon,41
+2024/25,2,Henrik R,55,David,62
+2024/25,2,David,62,Henrik R,55
+2024/25,2,Kriss,48,Seb,38
+2024/25,2,Simon,41,Morten,60
+2024/25,2,Aina,54,Henrik,23
+2024/25,2,Seb,38,Kriss,48
+2024/25,2,Henrik,23,Aina,54
+2024/25,3,Morten,44,Henrik R,57
+2024/25,3,Henrik R,57,Morten,44
+2024/25,3,David,31,Henrik,38
+2024/25,3,Kriss,26,Aina,52
+2024/25,3,Simon,42,Seb,31
+2024/25,3,Aina,52,Kriss,26
+2024/25,3,Seb,31,Simon,42
+2024/25,3,Henrik,38,David,31
+2024/25,4,Morten,25,Kriss,24
+2024/25,4,Henrik R,49,Seb,30
+2024/25,4,David,37,Aina,52
+2024/25,4,Kriss,24,Morten,25
+2024/25,4,Simon,50,Henrik,19
+2024/25,4,Aina,52,David,37
+2024/25,4,Seb,30,Henrik R,49
+2024/25,4,Henrik,19,Simon,50
+2024/25,5,Morten,51,Aina,49
+2024/25,5,Henrik R,47,Henrik,19
+2024/25,5,David,55,Seb,35
+2024/25,5,Kriss,59,Simon,42
+2024/25,5,Simon,42,Kriss,59
+2024/25,5,Aina,49,Morten,51
+2024/25,5,Seb,35,David,55
+2024/25,5,Henrik,19,Henrik R,47
+2024/25,6,Morten,32,Seb,53
+2024/25,6,Henrik R,41,Aina,36
+2024/25,6,David,54,Simon,30
+2024/25,6,Kriss,27,Henrik,28
+2024/25,6,Simon,30,David,54
+2024/25,6,Aina,36,Henrik R,41
+2024/25,6,Seb,53,Morten,32
+2024/25,6,Henrik,28,Kriss,27
+2024/25,7,Morten,47,Henrik,46
+2024/25,7,Henrik R,33,Simon,39
+2024/25,7,David,37,Kriss,67
+2024/25,7,Kriss,67,David,37
+2024/25,7,Simon,39,Henrik R,33
+2024/25,7,Aina,68,Seb,31
+2024/25,7,Seb,31,Aina,68
+2024/25,7,Henrik,46,Morten,47
+2024/25,8,Morten,29,David,40
+2024/25,8,Henrik R,24,Kriss,46
+2024/25,8,David,40,Morten,29
+2024/25,8,Kriss,46,Henrik R,24
+2024/25,8,Simon,32,Aina,40
+2024/25,8,Aina,40,Simon,32
+2024/25,8,Seb,30,Henrik,35
+2024/25,8,Henrik,35,Seb,30
+2024/25,9,Morten,33,Simon,55
+2024/25,9,Henrik R,24,David,38
+2024/25,9,David,38,Henrik R,24
+2024/25,9,Kriss,39,Seb,36
+2024/25,9,Simon,55,Morten,33
+2024/25,9,Aina,62,Henrik,30
+2024/25,9,Seb,36,Kriss,39
+2024/25,9,Henrik,30,Aina,62
+2024/25,10,Morten,42,Henrik R,35
+2024/25,10,Henrik R,35,Morten,42
+2024/25,10,David,44,Henrik,27
+2024/25,10,Kriss,36,Aina,35
+2024/25,10,Simon,30,Seb,42
+2024/25,10,Aina,35,Kriss,36
+2024/25,10,Seb,42,Simon,30
+2024/25,10,Henrik,27,David,44
+2024/25,11,Morten,34,Kriss,28
+2024/25,11,Henrik R,44,Seb,59
+2024/25,11,David,27,Aina,58
+2024/25,11,Kriss,28,Morten,34
+2024/25,11,Simon,46,Henrik,43
+2024/25,11,Aina,58,David,27
+2024/25,11,Seb,59,Henrik R,44
+2024/25,11,Henrik,43,Simon,46
+2024/25,12,Morten,54,Aina,60
+2024/25,12,Henrik R,43,Henrik,25
+2024/25,12,David,32,Seb,21
+2024/25,12,Kriss,60,Simon,38
+2024/25,12,Simon,38,Kriss,60
+2024/25,12,Aina,60,Morten,54
+2024/25,12,Seb,21,David,32
+2024/25,12,Henrik,25,Henrik R,43
+2024/25,13,Morten,47,Seb,40
+2024/25,13,Henrik R,54,Aina,33
+2024/25,13,David,49,Simon,50
+2024/25,13,Kriss,41,Henrik,31
+2024/25,13,Simon,50,David,49
+2024/25,13,Aina,33,Henrik R,54
+2024/25,13,Seb,40,Morten,47
+2024/25,13,Henrik,31,Kriss,41
+2024/25,14,Morten,20,Henrik,44
+2024/25,14,Henrik R,28,Simon,32
+2024/25,14,David,50,Kriss,29
+2024/25,14,Kriss,29,David,50
+2024/25,14,Simon,32,Henrik R,28
+2024/25,14,Aina,67,Seb,35
+2024/25,14,Seb,35,Aina,67
+2024/25,14,Henrik,44,Morten,20
+2024/25,15,Morten,32,David,51
+2024/25,15,Henrik R,27,Kriss,24
+2024/25,15,David,51,Morten,32
+2024/25,15,Kriss,24,Henrik R,27
+2024/25,15,Simon,44,Aina,42
+2024/25,15,Aina,42,Simon,44
+2024/25,15,Seb,19,Henrik,44
+2024/25,15,Henrik,44,Seb,19
+2024/25,16,Morten,57,Simon,25
+2024/25,16,Henrik R,44,David,33
+2024/25,16,David,33,Henrik R,44
+2024/25,16,Kriss,49,Seb,46
+2024/25,16,Simon,25,Morten,57
+2024/25,16,Aina,51,Henrik,32
+2024/25,16,Seb,46,Kriss,49
+2024/25,16,Henrik,32,Aina,51
+2024/25,17,Morten,63,Henrik R,43
+2024/25,17,Henrik R,43,Morten,63
+2024/25,17,David,56,Henrik,46
+2024/25,17,Kriss,20,Aina,55
+2024/25,17,Simon,22,Seb,43
+2024/25,17,Aina,55,Kriss,20
+2024/25,17,Seb,43,Simon,22
+2024/25,17,Henrik,46,David,56
+2024/25,18,Morten,56,Kriss,29
+2024/25,18,Henrik R,21,Seb,32
+2024/25,18,David,31,Aina,53
+2024/25,18,Kriss,29,Morten,56
+2024/25,18,Simon,35,Henrik,53
+2024/25,18,Aina,53,David,31
+2024/25,18,Seb,32,Henrik R,21
+2024/25,18,Henrik,53,Simon,35
+2024/25,19,Morten,38,Aina,42
+2024/25,19,Henrik R,71,Henrik,41
+2024/25,19,David,35,Seb,54
+2024/25,19,Kriss,24,Simon,36
+2024/25,19,Simon,36,Kriss,24
+2024/25,19,Aina,42,Morten,38
+2024/25,19,Seb,54,David,35
+2024/25,19,Henrik,41,Henrik R,71
+2024/25,20,Morten,47,Seb,42
+2024/25,20,Henrik R,50,Aina,48
+2024/25,20,David,50,Simon,48
+2024/25,20,Kriss,32,Henrik,37
+2024/25,20,Simon,48,David,50
+2024/25,20,Aina,48,Henrik R,50
+2024/25,20,Seb,42,Morten,47
+2024/25,20,Henrik,37,Kriss,32
+2024/25,21,Morten,57,Henrik,49
+2024/25,21,Henrik R,48,Simon,38
+2024/25,21,David,51,Kriss,26
+2024/25,21,Kriss,26,David,51
+2024/25,21,Simon,38,Henrik R,48
+2024/25,21,Aina,30,Seb,59
+2024/25,21,Seb,59,Aina,30
+2024/25,21,Henrik,49,Morten,57
+2024/25,22,Morten,37,David,48
+2024/25,22,Henrik R,50,Kriss,51
+2024/25,22,David,48,Morten,37
+2024/25,22,Kriss,51,Henrik R,50
+2024/25,22,Simon,36,Aina,52
+2024/25,22,Aina,52,Simon,36
+2024/25,22,Seb,41,Henrik,22
+2024/25,22,Henrik,22,Seb,41
+2024/25,23,Morten,71,Simon,39
+2024/25,23,Henrik R,44,David,36
+2024/25,23,David,36,Henrik R,44
+2024/25,23,Kriss,35,Seb,34
+2024/25,23,Simon,39,Morten,71
+2024/25,23,Aina,40,Henrik,53
+2024/25,23,Seb,34,Kriss,35
+2024/25,23,Henrik,53,Aina,40
+2024/25,24,Morten,68,Henrik R,52
+2024/25,24,Henrik R,52,Morten,68
+2024/25,24,David,48,Henrik,40
+2024/25,24,Kriss,30,Aina,82
+2024/25,24,Simon,40,Seb,30
+2024/25,24,Aina,82,Kriss,30
+2024/25,24,Seb,30,Simon,40
+2024/25,24,Henrik,40,David,48
+2024/25,25,Morten,33,Kriss,43
+2024/25,25,Henrik R,51,Seb,78
+2024/25,25,David,46,Aina,65
+2024/25,25,Kriss,43,Morten,33
+2024/25,25,Simon,54,Henrik,28
+2024/25,25,Aina,65,David,46
+2024/25,25,Seb,78,Henrik R,51
+2024/25,25,Henrik,28,Simon,54
+2024/25,26,Morten,43,Aina,66
+2024/25,26,Henrik R,74,Henrik,51
+2024/25,26,David,30,Seb,45
+2024/25,26,Kriss,23,Simon,40
+2024/25,26,Simon,40,Kriss,23
+2024/25,26,Aina,66,Morten,43
+2024/25,26,Seb,45,David,30
+2024/25,26,Henrik,51,Henrik R,74
+2024/25,27,Morten,31,Seb,54
+2024/25,27,Henrik R,31,Aina,53
+2024/25,27,David,23,Simon,48
+2024/25,27,Kriss,54,Henrik,48
+2024/25,27,Simon,48,David,23
+2024/25,27,Aina,53,Henrik R,31
+2024/25,27,Seb,54,Morten,31
+2024/25,27,Henrik,48,Kriss,54
+2024/25,28,Morten,29,Henrik,44
+2024/25,28,Henrik R,29,Simon,41
+2024/25,28,David,37,Kriss,47
+2024/25,28,Kriss,47,David,37
+2024/25,28,Simon,41,Henrik R,29
+2024/25,28,Aina,43,Seb,58
+2024/25,28,Seb,58,Aina,43
+2024/25,28,Henrik,44,Morten,29
+2024/25,29,Morten,43,David,24
+2024/25,29,Henrik R,31,Kriss,25
+2024/25,29,David,24,Morten,43
+2024/25,29,Kriss,25,Henrik R,31
+2024/25,29,Simon,37,Aina,28
+2024/25,29,Aina,28,Simon,37
+2024/25,29,Seb,62,Henrik,40
+2024/25,29,Henrik,40,Seb,62
+2024/25,30,Morten,34,Simon,26
+2024/25,30,Henrik R,39,David,48
+2024/25,30,David,48,Henrik R,39
+2024/25,30,Kriss,46,Seb,47
+2024/25,30,Simon,26,Morten,34
+2024/25,30,Aina,35,Henrik,46
+2024/25,30,Seb,47,Kriss,46
+2024/25,30,Henrik,46,Aina,35
+2024/25,31,Morten,27,Henrik R,42
+2024/25,31,Henrik R,42,Morten,27
+2024/25,31,David,35,Henrik,41
+2024/25,31,Kriss,32,Aina,32
+2024/25,31,Simon,35,Seb,59
+2024/25,31,Aina,32,Kriss,32
+2024/25,31,Seb,59,Simon,35
+2024/25,31,Henrik,41,David,35
+2024/25,32,Morten,32,Kriss,42
+2024/25,32,Henrik R,55,Seb,72
+2024/25,32,David,45,Aina,58
+2024/25,32,Kriss,42,Morten,32
+2024/25,32,Simon,29,Henrik,37
+2024/25,32,Aina,58,David,45
+2024/25,32,Seb,72,Henrik R,55
+2024/25,32,Henrik,37,Simon,29
+2024/25,33,Morten,49,Aina,76
+2024/25,33,Henrik R,53,Henrik,24
+2024/25,33,David,54,Seb,64
+2024/25,33,Kriss,32,Simon,59
+2024/25,33,Simon,59,Kriss,32
+2024/25,33,Aina,76,Morten,49
+2024/25,33,Seb,64,David,54
+2024/25,33,Henrik,24,Henrik R,53
+2024/25,34,Morten,67,Seb,35
+2024/25,34,Henrik R,40,Aina,42
+2024/25,34,David,65,Simon,25
+2024/25,34,Kriss,26,Henrik,36
+2024/25,34,Simon,25,David,65
+2024/25,34,Aina,42,Henrik R,40
+2024/25,34,Seb,35,Morten,67
+2024/25,34,Henrik,36,Kriss,26
+2024/25,35,Morten,25,Henrik,52
+2024/25,35,Henrik R,34,Simon,42
+2024/25,35,David,52,Kriss,24
+2024/25,35,Kriss,24,David,52
+2024/25,35,Simon,42,Henrik R,34
+2024/25,35,Aina,32,Seb,23
+2024/25,35,Seb,23,Aina,32
+2024/25,35,Henrik,52,Morten,25
+2024/25,36,Morten,45,David,61
+2024/25,36,Henrik R,43,Kriss,39
+2024/25,36,David,61,Morten,45
+2024/25,36,Kriss,39,Henrik R,43
+2024/25,36,Simon,61,Aina,31
+2024/25,36,Aina,31,Simon,61
+2024/25,36,Seb,50,Henrik,34
+2024/25,36,Henrik,34,Seb,50
+2024/25,37,Morten,35,Simon,54
+2024/25,37,Henrik R,15,David,39
+2024/25,37,David,39,Henrik R,15
+2024/25,37,Kriss,23,Seb,35
+2024/25,37,Simon,54,Morten,35
+2024/25,37,Aina,28,Henrik,43
+2024/25,37,Seb,35,Kriss,23
+2024/25,37,Henrik,43,Aina,28
+2024/25,38,Morten,62,Henrik R,32
+2024/25,38,Henrik R,32,Morten,62
+2024/25,38,David,34,Henrik,28
+2024/25,38,Kriss,23,Aina,48
+2024/25,38,Simon,35,Seb,18
+2024/25,38,Aina,48,Kriss,23
+2024/25,38,Seb,18,Simon,35
+2024/25,38,Henrik,28,David,34
+2025/26,1,Morten,44,David,39
+2025/26,1,Henrik R,52,Seb,42
+2025/26,1,David,39,Morten,44
+2025/26,1,Kriss,44,Henrik,40
+2025/26,1,Simon,47,Audun,44
+2025/26,1,Audun,44,Simon,47
+2025/26,1,Seb,42,Henrik R,52
+2025/26,1,Henrik,40,Kriss,44
+2025/26,2,Morten,44,Seb,45
+2025/26,2,Henrik R,46,Audun,38
+2025/26,2,David,31,Henrik,14
+2025/26,2,Kriss,48,Simon,63
+2025/26,2,Simon,63,Kriss,48
+2025/26,2,Audun,38,Henrik R,46
+2025/26,2,Seb,45,Morten,44
+2025/26,2,Henrik,14,David,31
+2025/26,3,Morten,62,Audun,46
+2025/26,3,Henrik R,43,Henrik,23
+2025/26,3,David,53,Kriss,34
+2025/26,3,Kriss,34,David,53
+2025/26,3,Simon,45,Seb,40
+2025/26,3,Audun,46,Morten,62
+2025/26,3,Seb,40,Simon,45
+2025/26,3,Henrik,23,Henrik R,43
+2025/26,4,Morten,52,Kriss,54
+2025/26,4,Henrik R,40,Simon,44
+2025/26,4,David,51,Seb,43
+2025/26,4,Kriss,54,Morten,52
+2025/26,4,Simon,44,Henrik R,40
+2025/26,4,Audun,40,Henrik,69
+2025/26,4,Seb,43,David,51
+2025/26,4,Henrik,69,Audun,40
+2025/26,5,Morten,39,Simon,38
+2025/26,5,Henrik R,35,David,29
+2025/26,5,David,29,Henrik R,35
+2025/26,5,Kriss,57,Audun,32
+2025/26,5,Simon,38,Morten,39
+2025/26,5,Audun,32,Kriss,57
+2025/26,5,Seb,26,Henrik,39
+2025/26,5,Henrik,39,Seb,26
+2025/26,6,Morten,29,Henrik R,34
+2025/26,6,Henrik R,34,Morten,29
+2025/26,6,David,36,Audun,14
+2025/26,6,Kriss,22,Seb,42
+2025/26,6,Simon,44,Henrik,52
+2025/26,6,Audun,14,David,36
+2025/26,6,Seb,42,Kriss,22
+2025/26,6,Henrik,52,Simon,44
+2025/26,7,Morten,39,Henrik,41
+2025/26,7,Henrik R,52,Kriss,55
+2025/26,7,David,39,Simon,50
+2025/26,7,Kriss,55,Henrik R,52
+2025/26,7,Simon,50,David,39
+2025/26,7,Audun,31,Seb,32
+2025/26,7,Seb,32,Audun,31
+2025/26,7,Henrik,41,Morten,39
+2025/26,8,Morten,33,David,54
+2025/26,8,Henrik R,38,Seb,36
+2025/26,8,David,54,Morten,33
+2025/26,8,Kriss,40,Henrik,35
+2025/26,8,Simon,55,Audun,34
+2025/26,8,Audun,34,Simon,55
+2025/26,8,Seb,36,Henrik R,38
+2025/26,8,Henrik,35,Kriss,40
+2025/26,9,Morten,53,Seb,49
+2025/26,9,Henrik R,24,Audun,32
+2025/26,9,David,45,Henrik,41
+2025/26,9,Kriss,53,Simon,36
+2025/26,9,Simon,36,Kriss,53
+2025/26,9,Audun,32,Henrik R,24
+2025/26,9,Seb,49,Morten,53
+2025/26,9,Henrik,41,David,45
+2025/26,10,Morten,39,Audun,40
+2025/26,10,Henrik R,41,Henrik,46
+2025/26,10,David,29,Kriss,56
+2025/26,10,Kriss,56,David,29
+2025/26,10,Simon,49,Seb,54
+2025/26,10,Audun,40,Morten,39
+2025/26,10,Seb,54,Simon,49
+2025/26,10,Henrik,46,Henrik R,41
+2025/26,11,Morten,33,Kriss,39
+2025/26,11,Henrik R,38,Simon,49
+2025/26,11,David,53,Seb,35
+2025/26,11,Kriss,39,Morten,33
+2025/26,11,Simon,49,Henrik R,38
+2025/26,11,Audun,50,Henrik,22
+2025/26,11,Seb,35,David,53
+2025/26,11,Henrik,22,Audun,50
+2025/26,12,Morten,54,Simon,37
+2025/26,12,Henrik R,52,David,41
+2025/26,12,David,41,Henrik R,52
+2025/26,12,Kriss,34,Audun,56
+2025/26,12,Simon,37,Morten,54
+2025/26,12,Audun,56,Kriss,34
+2025/26,12,Seb,61,Henrik,38
+2025/26,12,Henrik,38,Seb,61
+2025/26,13,Morten,28,Henrik R,44
+2025/26,13,Henrik R,44,Morten,28
+2025/26,13,David,44,Audun,25
+2025/26,13,Kriss,37,Seb,37
+2025/26,13,Simon,30,Henrik,38
+2025/26,13,Audun,25,David,44
+2025/26,13,Seb,37,Kriss,37
+2025/26,13,Henrik,38,Simon,30
+2025/26,14,Morten,45,Henrik,63
+2025/26,14,Henrik R,35,Kriss,34
+2025/26,14,David,30,Simon,50
+2025/26,14,Kriss,34,Henrik R,35
+2025/26,14,Simon,50,David,30
+2025/26,14,Audun,38,Seb,46
+2025/26,14,Seb,46,Audun,38
+2025/26,14,Henrik,63,Morten,45
+2025/26,15,Morten,59,David,49
+2025/26,15,Henrik R,44,Seb,56
+2025/26,15,David,49,Morten,59
+2025/26,15,Kriss,64,Henrik,37
+2025/26,15,Simon,34,Audun,47
+2025/26,15,Audun,47,Simon,34
+2025/26,15,Seb,56,Henrik R,44
+2025/26,15,Henrik,37,Kriss,64
+2025/26,16,Morten,40,Seb,64
+2025/26,16,Henrik R,33,Audun,69
+2025/26,16,David,48,Henrik,41
+2025/26,16,Kriss,28,Simon,46
+2025/26,16,Simon,46,Kriss,28
+2025/26,16,Audun,69,Henrik R,33
+2025/26,16,Seb,64,Morten,40
+2025/26,16,Henrik,41,David,48
+2025/26,17,Morten,53,Audun,67
+2025/26,17,Henrik R,26,Henrik,37
+2025/26,17,David,39,Kriss,45
+2025/26,17,Kriss,45,David,39
+2025/26,17,Simon,50,Seb,50
+2025/26,17,Audun,67,Morten,53
+2025/26,17,Seb,50,Simon,50
+2025/26,17,Henrik,37,Henrik R,26
+2025/26,18,Morten,22,Kriss,52
+2025/26,18,Henrik R,48,Simon,26
+2025/26,18,David,52,Seb,48
+2025/26,18,Kriss,52,Morten,22
+2025/26,18,Simon,26,Henrik R,48
+2025/26,18,Audun,51,Henrik,47
+2025/26,18,Seb,48,David,52
+2025/26,18,Henrik,47,Audun,51
+2025/26,19,Morten,38,Simon,46
+2025/26,19,Henrik R,51,David,48
+2025/26,19,David,48,Henrik R,51
+2025/26,19,Kriss,51,Audun,23
+2025/26,19,Simon,46,Morten,38
+2025/26,19,Audun,23,Kriss,51
+2025/26,19,Seb,49,Henrik,50
+2025/26,19,Henrik,50,Seb,49
+2025/26,20,Morten,27,Henrik R,27
+2025/26,20,Henrik R,27,Morten,27
+2025/26,20,David,47,Audun,37
+2025/26,20,Kriss,61,Seb,57
+2025/26,20,Simon,40,Henrik,28
+2025/26,20,Audun,37,David,47
+2025/26,20,Seb,57,Kriss,61
+2025/26,20,Henrik,28,Simon,40
+2025/26,21,Morten,44,Henrik,40
+2025/26,21,Henrik R,35,Kriss,55
+2025/26,21,David,43,Simon,38
+2025/26,21,Kriss,55,Henrik R,35
+2025/26,21,Simon,38,David,43
+2025/26,21,Audun,32,Seb,49
+2025/26,21,Seb,49,Audun,32
+2025/26,21,Henrik,40,Morten,44
+2025/26,22,Morten,30,David,43
+2025/26,22,Henrik R,35,Seb,40
+2025/26,22,David,43,Morten,30
+2025/26,22,Kriss,28,Henrik,20
+2025/26,22,Simon,35,Audun,47
+2025/26,22,Audun,47,Simon,35
+2025/26,22,Seb,40,Henrik R,35
+2025/26,22,Henrik,20,Kriss,28
+2025/26,23,Morten,42,Seb,21
+2025/26,23,Henrik R,32,Audun,51
+2025/26,23,David,62,Henrik,38
+2025/26,23,Kriss,33,Simon,52
+2025/26,23,Simon,52,Kriss,33
+2025/26,23,Audun,51,Henrik R,32
+2025/26,23,Seb,21,Morten,42
+2025/26,23,Henrik,38,David,62
+2025/26,24,Morten,62,Audun,44
+2025/26,24,Henrik R,45,Henrik,49
+2025/26,24,David,29,Kriss,42
+2025/26,24,Kriss,42,David,29
+2025/26,24,Simon,52,Seb,49
+2025/26,24,Audun,44,Morten,62
+2025/26,24,Seb,49,Simon,52
+2025/26,24,Henrik,49,Henrik R,45
+2025/26,25,Morten,30,Kriss,50
+2025/26,25,Henrik R,40,Simon,51
+2025/26,25,David,63,Seb,32
+2025/26,25,Kriss,50,Morten,30
+2025/26,25,Simon,51,Henrik R,40
+2025/26,25,Audun,47,Henrik,30
+2025/26,25,Seb,32,David,63
+2025/26,25,Henrik,30,Audun,47
+2025/26,26,Morten,46,Simon,31
+2025/26,26,Henrik R,51,David,74
+2025/26,26,David,74,Henrik R,51
+2025/26,26,Kriss,56,Audun,32
+2025/26,26,Simon,31,Morten,46
+2025/26,26,Audun,32,Kriss,56
+2025/26,26,Seb,40,Henrik,61
+2025/26,26,Henrik,61,Seb,40
+2025/26,27,Morten,39,Henrik R,55
+2025/26,27,Henrik R,55,Morten,39
+2025/26,27,David,54,Audun,39
+2025/26,27,Kriss,53,Seb,54
+2025/26,27,Simon,42,Henrik,44
+2025/26,27,Audun,39,David,54
+2025/26,27,Seb,54,Kriss,53
+2025/26,27,Henrik,44,Simon,42
+2025/26,28,Morten,30,Henrik,34
+2025/26,28,Henrik R,49,Kriss,36
+2025/26,28,David,51,Simon,45
+2025/26,28,Kriss,36,Henrik R,49
+2025/26,28,Simon,45,David,51
+2025/26,28,Audun,33,Seb,42
+2025/26,28,Seb,42,Audun,33
+2025/26,28,Henrik,34,Morten,30
+2025/26,29,Morten,38,David,57
+2025/26,29,Henrik R,51,Seb,62
+2025/26,29,David,57,Morten,38
+2025/26,29,Kriss,46,Henrik,33
+2025/26,29,Simon,38,Audun,47
+2025/26,29,Audun,47,Simon,38
+2025/26,29,Seb,62,Henrik R,51
+2025/26,29,Henrik,33,Kriss,46
+2025/26,30,Morten,45,Seb,34
+2025/26,30,Henrik R,43,Audun,44
+2025/26,30,David,38,Henrik,46
+2025/26,30,Kriss,60,Simon,37
+2025/26,30,Simon,37,Kriss,60
+2025/26,30,Audun,44,Henrik R,43
+2025/26,30,Seb,34,Morten,45
+2025/26,30,Henrik,46,David,38
+2025/26,31,Morten,32,Audun,46
+2025/26,31,Henrik R,38,Henrik,33
+2025/26,31,David,36,Kriss,34
+2025/26,31,Kriss,34,David,36
+2025/26,31,Simon,20,Seb,29
+2025/26,31,Audun,46,Morten,32
+2025/26,31,Seb,29,Simon,20
+2025/26,31,Henrik,33,Henrik R,38
+2025/26,32,Morten,56,Kriss,25
+2025/26,32,Henrik R,58,Simon,33
+2025/26,32,David,44,Seb,37
+2025/26,32,Kriss,25,Morten,56
+2025/26,32,Simon,33,Henrik R,58
+2025/26,32,Audun,47,Henrik,44
+2025/26,32,Seb,37,David,44
+2025/26,32,Henrik,44,Audun,47
+2025/26,33,Morten,85,Simon,64
+2025/26,33,Henrik R,67,David,62
+2025/26,33,David,62,Henrik R,67
+2025/26,33,Kriss,82,Audun,64
+2025/26,33,Simon,64,Morten,85
+2025/26,33,Audun,64,Kriss,82
+2025/26,33,Seb,37,Henrik,67
+2025/26,33,Henrik,67,Seb,37
+2025/26,34,Morten,31,Henrik R,42
+2025/26,34,Henrik R,42,Morten,31
+2025/26,34,David,39,Audun,20
+2025/26,34,Kriss,52,Seb,30
+2025/26,34,Simon,17,Henrik,31
+2025/26,34,Audun,20,David,39
+2025/26,34,Seb,30,Kriss,52
+2025/26,34,Henrik,31,Simon,17
+2025/26,35,Morten,38,Henrik,34
+2025/26,35,Henrik R,54,Kriss,39
+2025/26,35,David,56,Simon,20
+2025/26,35,Kriss,39,Henrik R,54
+2025/26,35,Simon,20,David,56
+2025/26,35,Audun,50,Seb,41
+2025/26,35,Seb,41,Audun,50
+2025/26,35,Henrik,34,Morten,38
+2025/26,36,Morten,50,David,71
+2025/26,36,Henrik R,38,Seb,38
+2025/26,36,David,71,Morten,50
+2025/26,36,Kriss,45,Henrik,70
+2025/26,36,Simon,61,Audun,37
+2025/26,36,Audun,37,Simon,61
+2025/26,36,Seb,38,Henrik R,38
+2025/26,36,Henrik,70,Kriss,45
+2025/26,37,Morten,33,Seb,41
+2025/26,37,Henrik R,28,Audun,48
+2025/26,37,David,53,Henrik,34
+2025/26,37,Kriss,46,Simon,50
+2025/26,37,Simon,50,Kriss,46
+2025/26,37,Audun,48,Henrik R,28
+2025/26,37,Seb,41,Morten,33
+2025/26,37,Henrik,34,David,53
+2025/26,38,Morten,44,Audun,52
+2025/26,38,Henrik R,20,Henrik,45
+2025/26,38,David,28,Kriss,31
+2025/26,38,Kriss,31,David,28
+2025/26,38,Simon,38,Seb,46
+2025/26,38,Audun,52,Morten,44
+2025/26,38,Seb,46,Simon,38
+2025/26,38,Henrik,45,Henrik R,20

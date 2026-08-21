@@ -1,0 +1,483 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Draftligaen — All-Time Stats</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800;900&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#140720;--ink-2:#1c0d2e;--panel:#231338;--panel-2:#2c1945;
+    --line:rgba(255,255,255,.08);--line-strong:rgba(255,255,255,.16);
+    --magenta:#ff2e7e;--gold:#ffc94d;--mint:#48e6c2;
+    --text:#f4ecfa;--muted:#a58ebe;--silver:#c9d2de;--bronze:#d08a5a;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{background:
+      radial-gradient(1200px 600px at 82% -10%, rgba(255,46,126,.15), transparent 60%),
+      radial-gradient(900px 500px at 0% 0%, rgba(72,230,194,.09), transparent 55%),
+      var(--ink);
+    color:var(--text);font-family:'Inter',system-ui,sans-serif;line-height:1.5;
+    -webkit-font-smoothing:antialiased;overflow-x:hidden}
+  .wrap{max-width:1120px;margin:0 auto;padding:0 24px}
+  .disp{font-family:'Archivo',sans-serif;font-weight:900;letter-spacing:-.02em;line-height:.9}
+  .tnum{font-variant-numeric:tabular-nums}
+  .eyebrow{font-family:'Archivo',sans-serif;font-weight:700;text-transform:uppercase;letter-spacing:.22em;font-size:11px;color:var(--muted)}
+
+  header{position:sticky;top:0;z-index:50;backdrop-filter:blur(12px);
+    background:linear-gradient(var(--ink),rgba(20,7,32,.55));border-bottom:1px solid var(--line)}
+  .bar{display:flex;align-items:center;justify-content:space-between;height:62px}
+  .brand{display:flex;align-items:center;gap:11px;font-family:'Archivo',sans-serif;font-weight:800;letter-spacing:.02em;font-size:15px}
+  .brand .dot{width:12px;height:12px;border-radius:3px;background:var(--magenta);box-shadow:0 0 16px var(--magenta)}
+  nav a{color:var(--muted);text-decoration:none;font-size:13px;font-weight:500;margin-left:20px;transition:color .2s}
+  nav a:hover{color:var(--text)}
+  @media(max-width:720px){nav{display:none}}
+
+  /* hero */
+  .hero{padding:64px 0 30px}
+  .hero .eyebrow{margin-bottom:18px}
+  .hero h1{font-size:clamp(42px,9vw,96px);text-transform:uppercase}
+  .hero h1 .thin{-webkit-text-stroke:1.5px var(--line-strong);color:transparent;display:block}
+  .champ{position:relative;border:1px solid var(--line);border-radius:20px;overflow:hidden;
+    background:linear-gradient(160deg,var(--panel-2),var(--panel));padding:28px 30px;margin-top:40px}
+  .champ::before{content:"";position:absolute;inset:0;background:
+    radial-gradient(560px 220px at 85% -40%, rgba(255,201,77,.26), transparent 60%);pointer-events:none}
+  .champ .tag{display:inline-flex;align-items:center;gap:8px;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.16em;color:var(--gold)}
+  .champ .tag .flame{width:7px;height:7px;border-radius:50%;background:var(--gold);box-shadow:0 0 12px var(--gold)}
+  .champ .name{font-size:clamp(46px,10vw,84px);margin:8px 0 2px}
+  .champ .mini{display:flex;flex-wrap:wrap;gap:30px;margin-top:20px;padding-top:18px;border-top:1px solid var(--line)}
+  .champ .mini .k{font-family:'Archivo',sans-serif;font-weight:900;font-size:22px}
+  .champ .mini .l{font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.12em;margin-top:2px}
+
+  section.block{padding:56px 0 4px}
+  .head{display:flex;align-items:flex-end;justify-content:space-between;gap:16px;margin-bottom:22px;flex-wrap:wrap}
+  .head h2{font-size:clamp(24px,4vw,38px);text-transform:uppercase}
+
+  /* tables */
+  .tablewrap{border:1px solid var(--line);border-radius:16px;overflow:hidden;overflow-x:auto}
+  table{width:100%;border-collapse:collapse;font-size:14px;min-width:640px}
+  thead th{background:var(--ink-2);text-align:right;padding:13px 12px;font-family:'Archivo',sans-serif;
+    font-weight:700;font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);
+    white-space:nowrap;cursor:pointer;user-select:none;position:relative}
+  thead th:first-child{text-align:left}
+  thead th.sortable:hover{color:var(--text)}
+  thead th.active{color:var(--text)}
+  thead th.active::after{content:"▾";margin-left:5px;font-size:9px}
+  thead th.asc.active::after{content:"▴"}
+  tbody td{text-align:right;padding:12px;border-top:1px solid var(--line);white-space:nowrap;font-variant-numeric:tabular-nums}
+  tbody td:first-child{text-align:left;font-weight:600}
+  tbody tr:hover{background:rgba(255,255,255,.03)}
+  .pos{display:inline-grid;place-items:center;width:22px;height:22px;border-radius:6px;font-family:'Archivo',sans-serif;font-weight:900;font-size:11px;color:var(--ink);margin-right:9px}
+  .pos.p1{background:var(--gold)}.pos.p2{background:var(--silver)}.pos.p3{background:var(--bronze)}
+  .pos.pn{background:var(--panel-2);color:var(--muted)}
+  .pl{color:var(--mint)} .mi{color:var(--magenta)}
+  .badge-t{display:inline-block;margin-left:7px;font-size:10px;font-weight:800;color:var(--gold);
+    border:1px solid rgba(255,201,77,.4);border-radius:100px;padding:1px 7px;vertical-align:middle}
+
+  /* controls */
+  select{appearance:none;background:var(--panel);color:var(--text);border:1px solid var(--line-strong);
+    border-radius:10px;padding:11px 40px 11px 14px;font-family:'Archivo',sans-serif;font-weight:700;
+    font-size:15px;cursor:pointer;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23a58ebe' stroke-width='1.6' fill='none'/%3E%3C/svg%3E");
+    background-repeat:no-repeat;background-position:right 14px center}
+  select:focus{outline:2px solid var(--magenta);outline-offset:1px}
+  .tabs{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:20px}
+  .tab{background:var(--panel);border:1px solid var(--line);color:var(--muted);border-radius:100px;
+    padding:8px 16px;font-family:'Archivo',sans-serif;font-weight:700;font-size:13px;cursor:pointer;transition:all .2s}
+  .tab:hover{color:var(--text);border-color:var(--line-strong)}
+  .tab.active{background:var(--magenta);border-color:var(--magenta);color:#fff}
+
+  /* cards */
+  .grid{display:grid;gap:16px}
+  .g4{grid-template-columns:repeat(4,1fr)}
+  .g3{grid-template-columns:repeat(3,1fr)}
+  .g2{grid-template-columns:repeat(2,1fr)}
+  @media(max-width:820px){.g4{grid-template-columns:1fr 1fr}.g3{grid-template-columns:1fr 1fr}}
+  @media(max-width:560px){.g4,.g3,.g2{grid-template-columns:1fr}}
+  .stat{border:1px solid var(--line);border-radius:14px;background:var(--panel);padding:18px}
+  .stat .k{font-family:'Archivo',sans-serif;font-weight:900;font-size:30px;line-height:1}
+  .stat .l{font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.1em;margin-top:8px}
+  .stat .sub{font-size:12px;color:var(--muted);margin-top:4px}
+
+  .rec{border:1px solid var(--line);border-radius:14px;background:var(--panel);padding:20px;position:relative;overflow:hidden}
+  .rec .cap{font-family:'Archivo',sans-serif;font-weight:700;font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+  .rec .who{font-family:'Archivo',sans-serif;font-weight:900;font-size:26px;margin:8px 0 3px}
+  .rec .det{font-size:13px;color:var(--muted)}
+  .rec .big{color:var(--gold)}
+
+  .profcard{border:1px solid var(--line);border-radius:18px;background:linear-gradient(160deg,var(--panel-2),var(--panel));padding:24px;margin-bottom:16px}
+  .profcard .top{display:flex;align-items:baseline;gap:14px;flex-wrap:wrap}
+  .profcard .nm{font-family:'Archivo',sans-serif;font-weight:900;font-size:clamp(30px,6vw,52px)}
+  .profcard .rank{font-size:13px;color:var(--muted)}
+  .h2hwrap{border:1px solid var(--line);border-radius:18px;background:var(--panel);padding:6px}
+  .h2h-scores{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:10px;padding:26px 20px}
+  .h2h-side{text-align:center}
+  .h2h-side .nm{font-family:'Archivo',sans-serif;font-weight:900;font-size:clamp(22px,5vw,34px)}
+  .h2h-side .rec{border:0;background:none;padding:0}
+  .h2h-side .wl{font-family:'Archivo',sans-serif;font-weight:900;font-size:clamp(40px,10vw,64px);line-height:1}
+  .h2h-mid{font-family:'Archivo',sans-serif;font-weight:900;color:var(--muted);font-size:20px}
+  .h2h-row{display:flex;justify-content:space-around;border-top:1px solid var(--line);padding:16px;text-align:center;flex-wrap:wrap;gap:14px}
+  .h2h-row div .k{font-family:'Archivo',sans-serif;font-weight:900;font-size:20px}
+  .h2h-row div .l{font-size:10.5px;color:var(--muted);text-transform:uppercase;letter-spacing:.1em;margin-top:3px}
+  .selrow{display:flex;gap:12px;align-items:center;flex-wrap:wrap;margin-bottom:18px}
+  .selrow .vs{font-family:'Archivo',sans-serif;font-weight:900;color:var(--muted)}
+
+  footer{border-top:1px solid var(--line);margin-top:70px;padding:24px 0 60px;color:var(--muted);font-size:12.5px}
+  .rise{opacity:0;transform:translateY(14px);animation:rise .6s cubic-bezier(.2,.7,.2,1) forwards}
+  @keyframes rise{to{opacity:1;transform:none}}
+  @media(prefers-reduced-motion:reduce){.rise{animation:none;opacity:1;transform:none}}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap bar">
+    <div class="brand"><span class="dot"></span> FANTASYPL DRAFT</div>
+    <nav>
+      <a href="#alltime-sec">All-time</a>
+      <a href="#managers">Managers</a>
+      <a href="#seasons">Seasons</a>
+      <a href="#h2h">Head-to-head</a>
+      <a href="#records">Records</a>
+    </nav>
+  </div>
+</header>
+
+<main class="wrap">
+  <section class="hero">
+    <div class="eyebrow rise">All-time · Draft H2H · 6 seasons</div>
+    <h1 class="disp rise" style="animation-delay:.05s">Hall of<span class="thin">Fame</span></h1>
+    <div class="champ rise" id="champ" style="animation-delay:.18s"></div>
+  </section>
+
+  <section class="block" id="alltime-sec">
+    <div class="head"><h2 class="disp">All-time table</h2></div>
+    <div class="tablewrap"><table id="alltime"></table></div>
+  </section>
+
+  <section class="block" id="managers">
+    <div class="head"><h2 class="disp">Manager profile</h2></div>
+    <div style="margin-bottom:18px"><select id="mgrSel"></select></div>
+    <div id="profile"></div>
+  </section>
+
+  <section class="block" id="seasons">
+    <div class="head"><h2 class="disp">Season by season</h2></div>
+    <div class="tabs" id="seasonTabs"></div>
+    <div id="seasonView"></div>
+  </section>
+
+  <section class="block" id="h2h">
+    <div class="head"><h2 class="disp">Head-to-head</h2></div>
+    <div class="selrow"><select id="h2hA"></select><span class="vs">vs</span><select id="h2hB"></select></div>
+    <div id="h2hView"></div>
+  </section>
+
+  <section class="block" id="records">
+    <div class="head"><h2 class="disp">Records</h2></div>
+    <div class="grid g3" id="recordsGrid"></div>
+  </section>
+</main>
+
+<footer><div class="wrap">FantasyPL Draft · all-time stats · computed live from <b>data/matches.csv</b> + <b>data/draft.csv</b> · 6 seasons, 227 rounds</div></footer>
+
+<script>
+"use strict";
+const SEASON_ORDER=["2020/21","2021/22","2022/23","2023/24","2024/25","2025/26"];
+const NF=n=>n.toLocaleString("en-US");
+
+function parseCSV(txt){
+  const lines=txt.trim().split(/\r?\n/);
+  const head=lines[0].split(",");
+  return lines.slice(1).map(l=>{const c=l.split(",");const o={};head.forEach((h,i)=>o[h]=c[i]!==undefined?c[i]:"");return o;});
+}
+
+async function loadCSV(path){
+  const res=await fetch(path);
+  if(!res.ok) throw new Error(`Failed to load ${path} (HTTP ${res.status})`);
+  return parseCSV(await res.text());
+}
+
+(async function(){
+
+let M,D;
+try{
+  const [matchesRows,draftRows]=await Promise.all([loadCSV("data/matches.csv"),loadCSV("data/draft.csv")]);
+  M=matchesRows.map(r=>({season:r.season,round:+r.round,manager:r.manager,
+    points:r.points===""?null:+r.points,opponent:r.opponent,
+    opp:r.opponent_points===""?null:+r.opponent_points}));
+  D=draftRows.map(r=>({season:r.season,manager:r.manager,pick:+r.draft_pick,placement:+r.placement}));
+}catch(err){
+  document.querySelector("main").innerHTML=`<div class="rec" style="margin:60px 0"><div class="cap">Couldn't load stats data</div><div class="det">${err.message}<br><br>If you opened this file directly from disk (a file:// address), browsers block local CSV fetches for security. Run a tiny local server instead — e.g. <code>python -m http.server</code> in this folder — then open the http://localhost address it prints. This loads automatically on GitHub Pages.</div></div>`;
+  return;
+}
+
+const played=M.filter(m=>m.points!==null&&m.opp!==null);
+
+// ---- all-play expected wins ----
+const bySR={};
+played.forEach(m=>{(bySR[m.season+"|"+m.round]=bySR[m.season+"|"+m.round]||[]).push(m);});
+const xW={};
+Object.values(bySR).forEach(list=>{
+  list.forEach(m=>{
+    const others=list.filter(o=>o.manager!==m.manager);
+    if(!others.length)return;
+    let beat=0;others.forEach(o=>{if(m.points>o.points)beat++;else if(m.points===o.points)beat+=0.5;});
+    xW[m.manager]=(xW[m.manager]||0)+beat/others.length;
+  });
+});
+
+// ---- titles ----
+const titles={};D.forEach(d=>{if(d.placement===1)titles[d.manager]=(titles[d.manager]||0)+1;});
+
+// ---- all-time aggregate ----
+function blank(){return{gp:0,pf:0,pa:0,w:0,d:0,l:0,hi:0,lo:9999,hiCtx:null,loCtx:null};}
+const A={};
+played.forEach(m=>{
+  const a=A[m.manager]||(A[m.manager]=blank());
+  a.gp++;a.pf+=m.points;a.pa+=m.opp;
+  if(m.points>a.hi){a.hi=m.points;a.hiCtx=m;}
+  if(m.points<a.lo){a.lo=m.points;a.loCtx=m;}
+  if(m.points>m.opp)a.w++;else if(m.points===m.opp)a.d++;else a.l++;
+});
+const managers=Object.keys(A);
+managers.forEach(m=>{const a=A[m];a.tp=a.w*3+a.d;a.winp=100*a.w/a.gp;a.avg=a.pf/a.gp;
+  a.diff=a.pf-a.pa;a.luck=a.w-(xW[m]||0);a.titles=titles[m]||0;
+  a.avgPlace=avgPlacement(m);});
+
+function avgPlacement(m){const ps=D.filter(d=>d.manager===m).map(d=>d.placement);
+  return ps.length?ps.reduce((x,y)=>x+y,0)/ps.length:null;}
+
+// ---- streaks (career, chronological) ----
+function careerSeq(m){
+  const seq=[];
+  SEASON_ORDER.forEach(s=>{
+    played.filter(x=>x.manager===m&&x.season===s).sort((a,b)=>a.round-b.round)
+      .forEach(x=>seq.push(x.points>x.opp?"W":(x.points===x.opp?"D":"L")));
+  });
+  return seq;
+}
+function longestRun(seq,ch){let best=0,cur=0;seq.forEach(r=>{if(r===ch){cur++;best=Math.max(best,cur);}else cur=0;});return best;}
+
+// ---- best/worst 5-round (per season, kept as global best/worst) ----
+function fiveRound(m){
+  let best=null,worst=null;
+  SEASON_ORDER.forEach(s=>{
+    const list=played.filter(x=>x.manager===m&&x.season===s).sort((a,b)=>a.round-b.round);
+    for(let i=0;i+5<=list.length;i++){
+      const win=list.slice(i,i+5);const sum=win.reduce((t,x)=>t+x.points,0);
+      const ctx={season:s,from:win[0].round,to:win[4].round,sum};
+      if(!best||sum>best.sum)best=ctx;
+      if(!worst||sum<worst.sum)worst=ctx;
+    }
+  });
+  return{best,worst};
+}
+
+// ---------- RENDER: hero champion ----------
+(function(){
+  const top=[...managers].sort((x,y)=>A[y].tp-A[x].tp||A[y].pf-A[x].pf)[0];
+  const a=A[top];
+  document.getElementById("champ").innerHTML=`
+    <div class="tag"><span class="flame"></span> No. 1 · most table points all-time</div>
+    <div class="name disp">${top}</div>
+    <div class="mini">
+      <div><div class="k tnum">${a.tp}</div><div class="l">Table pts</div></div>
+      <div><div class="k tnum">${NF(a.pf)}</div><div class="l">Points</div></div>
+      <div><div class="k tnum">${a.winp.toFixed(1)}%</div><div class="l">Win rate</div></div>
+      <div><div class="k tnum">${a.w}-${a.d}-${a.l}</div><div class="l">W-D-L</div></div>
+      <div><div class="k tnum">${a.titles}</div><div class="l">Titles</div></div>
+    </div>`;
+})();
+
+// ---------- RENDER: all-time table ----------
+const COLS=[
+  {k:"manager",l:"Manager"},
+  {k:"gp",l:"GP"},{k:"pf",l:"Points"},{k:"avg",l:"Avg"},
+  {k:"diff",l:"±"},{k:"wdl",l:"W-D-L"},
+  {k:"winp",l:"Win%"},{k:"tp",l:"Table"},
+  {k:"luck",l:"Luck",title:"Actual wins minus expected wins (all-play)"},{k:"titles",l:"Titles"},
+  {k:"avgPlace",l:"Avg pos"},
+];
+let sortKey="tp",sortAsc=false;
+function renderAllTime(){
+  const rows=[...managers].sort((x,y)=>{
+    let av,bv;
+    if(sortKey==="manager"){av=x;bv=y;return sortAsc?av.localeCompare(bv):bv.localeCompare(av);}
+    av=A[x][sortKey];bv=A[y][sortKey];
+    if(av==null)av=999;if(bv==null)bv=999;
+    return sortAsc?av-bv:bv-av;
+  });
+  let h="<thead><tr>";
+  COLS.forEach(c=>{h+=`<th class="sortable ${sortKey===c.k?'active':''} ${sortAsc?'asc':''}" data-k="${c.k}"${c.title?` title="${c.title}"`:''}>${c.l}</th>`;});
+  h+="</tr></thead><tbody>";
+  rows.forEach((m,i)=>{
+    const a=A[m];h+="<tr>";
+    h+=`<td><span class="pos ${i<3?'p'+(i+1):'pn'}">${i+1}</span>${m}${a.titles?'<span class="badge-t">★'+a.titles+'</span>':''}</td>`;
+    h+=`<td>${a.gp}</td><td>${NF(a.pf)}</td><td>${a.avg.toFixed(1)}</td>`;
+    h+=`<td class="${a.diff>0?'pl':'mi'}">${a.diff>0?'+':''}${a.diff}</td>`;
+    h+=`<td>${a.w}-${a.d}-${a.l}</td>`;
+    h+=`<td>${a.winp.toFixed(1)}%</td><td><b>${a.tp}</b></td>`;
+    h+=`<td class="${a.luck>0?'pl':'mi'}">${a.luck>0?'+':''}${a.luck.toFixed(1)}</td>`;
+    h+=`<td>${a.titles||'–'}</td><td>${a.avgPlace?a.avgPlace.toFixed(1):'–'}</td>`;
+    h+="</tr>";
+  });
+  h+="</tbody>";
+  const t=document.getElementById("alltime");t.innerHTML=h;
+  t.querySelectorAll("th").forEach(th=>th.onclick=()=>{
+    const k=th.dataset.k;if(k===sortKey)sortAsc=!sortAsc;else{sortKey=k;sortAsc=(k==="manager"||k==="avgPlace");}
+    renderAllTime();
+  });
+}
+renderAllTime();
+
+// ---------- RENDER: manager profile ----------
+const mgrSel=document.getElementById("mgrSel");
+[...managers].sort((x,y)=>A[y].tp-A[x].tp).forEach(m=>{
+  const o=document.createElement("option");o.value=m;o.textContent=m;mgrSel.appendChild(o);});
+function renderProfile(m){
+  const a=A[m];const seq=careerSeq(m);
+  const winRun=longestRun(seq,"W"),lossRun=longestRun(seq,"L");
+  const fr=fiveRound(m);
+  const rank=[...managers].sort((x,y)=>A[y].tp-A[x].tp).indexOf(m)+1;
+  const seasons=D.filter(d=>d.manager===m).sort((x,y)=>SEASON_ORDER.indexOf(x.season)-SEASON_ORDER.indexOf(y.season));
+  let seasonRows="";
+  seasons.forEach(d=>{
+    const sm=played.filter(x=>x.manager===m&&x.season===d.season);
+    const pf=sm.reduce((t,x)=>t+x.points,0);
+    const w=sm.filter(x=>x.points>x.opp).length,dr=sm.filter(x=>x.points===x.opp).length,l=sm.filter(x=>x.points<x.opp).length;
+    seasonRows+=`<tr><td>${d.season}</td><td>${d.pick}</td>
+      <td><span class="pos ${d.placement<=3?'p'+d.placement:'pn'}">${d.placement}</span></td>
+      <td>${NF(pf)}</td><td>${(pf/sm.length).toFixed(1)}</td><td>${w}-${dr}-${l}</td></tr>`;
+  });
+  const titleWord=a.titles===1?'title':'titles';
+  const seasonWord=seasons.length===1?'season':'seasons';
+  document.getElementById("profile").innerHTML=`
+    <div class="profcard">
+      <div class="top"><span class="nm">${m}</span>
+        <span class="rank">#${rank} all-time · ${a.titles} ${titleWord} · drafted ${seasons.length} ${seasonWord}</span></div>
+      <div class="grid g4" style="margin-top:20px">
+        <div class="stat"><div class="k tnum">${NF(a.pf)}</div><div class="l">Total points</div><div class="sub">${a.avg.toFixed(1)} avg</div></div>
+        <div class="stat"><div class="k tnum">${a.w}-${a.d}-${a.l}</div><div class="l">W-D-L</div><div class="sub">${a.winp.toFixed(1)}% win rate</div></div>
+        <div class="stat"><div class="k tnum ${a.luck>0?'pl':'mi'}">${a.luck>0?'+':''}${a.luck.toFixed(1)}</div><div class="l">Luck</div><div class="sub">vs all-play</div></div>
+        <div class="stat"><div class="k tnum">${a.avgPlace?a.avgPlace.toFixed(1):'–'}</div><div class="l">Avg finish</div><div class="sub">best: ${Math.min(...seasons.map(s=>s.placement))}</div></div>
+      </div>
+      <div class="grid g4" style="margin-top:16px">
+        <div class="stat"><div class="k tnum">${a.hi}</div><div class="l">Highest round</div><div class="sub">${a.hiCtx.season} R${a.hiCtx.round}</div></div>
+        <div class="stat"><div class="k tnum">${a.lo}</div><div class="l">Lowest round</div><div class="sub">${a.loCtx.season} R${a.loCtx.round}</div></div>
+        <div class="stat"><div class="k tnum">${winRun} / ${lossRun}</div><div class="l">Longest W / L streak</div></div>
+        <div class="stat"><div class="k tnum">${fr.best?fr.best.sum:'–'}</div><div class="l">Best 5-round</div><div class="sub">${fr.best?fr.best.season+' R'+fr.best.from+'–'+fr.best.to:''}</div></div>
+      </div>
+    </div>
+    <div class="tablewrap"><table>
+      <thead><tr><th>Season</th><th>Pick</th><th>Finish</th><th>Points</th><th>Avg</th><th>W-D-L</th></tr></thead>
+      <tbody>${seasonRows}</tbody></table></div>`;
+}
+mgrSel.onchange=()=>renderProfile(mgrSel.value);
+renderProfile(mgrSel.value);
+
+// ---------- RENDER: season view ----------
+const seasonTabs=document.getElementById("seasonTabs");
+SEASON_ORDER.forEach((s,i)=>{
+  const b=document.createElement("button");b.className="tab"+(i===SEASON_ORDER.length-1?" active":"");
+  b.textContent=s;b.onclick=()=>{seasonTabs.querySelectorAll(".tab").forEach(t=>t.classList.remove("active"));b.classList.add("active");renderSeason(s);};
+  seasonTabs.appendChild(b);
+});
+function renderSeason(s){
+  const mgrs=[...new Set(played.filter(x=>x.season===s).map(x=>x.manager))];
+  const tab=mgrs.map(m=>{
+    const sm=played.filter(x=>x.manager===m&&x.season===s);
+    const pf=sm.reduce((t,x)=>t+x.points,0),pa=sm.reduce((t,x)=>t+x.opp,0);
+    const w=sm.filter(x=>x.points>x.opp).length,d=sm.filter(x=>x.points===x.opp).length,l=sm.filter(x=>x.points<x.opp).length;
+    const dd=D.find(x=>x.manager===m&&x.season===s);
+    return{m,pf,pa,w,d,l,tp:w*3+d,pick:dd?dd.pick:"–",place:dd?dd.placement:99,gp:sm.length};
+  }).sort((a,b)=>a.place-b.place);
+  const champ=tab[0];
+  const topScore=played.filter(x=>x.season===s).sort((a,b)=>b.points-a.points)[0];
+  const topPts=tab.slice().sort((a,b)=>b.pf-a.pf)[0];
+  let rows="";
+  tab.forEach(r=>{rows+=`<tr>
+    <td><span class="pos ${r.place<=3?'p'+r.place:'pn'}">${r.place}</span>${r.m}${r.place===1?'<span class="badge-t">★</span>':''}</td>
+    <td>${r.pick}</td><td>${NF(r.pf)}</td><td>${(r.pf/r.gp).toFixed(1)}</td>
+    <td class="${r.pf-r.pa>0?'pl':'mi'}">${r.pf-r.pa>0?'+':''}${r.pf-r.pa}</td>
+    <td>${r.w}-${r.d}-${r.l}</td><td><b>${r.tp}</b></td></tr>`;});
+  document.getElementById("seasonView").innerHTML=`
+    <div class="grid g3" style="margin-bottom:16px">
+      <div class="rec"><div class="cap">Champion</div><div class="who big">${champ.m}</div><div class="det">${champ.tp} table points · drafted No. ${champ.pick}</div></div>
+      <div class="rec"><div class="cap">Most points</div><div class="who">${topPts.m}</div><div class="det">${NF(topPts.pf)} points</div></div>
+      <div class="rec"><div class="cap">Highest round score</div><div class="who">${topScore.points}</div><div class="det">${topScore.manager} · round ${topScore.round}</div></div>
+    </div>
+    <div class="tablewrap"><table>
+      <thead><tr><th>Finish</th><th>Pick</th><th>Points</th><th>Avg</th><th>±</th><th>W-D-L</th><th>Table</th></tr></thead>
+      <tbody>${rows}</tbody></table></div>`;
+}
+renderSeason(SEASON_ORDER[SEASON_ORDER.length-1]);
+
+// ---------- RENDER: head-to-head ----------
+const h2hA=document.getElementById("h2hA"),h2hB=document.getElementById("h2hB");
+const sortedM=[...managers].sort();
+sortedM.forEach(m=>{[h2hA,h2hB].forEach(sel=>{const o=document.createElement("option");o.value=m;o.textContent=m;sel.appendChild(o);});});
+h2hA.value=sortedM[0];h2hB.value=sortedM[1];
+function renderH2H(){
+  const A2=h2hA.value,B=h2hB.value;
+  if(A2===B){document.getElementById("h2hView").innerHTML=`<div class="rec">Pick two different managers.</div>`;return;}
+  const games=played.filter(x=>x.manager===A2&&x.opponent===B);
+  if(!games.length){document.getElementById("h2hView").innerHTML=`<div class="rec"><div class="cap">No meetings</div><div class="det">${A2} and ${B} haven't met in a completed round.</div></div>`;return;}
+  let aw=0,dr=0,bw=0,apf=0,bpf=0,bigA=null,bigB=null;
+  games.forEach(g=>{apf+=g.points;bpf+=g.opp;const m=g.points-g.opp;
+    if(m>0){aw++;if(!bigA||m>bigA.m)bigA={m,g};}else if(m===0)dr++;else{bw++;if(!bigB||-m>bigB.m)bigB={m:-m,g};}});
+  document.getElementById("h2hView").innerHTML=`
+    <div class="h2hwrap">
+      <div class="h2h-scores">
+        <div class="h2h-side"><div class="nm">${A2}</div><div class="wl" style="color:var(--gold)">${aw}</div><div class="rec cap" style="color:var(--muted)">wins</div></div>
+        <div class="h2h-mid">${dr} D</div>
+        <div class="h2h-side"><div class="nm">${B}</div><div class="wl" style="color:var(--magenta)">${bw}</div><div class="rec cap" style="color:var(--muted)">wins</div></div>
+      </div>
+      <div class="h2h-row">
+        <div><div class="k">${games.length}</div><div class="l">Meetings</div></div>
+        <div><div class="k">${NF(apf)}</div><div class="l">${A2} points</div></div>
+        <div><div class="k">${NF(bpf)}</div><div class="l">${B} points</div></div>
+        <div><div class="k">${(apf/games.length).toFixed(1)} – ${(bpf/games.length).toFixed(1)}</div><div class="l">Avg</div></div>
+        <div><div class="k">${bigA?('+'+bigA.m):'–'}</div><div class="l">${A2} best win</div></div>
+        <div><div class="k">${bigB?('+'+bigB.m):'–'}</div><div class="l">${B} best win</div></div>
+      </div>
+    </div>`;
+}
+h2hA.onchange=renderH2H;h2hB.onchange=renderH2H;renderH2H();
+
+// ---------- RENDER: records ----------
+(function(){
+  const hi=[...played].sort((a,b)=>b.points-a.points)[0];
+  const lo=[...played].sort((a,b)=>a.points-b.points)[0];
+  const blow=[...played].sort((a,b)=>(b.points-b.opp)-(a.points-a.opp))[0];
+  let bestW={m:null,n:0},bestL={m:null,n:0},best5={m:null,v:0,ctx:null};
+  managers.forEach(m=>{const s=careerSeq(m);
+    const w=longestRun(s,"W"),l=longestRun(s,"L");
+    if(w>bestW.n)bestW={m,n:w};if(l>bestL.n)bestL={m,n:l};
+    const fr=fiveRound(m);if(fr.best&&fr.best.sum>best5.v)best5={m,v:fr.best.sum,ctx:fr.best};});
+  const steals=D.filter(d=>d.placement===1).sort((a,b)=>b.pick-a.pick)[0];
+  const mostTitles=[...managers].sort((a,b)=>A[b].titles-A[a].titles)[0];
+  const bestLuck=[...managers].sort((a,b)=>A[b].luck-A[a].luck)[0];
+  const worstLuck=[...managers].sort((a,b)=>A[a].luck-A[b].luck)[0];
+  const cards=[
+    {cap:"Highest round score",who:hi.points,det:`${hi.manager} · ${hi.season} R${hi.round}`},
+    {cap:"Lowest round score",who:lo.points,det:`${lo.manager} · ${lo.season} R${lo.round}`},
+    {cap:"Biggest win margin",who:"+"+(blow.points-blow.opp),det:`${blow.manager} beat ${blow.opponent} ${blow.points}–${blow.opp}`},
+    {cap:"Longest win streak",who:bestW.n,det:`${bestW.m} · ${bestW.n} straight wins`},
+    {cap:"Longest losing streak",who:bestL.n,det:`${bestL.m} · ${bestL.n} straight losses`},
+    {cap:"Best 5-round haul",who:best5.v,det:`${best5.m} · ${best5.ctx.season} R${best5.ctx.from}–${best5.ctx.to}`},
+    {cap:"Best draft steal",who:"Pick "+steals.pick,det:`${steals.manager} won ${steals.season} from pick ${steals.pick}`},
+    {cap:"Most titles",who:A[mostTitles].titles,det:`${mostTitles}`},
+    {cap:"Luckiest / unluckiest",who:`${bestLuck} / ${worstLuck}`,det:`${A[bestLuck].luck>0?'+':''}${A[bestLuck].luck.toFixed(1)} vs ${A[worstLuck].luck.toFixed(1)} luck`},
+  ];
+  document.getElementById("recordsGrid").innerHTML=cards.map(c=>
+    `<div class="rec"><div class="cap">${c.cap}</div><div class="who big">${c.who}</div><div class="det">${c.det}</div></div>`).join("");
+})();
+
+})();
+</script>
+</body>
+</html>
