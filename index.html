@@ -137,9 +137,8 @@
   <div class="wrap bar">
     <div class="brand"><span class="dot"></span> FANTASYPL DRAFT</div>
     <nav>
-      <a href="#alltime-sec">All-time</a>
+      <a href="#seasons">Standings</a>
       <a href="#managers">Managers</a>
-      <a href="#seasons">Seasons</a>
       <a href="#h2h">Head-to-head</a>
       <a href="#records">Records</a>
     </nav>
@@ -153,21 +152,16 @@
     <div class="champ rise" id="champ" style="animation-delay:.18s"></div>
   </section>
 
-  <section class="block" id="alltime-sec">
-    <div class="head"><h2 class="disp">All-time table</h2></div>
-    <div class="tablewrap"><table id="alltime"></table></div>
+  <section class="block" id="seasons">
+    <div class="head"><h2 class="disp">Standings</h2></div>
+    <div class="tabs" id="seasonTabs"></div>
+    <div id="seasonView"></div>
   </section>
 
   <section class="block" id="managers">
     <div class="head"><h2 class="disp">Manager profile</h2></div>
     <div style="margin-bottom:18px"><select id="mgrSel"></select></div>
     <div id="profile"></div>
-  </section>
-
-  <section class="block" id="seasons">
-    <div class="head"><h2 class="disp">Season by season</h2></div>
-    <div class="tabs" id="seasonTabs"></div>
-    <div id="seasonView"></div>
   </section>
 
   <section class="block" id="h2h">
@@ -332,7 +326,6 @@ function renderAllTime(){
     renderAllTime();
   });
 }
-renderAllTime();
 
 // ---------- RENDER: manager profile ----------
 const mgrSel=document.getElementById("mgrSel");
@@ -379,13 +372,22 @@ function renderProfile(m){
 mgrSel.onchange=()=>renderProfile(mgrSel.value);
 renderProfile(mgrSel.value);
 
-// ---------- RENDER: season view ----------
+// ---------- RENDER: season view (incl. all-time tab) ----------
 const seasonTabs=document.getElementById("seasonTabs");
-SEASON_ORDER.forEach((s,i)=>{
-  const b=document.createElement("button");b.className="tab"+(i===SEASON_ORDER.length-1?" active":"");
-  b.textContent=s;b.onclick=()=>{seasonTabs.querySelectorAll(".tab").forEach(t=>t.classList.remove("active"));b.classList.add("active");renderSeason(s);};
+["all",...SEASON_ORDER].forEach(s=>{
+  const b=document.createElement("button");b.className="tab"+(s==="all"?" active":"");
+  b.textContent=s==="all"?"All-time":s;
+  b.onclick=()=>{seasonTabs.querySelectorAll(".tab").forEach(t=>t.classList.remove("active"));b.classList.add("active");renderStandingsTab(s);};
   seasonTabs.appendChild(b);
 });
+function renderStandingsTab(s){
+  if(s==="all"){
+    document.getElementById("seasonView").innerHTML=`<div class="tablewrap"><table id="alltime"></table></div>`;
+    renderAllTime();
+  }else{
+    renderSeason(s);
+  }
+}
 function renderSeason(s){
   const mgrs=[...new Set(played.filter(x=>x.season===s).map(x=>x.manager))];
   const tab=mgrs.map(m=>{
@@ -414,7 +416,7 @@ function renderSeason(s){
       <thead><tr><th>Finish</th><th>Pick</th><th>Points</th><th>Avg</th><th>±</th><th>W-D-L</th><th>Table</th></tr></thead>
       <tbody>${rows}</tbody></table></div>`;
 }
-renderSeason(SEASON_ORDER[SEASON_ORDER.length-1]);
+renderStandingsTab("all");
 
 // ---------- RENDER: head-to-head ----------
 const h2hA=document.getElementById("h2hA"),h2hB=document.getElementById("h2hB");
