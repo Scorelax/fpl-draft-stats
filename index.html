@@ -40,13 +40,14 @@
   .hero{padding:64px 0 30px}
   .hero .eyebrow{margin-bottom:18px}
   .hero h1{font-size:clamp(42px,9vw,96px);text-transform:uppercase}
-  .hero h1 .thin{-webkit-text-stroke:1.5px var(--line-strong);color:transparent;display:block}
+  .hero h1 .thin{-webkit-text-stroke:1.5px var(--line-strong);color:transparent}
   .hofcard{position:relative;border:1px solid var(--line);border-radius:18px;overflow:hidden;
     background:linear-gradient(160deg,var(--panel-2),var(--panel));padding:22px}
   .hofcard.first::before{content:"";position:absolute;inset:0;background:
     radial-gradient(360px 160px at 85% -40%, rgba(255,201,77,.22), transparent 60%);pointer-events:none}
-  .hofcard .tag{position:relative;display:flex;align-items:center;gap:9px;font-size:11px;font-weight:700;
+  .hofcard .tag{position:relative;display:flex;align-items:center;gap:10px;font-size:11px;font-weight:700;
     text-transform:uppercase;letter-spacing:.14em;color:var(--gold)}
+  .hofcard .tag .pos{width:32px;height:32px;border-radius:9px;font-size:16px}
   .hofcard .name{position:relative;font-size:clamp(22px,3vw,30px);margin:10px 0 2px}
   .hofcard .mini{position:relative;display:flex;flex-wrap:wrap;gap:14px;margin-top:16px;padding-top:14px;border-top:1px solid var(--line)}
   .hofcard .mini .k{font-family:'Archivo',sans-serif;font-weight:900;font-size:17px}
@@ -166,7 +167,7 @@
 <main class="wrap">
   <section class="hero">
     <div class="eyebrow rise">All-time · Draft H2H · 6 seasons</div>
-    <h1 class="disp rise" style="animation-delay:.05s">Draft<span class="thin">liga</span></h1>
+    <h1 class="disp rise" style="animation-delay:.05s">FPL Draft <span class="thin">Stats</span></h1>
   </section>
 
   <section class="block" id="seasons">
