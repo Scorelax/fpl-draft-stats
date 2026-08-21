@@ -428,13 +428,16 @@ function renderSeason(s){
     const bottomSet=new Set(sorted.slice(sorted.length-half).map(x=>x.manager));
     const winners=new Set(list.filter(x=>x.points===maxP).map(x=>x.manager));
     const losers=new Set(list.filter(x=>x.points===minP).map(x=>x.manager));
-    const rank={};
+    const rank={},beat={};
     list.forEach(x=>{
       const higher=list.filter(o=>o.manager!==x.manager&&o.points>x.points).length;
       const tied=list.filter(o=>o.manager!==x.manager&&o.points===x.points).length;
       rank[x.manager]=1+higher+tied*0.5;
+      const others=list.filter(o=>o.manager!==x.manager);
+      let b=0;others.forEach(o=>{if(x.points>o.points)b++;else if(x.points===o.points)b+=0.5;});
+      beat[x.manager]=others.length?b/others.length:0;
     });
-    roundCtx[rnd]={topSet,bottomSet,winners,losers,rank};
+    roundCtx[rnd]={topSet,bottomSet,winners,losers,rank,beat};
   });
 
   const tab=mgrs.map(m=>{
@@ -450,10 +453,11 @@ function renderSeason(s){
     const minWin=winPts.length?Math.min(...winPts):null;
     const maxLoss=lossPts.length?Math.max(...lossPts):null;
 
-    let posSum=0,posN=0,duelT4=0,duelB4=0,metT4=0,metB4=0,metWinner=0,metLoser=0,wonGW=0,lostGW=0;
+    let posSum=0,posN=0,xwSum=0,duelT4=0,duelB4=0,metT4=0,metB4=0,metWinner=0,metLoser=0,wonGW=0,lostGW=0;
     sm.forEach(x=>{
       const ctx=roundCtx[x.round];if(!ctx)return;
       posSum+=ctx.rank[m];posN++;
+      xwSum+=ctx.beat[m];
       const meTop=ctx.topSet.has(m),meBot=ctx.bottomSet.has(m);
       const oppTop=ctx.topSet.has(x.opponent),oppBot=ctx.bottomSet.has(x.opponent);
       if(meTop&&oppTop)duelT4++;
@@ -466,9 +470,10 @@ function renderSeason(s){
       if(ctx.losers.has(m))lostGW++;
     });
     const avgGW=posN?posSum/posN:null;
+    const luck=w-xwSum;
 
     return{m,pf,pa,w,d,l,tp:w*3+d,pick:dd?dd.pick:"–",place:dd?dd.placement:99,gp:sm.length,
-      winStreak,lossStreak,minWin,maxLoss,avgGW,duelT4,duelB4,metT4,metB4,metWinner,metLoser,wonGW,lostGW};
+      winStreak,lossStreak,minWin,maxLoss,avgGW,luck,duelT4,duelB4,metT4,metB4,metWinner,metLoser,wonGW,lostGW};
   }).sort((a,b)=>a.place-b.place);
 
   const champ=tab[0];
@@ -482,6 +487,7 @@ function renderSeason(s){
     <td>${NF(r.pa)}</td>
     <td class="${r.pf-r.pa>0?'pl':'mi'}">${r.pf-r.pa>0?'+':''}${r.pf-r.pa}</td>
     <td>${r.w}-${r.d}-${r.l}</td>
+    <td class="${r.luck>0?'pl':'mi'}">${r.luck>0?'+':''}${r.luck.toFixed(1)}</td>
     <td><b>${r.tp}</b></td></tr>`;});
 
   const gwMgrs=tab.map(r=>r.m);
@@ -537,7 +543,9 @@ function renderSeason(s){
             <th>Finish</th><th>Pick</th><th>Points</th>
             <th title="Total points scored by opponents (points against)">Met</th>
             <th title="Goal difference: points scored minus points met">GD</th>
-            <th>W-D-L</th><th>Table</th>
+            <th>W-D-L</th>
+            <th title="Actual wins minus expected wins (all-play), this season">Luck</th>
+            <th>Table</th>
           </tr></thead>
           <tbody>${rows}</tbody></table></div>
 
