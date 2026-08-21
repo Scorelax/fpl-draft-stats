@@ -2,7 +2,7 @@
 
 All-time stats site for our Fantasy Premier League **Draft** league. Static site, no backend — the page fetches two CSV files at load time and computes every table, record, and head-to-head on the fly in the browser.
 
-**Live site:** _(add the GitHub Pages URL here once it's enabled — see below)_
+**Live site:** https://scorelax.github.io/fpl-draft-stats/
 
 ## Structure
 
