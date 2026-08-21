@@ -497,12 +497,12 @@ function renderSeason(s){
       <div class="top"><span class="nm">${r.m}</span>
         <span class="rank">#${r.place} this season · ${r.w}-${r.d}-${r.l} · ${r.tp} table points</span></div>
       <div class="grid g3" style="margin-top:20px">
-        <div class="stat"><div class="k tnum">${r.wonGW}</div><div class="l">GWs won outright</div></div>
-        <div class="stat"><div class="k tnum">${r.lostGW}</div><div class="l">GWs lost outright</div></div>
+        <div class="stat"><div class="k tnum">${r.wonGW}</div><div class="l">GWs won</div></div>
+        <div class="stat"><div class="k tnum">${r.lostGW}</div><div class="l">GWs lost</div></div>
         <div class="stat"><div class="k tnum">${(r.pf/r.gp).toFixed(1)}</div><div class="l">Avg points</div></div>
         <div class="stat"><div class="k tnum">${r.winStreak}</div><div class="l">Longest win streak</div></div>
         <div class="stat"><div class="k tnum">${r.lossStreak}</div><div class="l">Longest loss streak</div></div>
-        <div class="stat"><div class="k tnum">${(r.pa/r.gp).toFixed(1)}</div><div class="l">Avg met</div></div>
+        <div class="stat"><div class="k tnum">${(r.pa/r.gp).toFixed(1)}</div><div class="l">Avg points met</div></div>
         <div class="stat"><div class="k tnum">${r.duelT4}</div><div class="l">Duels in top half</div></div>
         <div class="stat"><div class="k tnum">${r.duelB4}</div><div class="l">Duels in bottom half</div></div>
         <div class="stat"><div class="k tnum">${r.avgGW!=null?r.avgGW.toFixed(1):'–'}</div><div class="l">Avg GW placement</div></div>
