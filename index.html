@@ -166,7 +166,7 @@
 
 <main class="wrap">
   <section class="hero">
-    <div class="eyebrow rise">All-time · Draft H2H · 6 seasons</div>
+    <div class="eyebrow rise" id="heroEyebrow">All-time · Draft H2H</div>
     <h1 class="disp rise" style="animation-delay:.05s">FPL Draft <span class="thin">Stats</span></h1>
   </section>
 
@@ -202,11 +202,11 @@
   </section>
 </main>
 
-<footer><div class="wrap">FantasyPL Draft · all-time stats · computed live from <b>data/matches.csv</b> + <b>data/draft.csv</b> · 6 seasons, 227 rounds</div></footer>
+<footer><div class="wrap">FantasyPL Draft · all-time stats · computed live from <b>data/matches.csv</b> + <b>data/draft.csv</b> · <span id="footerCount"></span></div></footer>
 
 <script>
 "use strict";
-const SEASON_ORDER=["2020/21","2021/22","2022/23","2023/24","2024/25","2025/26"];
+const SEASON_ORDER=["2020/21","2021/22","2022/23","2023/24","2024/25","2025/26","2026/27"];
 const NF=n=>n.toLocaleString("en-US");
 
 function parseCSV(txt){
@@ -253,6 +253,9 @@ Object.values(bySR).forEach(list=>{
 // ---- titles ----
 const titles={};D.forEach(d=>{if(d.placement===1)titles[d.manager]=(titles[d.manager]||0)+1;});
 
+document.getElementById("heroEyebrow").textContent=`All-time · Draft H2H · ${SEASON_ORDER.length} season${SEASON_ORDER.length===1?'':'s'}`;
+document.getElementById("footerCount").textContent=`${SEASON_ORDER.length} season${SEASON_ORDER.length===1?'':'s'}, ${Object.keys(bySR).length} rounds`;
+
 // ---- all-time aggregate ----
 function blank(){return{gp:0,pf:0,pa:0,w:0,d:0,l:0,hi:0,lo:9999,hiCtx:null,loCtx:null};}
 const A={};
@@ -269,7 +272,7 @@ managers.forEach(m=>{const a=A[m];a.tp=a.w*3+a.d;a.winp=100*a.w/a.gp;a.avg=a.pf/
   a.seasons=D.filter(d=>d.manager===m).length;a.avgSeason=a.seasons?a.pf/a.seasons:null;
   a.avgPlace=avgPlacement(m);});
 
-function avgPlacement(m){const ps=D.filter(d=>d.manager===m).map(d=>d.placement);
+function avgPlacement(m){const ps=D.filter(d=>d.manager===m&&d.placement).map(d=>d.placement);
   return ps.length?ps.reduce((x,y)=>x+y,0)/ps.length:null;}
 
 // ---- streaks (career, chronological) ----
@@ -375,7 +378,7 @@ function renderProfile(m){
     const pf=sm.reduce((t,x)=>t+x.points,0);
     const w=sm.filter(x=>x.points>x.opp).length,dr=sm.filter(x=>x.points===x.opp).length,l=sm.filter(x=>x.points<x.opp).length;
     seasonRows+=`<tr><td>${d.season}</td><td>${d.pick}</td>
-      <td><span class="pos ${d.placement<=3?'p'+d.placement:'pn'}">${d.placement}</span></td>
+      <td>${d.placement?`<span class="pos ${d.placement<=3?'p'+d.placement:'pn'}">${d.placement}</span>`:'<span class="pos pn">–</span> in progress'}</td>
       <td>${NF(pf)}</td><td>${(pf/sm.length).toFixed(1)}</td><td>${w}-${dr}-${l}</td></tr>`;
   });
   const titleWord=a.titles===1?'title':'titles';
@@ -388,7 +391,7 @@ function renderProfile(m){
         <div class="stat"><div class="k tnum">${NF(a.pf)}</div><div class="l">Total points</div><div class="sub">${a.avg.toFixed(1)} avg</div></div>
         <div class="stat"><div class="k tnum">${a.w}-${a.d}-${a.l}</div><div class="l">W-D-L</div><div class="sub">${a.winp.toFixed(1)}% win rate</div></div>
         <div class="stat"><div class="k tnum ${a.luck>0?'pl':'mi'}">${a.luck>0?'+':''}${a.luck.toFixed(1)}</div><div class="l">Luck</div><div class="sub">vs all-play</div></div>
-        <div class="stat"><div class="k tnum">${a.avgPlace?a.avgPlace.toFixed(1):'–'}</div><div class="l">Avg finish</div><div class="sub">best: ${Math.min(...seasons.map(s=>s.placement))}</div></div>
+        <div class="stat"><div class="k tnum">${a.avgPlace?a.avgPlace.toFixed(1):'–'}</div><div class="l">Avg finish</div><div class="sub">${(()=>{const placed=seasons.map(s=>s.placement).filter(Boolean);return placed.length?'best: '+Math.min(...placed):'';})()}</div></div>
       </div>
       <div class="grid g4" style="margin-top:16px">
         <div class="stat"><div class="k tnum">${a.hi}</div><div class="l">Highest round</div><div class="sub">${a.hiCtx.season} R${a.hiCtx.round}</div></div>
@@ -479,16 +482,25 @@ function renderSeason(s){
     const avgGW=posN?posSum/posN:null;
     const luck=w-xwSum;
 
-    return{m,pf,pa,w,d,l,tp:w*3+d,pick:dd?dd.pick:"–",place:dd?dd.placement:99,gp:sm.length,
+    return{m,pf,pa,w,d,l,tp:w*3+d,pick:dd?dd.pick:"–",official:(dd&&dd.placement)?dd.placement:null,gp:sm.length,
       winStreak,lossStreak,minWin,maxLoss,avgGW,luck,duelT4,duelB4,metT4,metB4,metWinner,metLoser,wonGW,lostGW};
-  }).sort((a,b)=>a.place-b.place);
+  });
+
+  const allPlaced=tab.every(r=>r.official!=null);
+  if(allPlaced){
+    tab.sort((a,b)=>a.official-b.official);
+    tab.forEach(r=>{r.place=r.official;});
+  }else{
+    tab.sort((a,b)=>b.tp-a.tp||b.pf-a.pf);
+    tab.forEach((r,i)=>{r.place=i+1;});
+  }
 
   const champ=tab[0];
   const topScore=played.filter(x=>x.season===s).sort((a,b)=>b.points-a.points)[0];
   const topPts=tab.slice().sort((a,b)=>b.pf-a.pf)[0];
   let rows="";
   tab.forEach(r=>{rows+=`<tr>
-    <td><span class="pos ${r.place<=3?'p'+r.place:'pn'}">${r.place}</span>${r.m}${r.place===1?'<span class="badge-t">★</span>':''}</td>
+    <td><span class="pos ${r.place<=3?'p'+r.place:'pn'}">${r.place}</span>${r.m}${r.place===1&&allPlaced?'<span class="badge-t">★</span>':''}</td>
     <td>${r.pick}</td>
     <td>${NF(r.pf)}</td>
     <td>${NF(r.pa)}</td>
@@ -538,7 +550,7 @@ function renderSeason(s){
 
   document.getElementById("seasonView").innerHTML=`
     <div class="grid g3" style="margin-bottom:16px">
-      <div class="rec"><div class="cap">Champion</div><div class="who big">${champ.m}</div><div class="det">${champ.tp} table points · drafted No. ${champ.pick}</div></div>
+      <div class="rec"><div class="cap">${allPlaced?'Champion':'Leading'}</div><div class="who big">${champ.m}</div><div class="det">${champ.tp} table points · drafted No. ${champ.pick}${allPlaced?'':' · season in progress'}</div></div>
       <div class="rec"><div class="cap">Most points</div><div class="who">${topPts.m}</div><div class="det">${NF(topPts.pf)} points</div></div>
       <div class="rec"><div class="cap">Highest round score</div><div class="who">${topScore.points}</div><div class="det">${topScore.manager} · round ${topScore.round}</div></div>
     </div>
@@ -649,10 +661,11 @@ const PICK_COLS=[
 ];
 let pickSortKey="pick",pickSortAsc=true;
 const PICKS=(function(){
+  const placedD=D.filter(d=>d.placement);
   const seasonMax={};
-  D.forEach(d=>{seasonMax[d.season]=Math.max(seasonMax[d.season]||0,d.placement);});
+  placedD.forEach(d=>{seasonMax[d.season]=Math.max(seasonMax[d.season]||0,d.placement);});
   const byPick={};
-  D.forEach(d=>{
+  placedD.forEach(d=>{
     const p=byPick[d.pick]=byPick[d.pick]||{pick:d.pick,n:0,sum:0,best:99,worst:0,titles:0,lastPlace:0};
     p.n++;p.sum+=d.placement;p.best=Math.min(p.best,d.placement);p.worst=Math.max(p.worst,d.placement);
     if(d.placement===1)p.titles++;
