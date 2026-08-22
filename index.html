@@ -642,19 +642,23 @@ h2hA.onchange=renderH2H;h2hB.onchange=renderH2H;renderH2H();
 const PICK_COLS=[
   {k:"pick",l:"Pick"},
   {k:"titles",l:"Titles"},
+  {k:"lastPlace",l:"Last place",title:"Times finishing last in the final table from this draft position"},
   {k:"avg",l:"Avg finish",title:"Average final placement from this draft position, across all seasons"},
   {k:"best",l:"Best finish"},
   {k:"worst",l:"Worst finish"},
 ];
 let pickSortKey="pick",pickSortAsc=true;
 const PICKS=(function(){
+  const seasonMax={};
+  D.forEach(d=>{seasonMax[d.season]=Math.max(seasonMax[d.season]||0,d.placement);});
   const byPick={};
   D.forEach(d=>{
-    const p=byPick[d.pick]=byPick[d.pick]||{pick:d.pick,n:0,sum:0,best:99,worst:0,titles:0};
+    const p=byPick[d.pick]=byPick[d.pick]||{pick:d.pick,n:0,sum:0,best:99,worst:0,titles:0,lastPlace:0};
     p.n++;p.sum+=d.placement;p.best=Math.min(p.best,d.placement);p.worst=Math.max(p.worst,d.placement);
     if(d.placement===1)p.titles++;
+    if(d.placement===seasonMax[d.season])p.lastPlace++;
   });
-  return Object.values(byPick).map(p=>({pick:p.pick,titles:p.titles,avg:p.sum/p.n,best:p.best,worst:p.worst}));
+  return Object.values(byPick).map(p=>({pick:p.pick,titles:p.titles,lastPlace:p.lastPlace,avg:p.sum/p.n,best:p.best,worst:p.worst}));
 })();
 function renderPickTable(){
   const rows=[...PICKS].sort((a,b)=>pickSortAsc?a[pickSortKey]-b[pickSortKey]:b[pickSortKey]-a[pickSortKey]);
@@ -662,7 +666,7 @@ function renderPickTable(){
   PICK_COLS.forEach(c=>{h+=`<th class="sortable ${pickSortKey===c.k?'active':''} ${pickSortAsc?'asc':''}" data-k="${c.k}"${c.title?` title="${c.title}"`:''}>${c.l}</th>`;});
   h+="</tr></thead><tbody>";
   rows.forEach(p=>{
-    h+=`<tr><td>${p.pick}</td><td>${p.titles||'–'}</td><td>${p.avg.toFixed(1)}</td>
+    h+=`<tr><td>${p.pick}</td><td>${p.titles||'–'}</td><td>${p.lastPlace||'–'}</td><td>${p.avg.toFixed(1)}</td>
       <td><span class="pos ${p.best<=3?'p'+p.best:'pn'}">${p.best}</span></td>
       <td>${p.worst}</td></tr>`;
   });
@@ -670,7 +674,7 @@ function renderPickTable(){
   const t=document.getElementById("pickTable");t.innerHTML=h;
   t.querySelectorAll("th").forEach(th=>th.onclick=()=>{
     const k=th.dataset.k;
-    if(k===pickSortKey)pickSortAsc=!pickSortAsc;else{pickSortKey=k;pickSortAsc=(k!=="titles");}
+    if(k===pickSortKey)pickSortAsc=!pickSortAsc;else{pickSortKey=k;pickSortAsc=(k!=="titles"&&k!=="lastPlace");}
     renderPickTable();
   });
 }
