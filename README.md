@@ -11,11 +11,13 @@ index.html        the app — layout, styling, all stat/record calculations
 data/
   draft.csv          one row per manager per season: draft pick + final placement
   matches.csv        one row per manager per round: points scored + opponent + opponent's points
+  ownership.csv       one row per FPL-player ownership stint per manager per season (see below)
   manager-map.json    FPL Draft API entry_id -> our canonical manager name (see below)
 scripts/
-  update_matches.py   pulls finished current-season matches from the FPL API into matches.csv
+  update_matches.py    pulls finished current-season matches from the FPL API into matches.csv
+  update_ownership.py  pulls draft picks + transactions into ownership.csv
 .github/workflows/
-  update-matches.yml   runs update_matches.py daily and commits any changes
+  update-matches.yml   runs both scripts daily and commits any changes
 ```
 
 `data/` is the database. `index.html` never hardcodes results — it loads `data/matches.csv` and `data/draft.csv` with `fetch()` on page load and derives everything (all-time table, luck/expected-wins, streaks, records, head-to-head) from those two files. To update the site, you edit the CSVs — the app itself shouldn't need to change.
@@ -39,6 +41,18 @@ scripts/
 | `opponent_points` | opponent's points that round |
 
 Each fixture appears twice (once as each manager's row), which is what the existing files already do — keep that pattern.
+
+### `data/ownership.csv`
+| column | meaning |
+|---|---|
+| `season` | e.g. `2026/27` |
+| `manager` | manager name |
+| `element_id` | FPL's internal player ID |
+| `player` | player's short display name at the time of fetching |
+| `event_in` | gameweek this ownership stint began (drafted, or picked up via waiver/trade) |
+| `event_out` | gameweek this stint ended (dropped); blank if still owned |
+
+One row per **ownership stint**, not per player — if a manager drafts a player, drops them, then re-adds them later, that's two rows. This is deliberately a raw fact log (same philosophy as the other two CSVs): `index.html` derives stats like "most selected player" from it client-side rather than the script pre-computing an aggregate. Only covers 2026/27 onward — the FPL API doesn't expose this for seasons before we started tracking it, and we don't have the past seasons' league IDs even if it did.
 
 ### `data/manager-map.json`
 
@@ -75,9 +89,14 @@ No build step, no dependencies — it's a static site.
 
 `.github/workflows/update-matches.yml` runs that script once a day (00:00 UTC — adjust the cron if you want it closer to Oslo midnight, which drifts between UTC+1/+2 with DST) and commits+pushes `data/matches.csv` only if it actually changed. It can also be triggered manually from the repo's **Actions** tab (`workflow_dispatch`). Once a season is fully finished, just stop caring about the workflow's runs — a "no changes" run is a harmless no-op — or disable it from the Actions tab.
 
-To run it by hand instead:
+To run either by hand instead:
 ```bash
 python scripts/update_matches.py
+python scripts/update_ownership.py
 ```
 
-Not yet automated: draft pick order and final placement in `data/draft.csv` — those still need adding manually each season (see "Adding a new season" above). The API does have this data (via a `/api/draft/<id>/choices` endpoint for pick order); wiring it up is a possible next step.
+`scripts/update_ownership.py` combines `GET /api/draft/2485/choices` (initial draft squads — note the URL says "draft" but the path parameter is actually the **league ID**, not the draft's own `id` field from `league.drafts[]`, despite what the endpoint name implies) with `GET /api/draft/league/2485/transactions` (every accepted waiver/free-agent move) to reconstruct each manager's full ownership history and write it to `ownership.csv`.
+
+Two FPL-player stats are planned but not yet built (they show "coming soon" placeholders in both manager profiles): **most points earned** (only counting gameweeks where the player wasn't benched) and **most games played** (contributed points). Both depend on `GET /api/entry/<entry_id>/event/<gw>`'s `multiplier` field (0 = didn't count, 1 = counted — Draft has no captaincy, so no 2x/3x here), which needs verifying against a gameweek that's actually finished before it can be trusted (checked mid-gameweek once already; results looked unfinalized).
+
+Not yet automated: `data/draft.csv` itself — draft pick order (fetched manually via `/api/draft/<league_id>/choices` once the draft completes) and final placement (once the season ends) both still need adding by hand (see "Adding a new season" above).

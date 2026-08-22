@@ -228,7 +228,7 @@ async function loadCSV(path){
 
 (async function(){
 
-let M,D;
+let M,D,O=[];
 try{
   const [matchesRows,draftRows]=await Promise.all([loadCSV("data/matches.csv"),loadCSV("data/draft.csv")]);
   M=matchesRows.map(r=>({season:r.season,round:+r.round,manager:r.manager,
@@ -238,6 +238,15 @@ try{
 }catch(err){
   document.querySelector("main").innerHTML=`<div class="rec" style="margin:60px 0"><div class="cap">Couldn't load stats data</div><div class="det">${err.message}<br><br>If you opened this file directly from disk (a file:// address), browsers block local CSV fetches for security. Run a tiny local server instead — e.g. <code>python -m http.server</code> in this folder — then open the http://localhost address it prints. This loads automatically on GitHub Pages.</div></div>`;
   return;
+}
+
+try{
+  O=(await loadCSV("data/ownership.csv")).map(r=>({season:r.season,manager:r.manager,
+    elementId:+r.element_id,player:r.player,eventIn:+r.event_in,
+    eventOut:r.event_out===""?null:+r.event_out}));
+}catch(err){
+  console.warn("data/ownership.csv not available yet:",err.message);
+  O=[];
 }
 
 const played=M.filter(m=>m.points!==null&&m.opp!==null);
@@ -279,6 +288,18 @@ managers.forEach(m=>{const a=A[m];a.tp=a.w*3+a.d;a.winp=100*a.w/a.gp;a.avg=a.pf/
 
 function avgPlacement(m){const ps=D.filter(d=>d.manager===m&&d.placement).map(d=>d.placement);
   return ps.length?ps.reduce((x,y)=>x+y,0)/ps.length:null;}
+
+// ---- most-selected FPL player (from ownership.csv - one row per ownership stint) ----
+function mostSelected(rows){
+  if(!rows.length)return null;
+  const counts={};
+  rows.forEach(r=>{counts[r.player]=(counts[r.player]||0)+1;});
+  let best=null;
+  Object.entries(counts).forEach(([player,n])=>{
+    if(!best||n>best.n||(n===best.n&&player<best.player))best={player,n};
+  });
+  return best;
+}
 
 // ---- streaks (career, chronological) ----
 function careerSeq(m){
@@ -375,6 +396,7 @@ function renderProfile(m){
   const a=A[m];const seq=careerSeq(m);
   const winRun=longestRun(seq,"W"),lossRun=longestRun(seq,"L");
   const fr=fiveRound(m);
+  const sel=mostSelected(O.filter(o=>o.manager===m));
   const rank=[...managers].sort((x,y)=>A[y].tp-A[x].tp).indexOf(m)+1;
   const seasons=D.filter(d=>d.manager===m).sort((x,y)=>SEASON_ORDER.indexOf(x.season)-SEASON_ORDER.indexOf(y.season));
   let seasonRows="";
@@ -404,6 +426,11 @@ function renderProfile(m){
         <div class="stat"><div class="k tnum">${winRun} / ${lossRun}</div><div class="l">Longest W / L streak</div></div>
         <div class="stat"><div class="k tnum">${fr.best?fr.best.sum:'–'}</div><div class="l">Best 5-round</div><div class="sub">${fr.best?fr.best.season+' R'+fr.best.from+'–'+fr.best.to:''}</div></div>
       </div>
+      <div class="grid g3" style="margin-top:16px">
+        <div class="stat"><div class="k tnum">${sel?sel.player:'–'}</div><div class="l">Most selected</div><div class="sub">${sel?'owned '+sel.n+' time'+(sel.n===1?'':'s'):'no ownership data tracked yet'}</div></div>
+        <div class="stat"><div class="k tnum">–</div><div class="l">Most points earned</div><div class="sub">coming soon · only when it counted</div></div>
+        <div class="stat"><div class="k tnum">–</div><div class="l">Most played</div><div class="sub">coming soon · gameweeks contributed</div></div>
+      </div>
     </div>
     <div class="tablewrap"><table>
       <thead><tr><th>Season</th><th>Pick</th><th>Finish</th><th>Points</th><th>Avg</th><th>W-D-L</th></tr></thead>
@@ -416,7 +443,9 @@ renderProfile(mgrSel.value);
 const seasonTabs=document.getElementById("seasonTabs");
 ["all",...SEASON_ORDER].forEach(s=>{
   const b=document.createElement("button");b.className="tab"+(s==="all"?" active":"");
-  b.textContent=s==="all"?"All-time":s;
+  const seasonRows=s==="all"?[]:D.filter(d=>d.season===s);
+  const inProgress=seasonRows.length>0&&seasonRows.some(d=>!d.placement);
+  b.innerHTML=(s==="all"?"All-time":s)+(inProgress?' <span class="livedot" style="margin:0 0 0 6px"></span>':'');
   b.onclick=()=>{seasonTabs.querySelectorAll(".tab").forEach(t=>t.classList.remove("active"));b.classList.add("active");renderStandingsTab(s);};
   seasonTabs.appendChild(b);
 });
@@ -547,6 +576,7 @@ function renderSeason(s){
   });
 
   function seasonProfileHTML(r){
+    const sel=mostSelected(O.filter(o=>o.season===s&&o.manager===r.m));
     return `
     <div class="profcard">
       <div class="top"><span class="nm">${r.m}</span>
@@ -567,6 +597,11 @@ function renderSeason(s){
         <div class="stat"><div class="k tnum">${r.metLoser}</div><div class="l">Met the GW loser</div></div>
         <div class="stat"><div class="k tnum">${r.minWin!=null?r.minWin:'–'}</div><div class="l">Fewest pts, still won</div></div>
         <div class="stat"><div class="k tnum">${r.maxLoss!=null?r.maxLoss:'–'}</div><div class="l">Most pts, still lost</div></div>
+      </div>
+      <div class="grid g3" style="margin-top:16px">
+        <div class="stat"><div class="k tnum">${sel?sel.player:'–'}</div><div class="l">Most selected</div><div class="sub">${sel?'owned '+sel.n+' time'+(sel.n===1?'':'s'):'no ownership data tracked yet'}</div></div>
+        <div class="stat"><div class="k tnum">–</div><div class="l">Most points earned</div><div class="sub">coming soon · only when it counted</div></div>
+        <div class="stat"><div class="k tnum">–</div><div class="l">Most played</div><div class="sub">coming soon · gameweeks contributed</div></div>
       </div>
     </div>`;
   }
