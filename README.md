@@ -12,6 +12,10 @@ data/
   draft.csv          one row per manager per season: draft pick + final placement
   matches.csv        one row per manager per round: points scored + opponent + opponent's points
   manager-map.json    FPL Draft API entry_id -> our canonical manager name (see below)
+scripts/
+  update_matches.py   pulls finished current-season matches from the FPL API into matches.csv
+.github/workflows/
+  update-matches.yml   runs update_matches.py daily and commits any changes
 ```
 
 `data/` is the database. `index.html` never hardcodes results — it loads `data/matches.csv` and `data/draft.csv` with `fetch()` on page load and derives everything (all-time table, luck/expected-wins, streaks, records, head-to-head) from those two files. To update the site, you edit the CSVs — the app itself shouldn't need to change.
@@ -65,13 +69,15 @@ then open `http://localhost:8000/`.
 
 No build step, no dependencies — it's a static site.
 
-## Roadmap: live current-season data from the FPL API
+## Live current-season data from the FPL API
 
-Next step is wiring the current season's `data/matches.csv` rows to update automatically from the official FPL Draft API instead of manual entry, likely via a small scheduled script (e.g. a GitHub Actions workflow) that pulls results after each gameweek and commits the update. Not implemented yet — historic seasons (2020/21–2024/25, plus 2025/26) stay as committed CSV data either way.
+`scripts/update_matches.py` pulls the current season's finished matches from the public FPL Draft API (`GET /api/league/2485/details` — no login needed) and rewrites that season's block in `data/matches.csv`. It re-fetches and replaces the whole season's block every run (not an incremental append), so a late score correction from FPL is picked up automatically rather than left stale. If someone joins the league whose `entry_id` isn't in `manager-map.json` yet, the script exits with an error instead of guessing — add them to the map and re-run.
 
-The relevant endpoint is public and needs no login: `GET https://draft.premierleague.com/api/league/2485/details`. It returns:
-- `league_entries` — one row per manager, including `entry_id` (see `manager-map.json` above) and `id` (the ID `matches`/`standings` reference for that season)
-- `matches` — all 152 fixtures for the season, pre-populated with `event`, `league_entry_1`/`league_entry_2`, their points, `started`, `finished`
-- `standings` — running W/D/L/points table
+`.github/workflows/update-matches.yml` runs that script once a day (00:00 UTC — adjust the cron if you want it closer to Oslo midnight, which drifts between UTC+1/+2 with DST) and commits+pushes `data/matches.csv` only if it actually changed. It can also be triggered manually from the repo's **Actions** tab (`workflow_dispatch`). Once a season is fully finished, just stop caring about the workflow's runs — a "no changes" run is a harmless no-op — or disable it from the Actions tab.
 
-2026/27 (league ID 2485) is the first season this would apply to going forward.
+To run it by hand instead:
+```bash
+python scripts/update_matches.py
+```
+
+Not yet automated: draft pick order and final placement in `data/draft.csv` — those still need adding manually each season (see "Adding a new season" above). The API does have this data (via a `/api/draft/<id>/choices` endpoint for pick order); wiring it up is a possible next step.
