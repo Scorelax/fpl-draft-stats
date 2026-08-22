@@ -35,7 +35,7 @@ def main():
     entry_to_name = manager_map["managers"]
 
     bootstrap = fetch_json("https://draft.premierleague.com/api/bootstrap-static")
-    player_name = {p["id"]: p["web_name"] for p in bootstrap["elements"]}
+    player_name = {p["id"]: f"{p['first_name']} {p['second_name']}".strip() for p in bootstrap["elements"]}
 
     details = fetch_json(f"https://draft.premierleague.com/api/league/{LEAGUE_ID}/details")
     start_event = details["league"]["start_event"]

@@ -48,7 +48,7 @@ Each fixture appears twice (once as each manager's row), which is what the exist
 | `season` | e.g. `2026/27` |
 | `manager` | manager name |
 | `element_id` | FPL's internal player ID |
-| `player` | player's short display name at the time of fetching |
+| `player` | player's full name at the time of fetching |
 | `event_in` | gameweek this ownership stint began (drafted, or picked up via waiver/trade) |
 | `event_out` | gameweek this stint ended (dropped); blank if still owned |
 

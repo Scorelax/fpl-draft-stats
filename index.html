@@ -680,29 +680,70 @@ function renderH2H(){
 h2hA.onchange=renderH2H;h2hB.onchange=renderH2H;renderH2H();
 
 // ---------- RENDER: records ----------
+function tiedExtreme(items,valFn,dir=1,eps=1e-9){
+  let best=null,group=[];
+  items.forEach(it=>{
+    const v=valFn(it);
+    if(best===null||dir*(v-best)>eps){best=v;group=[it];}
+    else if(Math.abs(v-best)<=eps){group.push(it);}
+  });
+  return{value:best,items:group};
+}
+function joinNames(arr){
+  if(arr.length<=1)return arr[0]||'';
+  return arr.slice(0,-1).join(', ')+' & '+arr[arr.length-1];
+}
 (function(){
-  const hi=[...played].sort((a,b)=>b.points-a.points)[0];
-  const lo=[...played].sort((a,b)=>a.points-b.points)[0];
-  const blow=[...played].sort((a,b)=>(b.points-b.opp)-(a.points-a.opp))[0];
-  let bestW={m:null,n:0},bestL={m:null,n:0},best5={m:null,v:0,ctx:null};
-  managers.forEach(m=>{const s=careerSeq(m);
-    const w=longestRun(s,"W"),l=longestRun(s,"L");
-    if(w>bestW.n)bestW={m,n:w};if(l>bestL.n)bestL={m,n:l};
-    const fr=fiveRound(m);if(fr.best&&fr.best.sum>best5.v)best5={m,v:fr.best.sum,ctx:fr.best};});
-  const steals=D.filter(d=>d.placement===1).sort((a,b)=>b.pick-a.pick)[0];
-  const mostTitles=[...managers].sort((a,b)=>A[b].titles-A[a].titles)[0];
-  const bestLuck=[...managers].sort((a,b)=>A[b].luck-A[a].luck)[0];
-  const worstLuck=[...managers].sort((a,b)=>A[a].luck-A[b].luck)[0];
+  const seqByM={};managers.forEach(m=>{seqByM[m]=careerSeq(m);});
+  const fiveByM={};managers.forEach(m=>{fiveByM[m]=fiveRound(m);});
+
+  const seasonAgg={};
+  played.forEach(x=>{
+    const key=x.season+'|'+x.manager;
+    const a=seasonAgg[key]=seasonAgg[key]||{season:x.season,manager:x.manager,pf:0,w:0,d:0,l:0};
+    a.pf+=x.points;
+    if(x.points>x.opp)a.w++;else if(x.points===x.opp)a.d++;else a.l++;
+  });
+  const seasonAggList=Object.values(seasonAgg).map(a=>({...a,tp:a.w*3+a.d}));
+
+  const gw1WinsByM={};
+  SEASON_ORDER.forEach(s=>{
+    const list=played.filter(x=>x.season===s&&x.round===1);
+    if(!list.length)return;
+    const max=Math.max(...list.map(x=>x.points));
+    list.filter(x=>x.points===max).forEach(x=>{gw1WinsByM[x.manager]=(gw1WinsByM[x.manager]||0)+1;});
+  });
+
+  const hi=tiedExtreme(played,x=>x.points,1);
+  const lo=tiedExtreme(played,x=>x.points,-1);
+  const wins=played.filter(x=>x.points>x.opp);
+  const blow=tiedExtreme(wins,x=>x.points-x.opp,1);
+  const winStreak=tiedExtreme(managers,m=>longestRun(seqByM[m],"W"),1);
+  const lossStreak=tiedExtreme(managers,m=>longestRun(seqByM[m],"L"),1);
+  const has5=managers.map(m=>({m,fr:fiveByM[m]}));
+  const best5=tiedExtreme(has5.filter(x=>x.fr.best),x=>x.fr.best.sum,1);
+  const worst5=tiedExtreme(has5.filter(x=>x.fr.worst),x=>x.fr.worst.sum,-1);
+  const titles=tiedExtreme(managers,m=>A[m].titles,1);
+  const gw1=tiedExtreme(managers.filter(m=>gw1WinsByM[m]),m=>gw1WinsByM[m],1);
+  const bestLuck=tiedExtreme(managers,m=>A[m].luck,1);
+  const worstLuck=tiedExtreme(managers,m=>A[m].luck,-1);
+  const seasonPts=tiedExtreme(seasonAggList,a=>a.pf,1);
+  const seasonTp=tiedExtreme(seasonAggList,a=>a.tp,1);
+
   const cards=[
-    {cap:"Highest round score",who:hi.points,det:`${hi.manager} · ${hi.season} R${hi.round}`},
-    {cap:"Lowest round score",who:lo.points,det:`${lo.manager} · ${lo.season} R${lo.round}`},
-    {cap:"Biggest win margin",who:"+"+(blow.points-blow.opp),det:`${blow.manager} beat ${blow.opponent} ${blow.points}–${blow.opp}`},
-    {cap:"Longest win streak",who:bestW.n,det:`${bestW.m} · ${bestW.n} straight wins`},
-    {cap:"Longest losing streak",who:bestL.n,det:`${bestL.m} · ${bestL.n} straight losses`},
-    {cap:"Best 5-round haul",who:best5.v,det:`${best5.m} · ${best5.ctx.season} R${best5.ctx.from}–${best5.ctx.to}`},
-    {cap:"Best draft steal",who:"Pick "+steals.pick,det:`${steals.manager} won ${steals.season} from pick ${steals.pick}`},
-    {cap:"Most titles",who:A[mostTitles].titles,det:`${mostTitles}`},
-    {cap:"Luckiest / unluckiest",who:`${bestLuck} / ${worstLuck}`,det:`${A[bestLuck].luck>0?'+':''}${A[bestLuck].luck.toFixed(1)} vs ${A[worstLuck].luck.toFixed(1)} luck`},
+    {cap:"Highest round score",who:hi.value,det:hi.items.map(x=>`${x.manager} · ${x.season} R${x.round}`).join(', ')},
+    {cap:"Lowest round score",who:lo.value,det:lo.items.map(x=>`${x.manager} · ${x.season} R${x.round}`).join(', ')},
+    {cap:"Biggest win margin",who:"+"+blow.value,det:blow.items.map(x=>`${x.manager} beat ${x.opponent} ${x.points}–${x.opp}`).join('; ')},
+    {cap:"Most points in a season",who:NF(seasonPts.value),det:seasonPts.items.map(a=>`${a.manager} · ${a.season}`).join(', ')},
+    {cap:"Most table points in a season",who:seasonTp.value,det:seasonTp.items.map(a=>`${a.manager} · ${a.season}`).join(', ')},
+    {cap:"Longest win streak",who:winStreak.value,det:joinNames(winStreak.items)+` · ${winStreak.value} straight wins`},
+    {cap:"Longest losing streak",who:lossStreak.value,det:joinNames(lossStreak.items)+` · ${lossStreak.value} straight losses`},
+    {cap:"Best 5-round haul",who:best5.value,det:best5.items.map(x=>`${x.m} · ${x.fr.best.season} R${x.fr.best.from}–${x.fr.best.to}`).join(', ')},
+    {cap:"Worst 5-round haul",who:worst5.value,det:worst5.items.map(x=>`${x.m} · ${x.fr.worst.season} R${x.fr.worst.from}–${x.fr.worst.to}`).join(', ')},
+    {cap:"Most titles",who:titles.value,det:joinNames(titles.items)},
+    {cap:"Most gameweek 1 wins",who:gw1.value||0,det:gw1.items.length?joinNames(gw1.items):'nobody’s repeated yet'},
+    {cap:"Luckiest",who:`${bestLuck.value>0?'+':''}${bestLuck.value.toFixed(1)}`,det:joinNames(bestLuck.items)+' · vs all-play'},
+    {cap:"Unluckiest",who:worstLuck.value.toFixed(1),det:joinNames(worstLuck.items)+' · vs all-play'},
   ];
   document.getElementById("recordsGrid").innerHTML=cards.map(c=>
     `<div class="rec"><div class="cap">${c.cap}</div><div class="who big">${c.who}</div><div class="det">${c.det}</div></div>`).join("");
