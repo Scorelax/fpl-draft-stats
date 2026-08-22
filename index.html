@@ -196,6 +196,9 @@
 
     <div class="subhead">All-time records</div>
     <div class="grid g3" id="recordsGrid"></div>
+
+    <div class="subhead" style="margin-top:32px">Draft pick order</div>
+    <div class="tablewrap"><table id="pickTable"></table></div>
   </section>
 </main>
 
@@ -263,6 +266,7 @@ played.forEach(m=>{
 const managers=Object.keys(A);
 managers.forEach(m=>{const a=A[m];a.tp=a.w*3+a.d;a.winp=100*a.w/a.gp;a.avg=a.pf/a.gp;
   a.diff=a.pf-a.pa;a.luck=a.w-(xW[m]||0);a.titles=titles[m]||0;
+  a.seasons=D.filter(d=>d.manager===m).length;a.avgSeason=a.seasons?a.pf/a.seasons:null;
   a.avgPlace=avgPlacement(m);});
 
 function avgPlacement(m){const ps=D.filter(d=>d.manager===m).map(d=>d.placement);
@@ -316,7 +320,9 @@ function fiveRound(m){
 // ---------- RENDER: all-time table ----------
 const COLS=[
   {k:"manager",l:"Manager"},
-  {k:"gp",l:"GP"},{k:"pf",l:"Points"},{k:"avg",l:"Avg"},
+  {k:"gp",l:"GP"},{k:"pf",l:"Points"},
+  {k:"avgSeason",l:"Avg/season",title:"Total points divided by seasons played"},
+  {k:"avg",l:"Avg"},
   {k:"diff",l:"±"},{k:"wdl",l:"W-D-L"},
   {k:"winp",l:"Win%"},{k:"tp",l:"Table"},
   {k:"luck",l:"Luck",title:"Actual wins minus expected wins (all-play)"},{k:"titles",l:"Titles"},
@@ -337,7 +343,7 @@ function renderAllTime(){
   rows.forEach((m,i)=>{
     const a=A[m];h+="<tr>";
     h+=`<td><span class="pos ${i<3?'p'+(i+1):'pn'}">${i+1}</span>${m}${a.titles?'<span class="badge-t">★'+a.titles+'</span>':''}</td>`;
-    h+=`<td>${a.gp}</td><td>${NF(a.pf)}</td><td>${a.avg.toFixed(1)}</td>`;
+    h+=`<td>${a.gp}</td><td>${NF(a.pf)}</td><td>${a.avgSeason!=null?a.avgSeason.toFixed(1):'–'}</td><td>${a.avg.toFixed(1)}</td>`;
     h+=`<td class="${a.diff>0?'pl':'mi'}">${a.diff>0?'+':''}${a.diff}</td>`;
     h+=`<td>${a.w}-${a.d}-${a.l}</td>`;
     h+=`<td>${a.winp.toFixed(1)}%</td><td><b>${a.tp}</b></td>`;
@@ -630,6 +636,27 @@ h2hA.onchange=renderH2H;h2hB.onchange=renderH2H;renderH2H();
   ];
   document.getElementById("recordsGrid").innerHTML=cards.map(c=>
     `<div class="rec"><div class="cap">${c.cap}</div><div class="who big">${c.who}</div><div class="det">${c.det}</div></div>`).join("");
+})();
+
+// ---------- RENDER: draft pick order ----------
+(function(){
+  const byPick={};
+  D.forEach(d=>{
+    const p=byPick[d.pick]=byPick[d.pick]||{pick:d.pick,n:0,sum:0,best:99,worst:0,titles:0};
+    p.n++;p.sum+=d.placement;p.best=Math.min(p.best,d.placement);p.worst=Math.max(p.worst,d.placement);
+    if(d.placement===1)p.titles++;
+  });
+  const picks=Object.values(byPick).sort((a,b)=>a.pick-b.pick);
+  let h="<thead><tr><th>Pick</th><th>Times drafted</th>"+
+    "<th title=\"Average final placement from this draft position, across all seasons\">Avg finish</th>"+
+    "<th>Best finish</th><th>Worst finish</th><th>Titles</th></tr></thead><tbody>";
+  picks.forEach(p=>{
+    h+=`<tr><td>${p.pick}</td><td>${p.n}</td><td>${(p.sum/p.n).toFixed(1)}</td>
+      <td><span class="pos ${p.best<=3?'p'+p.best:'pn'}">${p.best}</span></td>
+      <td>${p.worst}</td><td>${p.titles||'–'}</td></tr>`;
+  });
+  h+="</tbody>";
+  document.getElementById("pickTable").innerHTML=h;
 })();
 
 })();
