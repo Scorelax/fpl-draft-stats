@@ -96,6 +96,11 @@
   .gwlegend i{width:9px;height:9px;border-radius:2px;display:inline-block}
   .gwlegend i.w{background:var(--mint)} .gwlegend i.d{background:var(--text)} .gwlegend i.l{background:var(--magenta)}
 
+  .livedot{display:inline-block;width:8px;height:8px;border-radius:50%;background:var(--magenta);
+    box-shadow:0 0 10px var(--magenta);margin-right:7px;animation:pulse 1.6s ease-in-out infinite}
+  @keyframes pulse{0%,100%{opacity:1}50%{opacity:.3}}
+  @media(prefers-reduced-motion:reduce){.livedot{animation:none}}
+
   /* controls */
   select{appearance:none;background:var(--panel);color:var(--text);border:1px solid var(--line-strong);
     border-radius:10px;padding:11px 40px 11px 14px;font-family:'Archivo',sans-serif;font-weight:700;
@@ -424,7 +429,25 @@ function renderStandingsTab(s){
   }
 }
 function renderSeason(s){
-  const mgrs=[...new Set(played.filter(x=>x.season===s).map(x=>x.manager))];
+  const seasonPlayed=played.filter(x=>x.season===s);
+  if(!seasonPlayed.length){
+    const draftRows=D.filter(d=>d.season===s).sort((a,b)=>a.pick-b.pick);
+    document.getElementById("seasonView").innerHTML=`
+      <div class="rec" style="margin-bottom:20px">
+        <div class="cap"><span class="livedot"></span> Season underway</div>
+        <div class="who big">No results yet</div>
+        <div class="det">First results will land here once matches are confirmed — this page pulls fresh data automatically once a day.</div>
+      </div>
+      ${draftRows.length?`
+      <div class="subhead">Draft order</div>
+      <div class="tablewrap"><table>
+        <thead><tr><th>Pick</th><th>Manager</th></tr></thead>
+        <tbody>${draftRows.map(d=>`<tr><td>${d.pick}</td><td>${d.manager}</td></tr>`).join("")}</tbody>
+      </table></div>`:""}`;
+    return;
+  }
+
+  const mgrs=[...new Set(seasonPlayed.map(x=>x.manager))];
 
   // per-round league context (rank, top/bottom half, outright winner/loser) for duel-type stats
   const rounds=[...new Set(played.filter(x=>x.season===s).map(x=>x.round))].sort((a,b)=>a-b);
