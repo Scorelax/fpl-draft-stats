@@ -70,7 +70,7 @@ def main():
     all_rows = existing + [[str(c) for c in row] for row in new_rows]
 
     with matches_csv.open("w", newline="", encoding="utf-8") as f:
-        writer = csv.writer(f)
+        writer = csv.writer(f, lineterminator="\n")
         writer.writerow(header)
         writer.writerows(all_rows)
 
