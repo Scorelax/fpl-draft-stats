@@ -706,12 +706,10 @@ function joinNames(arr){
   });
   const seasonAggList=Object.values(seasonAgg).map(a=>({...a,tp:a.w*3+a.d}));
 
-  const gw1WinsByM={};
-  SEASON_ORDER.forEach(s=>{
-    const list=played.filter(x=>x.season===s&&x.round===1);
-    if(!list.length)return;
+  const gwWinsByM={};
+  Object.values(bySR).forEach(list=>{
     const max=Math.max(...list.map(x=>x.points));
-    list.filter(x=>x.points===max).forEach(x=>{gw1WinsByM[x.manager]=(gw1WinsByM[x.manager]||0)+1;});
+    list.filter(x=>x.points===max).forEach(x=>{gwWinsByM[x.manager]=(gwWinsByM[x.manager]||0)+1;});
   });
 
   const hi=tiedExtreme(played,x=>x.points,1);
@@ -724,7 +722,7 @@ function joinNames(arr){
   const best5=tiedExtreme(has5.filter(x=>x.fr.best),x=>x.fr.best.sum,1);
   const worst5=tiedExtreme(has5.filter(x=>x.fr.worst),x=>x.fr.worst.sum,-1);
   const titles=tiedExtreme(managers,m=>A[m].titles,1);
-  const gw1=tiedExtreme(managers.filter(m=>gw1WinsByM[m]),m=>gw1WinsByM[m],1);
+  const gwWins=tiedExtreme(managers.filter(m=>gwWinsByM[m]),m=>gwWinsByM[m],1);
   const bestLuck=tiedExtreme(managers,m=>A[m].luck,1);
   const worstLuck=tiedExtreme(managers,m=>A[m].luck,-1);
   const seasonPts=tiedExtreme(seasonAggList,a=>a.pf,1);
@@ -741,9 +739,9 @@ function joinNames(arr){
     {cap:"Best 5-round haul",who:best5.value,det:best5.items.map(x=>`${x.m} · ${x.fr.best.season} R${x.fr.best.from}–${x.fr.best.to}`).join(', ')},
     {cap:"Worst 5-round haul",who:worst5.value,det:worst5.items.map(x=>`${x.m} · ${x.fr.worst.season} R${x.fr.worst.from}–${x.fr.worst.to}`).join(', ')},
     {cap:"Most titles",who:titles.value,det:joinNames(titles.items)},
-    {cap:"Most gameweek 1 wins",who:gw1.value||0,det:gw1.items.length?joinNames(gw1.items):'nobody’s repeated yet'},
-    {cap:"Luckiest",who:`${bestLuck.value>0?'+':''}${bestLuck.value.toFixed(1)}`,det:joinNames(bestLuck.items)+' · vs all-play'},
-    {cap:"Unluckiest",who:worstLuck.value.toFixed(1),det:joinNames(worstLuck.items)+' · vs all-play'},
+    {cap:"Most gameweek wins",who:gwWins.value||0,det:gwWins.items.length?joinNames(gwWins.items):''},
+    {cap:"Luckiest / unluckiest",who:`${joinNames(bestLuck.items)} / ${joinNames(worstLuck.items)}`,
+      det:`${bestLuck.value>0?'+':''}${bestLuck.value.toFixed(1)} vs ${worstLuck.value.toFixed(1)} luck`},
   ];
   document.getElementById("recordsGrid").innerHTML=cards.map(c=>
     `<div class="rec"><div class="cap">${c.cap}</div><div class="who big">${c.who}</div><div class="det">${c.det}</div></div>`).join("");
