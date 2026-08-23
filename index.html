@@ -29,7 +29,7 @@
 
   header{position:sticky;top:0;z-index:50;backdrop-filter:blur(12px);
     background:linear-gradient(var(--ink),rgba(20,7,32,.55));border-bottom:1px solid var(--line)}
-  .bar{display:flex;align-items:center;justify-content:space-between;height:62px}
+  .bar{display:flex;align-items:center;justify-content:center;height:62px}
   .brand{display:flex;align-items:center;gap:11px;font-family:'Archivo',sans-serif;font-weight:800;letter-spacing:.02em;font-size:15px}
   .brand .dot{width:12px;height:12px;border-radius:3px;background:var(--magenta);box-shadow:0 0 16px var(--magenta)}
   .toolnav{display:flex;align-items:center;gap:22px;flex-wrap:wrap}
@@ -37,9 +37,6 @@
   .tool-link:hover{color:var(--text)}
   .tool-link.soon{opacity:.4;cursor:default}
   .tool-link.soon:hover{color:var(--muted)}
-  nav a{color:var(--muted);text-decoration:none;font-size:13px;font-weight:500;margin-left:20px;transition:color .2s}
-  nav a:hover{color:var(--text)}
-  @media(max-width:720px){nav{display:none}}
 
   /* hero */
   .hero{padding:64px 0 30px}
@@ -169,12 +166,6 @@
       <a class="tool-link" href="https://scorelax.github.io/boxing-day/">BOXING DAY</a>
       <span class="tool-link soon">TABLE PREDICTIONS</span>
     </div>
-    <nav>
-      <a href="#seasons">Standings</a>
-      <a href="#managers">Managers</a>
-      <a href="#h2h">Head-to-head</a>
-      <a href="#records">Records</a>
-    </nav>
   </div>
 </header>
 
