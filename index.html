@@ -439,8 +439,8 @@ renderProfile(mgrSel.value);
 
 // ---------- RENDER: season view (incl. all-time tab) ----------
 const seasonTabs=document.getElementById("seasonTabs");
-["all",...SEASON_ORDER].forEach(s=>{
-  const b=document.createElement("button");b.className="tab"+(s==="all"?" active":"");
+[...SEASON_ORDER].reverse().concat(["all"]).forEach((s,i)=>{
+  const b=document.createElement("button");b.className="tab"+(i===0?" active":"");
   const seasonRows=s==="all"?[]:D.filter(d=>d.season===s);
   const inProgress=seasonRows.length>0&&seasonRows.some(d=>!d.placement);
   b.innerHTML=(s==="all"?"All-time":s)+(inProgress?' <span class="livedot" style="margin:0 0 0 6px"></span>':'');
@@ -643,7 +643,7 @@ function renderSeason(s){
     document.getElementById("seasonProfile").innerHTML=seasonProfileHTML(r);
   };
 }
-renderStandingsTab("all");
+renderStandingsTab(SEASON_ORDER[SEASON_ORDER.length-1]);
 
 // ---------- RENDER: head-to-head ----------
 const h2hA=document.getElementById("h2hA"),h2hB=document.getElementById("h2hB");
