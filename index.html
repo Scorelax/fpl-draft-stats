@@ -122,8 +122,8 @@
   .g2{grid-template-columns:repeat(2,1fr)}
   @media(max-width:820px){.g4{grid-template-columns:1fr 1fr}.g3{grid-template-columns:1fr 1fr}}
   @media(max-width:560px){.g4,.g3,.g2{grid-template-columns:1fr}}
-  .stat{border:1px solid var(--line);border-radius:14px;background:var(--panel);padding:18px}
-  .stat .k{font-family:'Archivo',sans-serif;font-weight:900;font-size:30px;line-height:1}
+  .stat{border:1px solid var(--line);border-radius:14px;background:var(--panel);padding:18px;min-width:0}
+  .stat .k{font-family:'Archivo',sans-serif;font-weight:900;font-size:30px;line-height:1;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
   .stat .l{font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.1em;margin-top:8px}
   .stat .sub{font-size:12px;color:var(--muted);margin-top:4px}
 
@@ -218,6 +218,24 @@ function parseCSV(txt){
   const head=lines[0].split(",");
   return lines.slice(1).map(l=>{const c=l.split(",");const o={};head.forEach((h,i)=>o[h]=c[i]!==undefined?c[i]:"");return o;});
 }
+
+// ---- shrink long .stat values (e.g. player names) to fit their box instead of overflowing it ----
+function fitStatBoxes(root){
+  (root||document).querySelectorAll(".stat .k").forEach(el=>{
+    el.style.fontSize="";
+    let size=parseFloat(getComputedStyle(el).fontSize);
+    const min=13;
+    while(el.scrollWidth>el.clientWidth&&size>min){
+      size-=1;
+      el.style.fontSize=size+"px";
+    }
+  });
+}
+let fitResizeTimer=null;
+window.addEventListener("resize",()=>{
+  clearTimeout(fitResizeTimer);
+  fitResizeTimer=setTimeout(()=>fitStatBoxes(),100);
+});
 
 async function loadCSV(path){
   const res=await fetch(path);
@@ -467,6 +485,7 @@ function renderProfile(m){
     <div class="tablewrap"><table>
       <thead><tr><th>Season</th><th>Pick</th><th>Finish</th><th>Points</th><th>Avg</th><th>W-D-L</th></tr></thead>
       <tbody>${seasonRows}</tbody></table></div>`;
+  fitStatBoxes(document.getElementById("profile"));
 }
 mgrSel.onchange=()=>renderProfile(mgrSel.value);
 renderProfile(mgrSel.value);
@@ -673,10 +692,13 @@ function renderSeason(s){
       </div>
     </div>`;
 
+  fitStatBoxes(document.getElementById("seasonView"));
+
   document.getElementById("seasonMgrSel").value=champ.m;
   document.getElementById("seasonMgrSel").onchange=function(){
     const r=tab.find(x=>x.m===this.value);
     document.getElementById("seasonProfile").innerHTML=seasonProfileHTML(r);
+    fitStatBoxes(document.getElementById("seasonProfile"));
   };
 }
 renderStandingsTab(SEASON_ORDER[SEASON_ORDER.length-1]);
