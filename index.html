@@ -559,7 +559,7 @@ function renderSeason(s){
     <td class="${r.luck>0?'pl':'mi'}">${r.luck>0?'+':''}${r.luck.toFixed(1)}</td>
     <td><b>${r.tp}</b></td></tr>`;});
 
-  const gwMgrs=tab.map(r=>r.m);
+  const gwMgrs=[...tab].sort((a,b)=>(typeof a.pick==="number"?a.pick:Infinity)-(typeof b.pick==="number"?b.pick:Infinity)).map(r=>r.m);
   const gwHead=`<th>GW</th>`+gwMgrs.map(m=>`<th>${m}</th>`).join("");
   let gwRows="";
   rounds.forEach(rnd=>{
