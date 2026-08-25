@@ -2,7 +2,7 @@ name: Update current-season matches
 
 on:
   schedule:
-    - cron: "0 0 * * *"   # 00:00 UTC daily
+    - cron: "30 9 * * *"  # 09:30 UTC daily (after FPL's 9AM UK bonus-points finalization cutoff)
   workflow_dispatch:        # allows manual runs from the Actions tab
 
 permissions:
