@@ -478,7 +478,7 @@ function renderProfile(m){
       </div>
       <div class="grid g3" style="margin-top:16px">
         <div class="stat"><div class="k tnum">${sel?sel.player:'–'}</div><div class="l">Most selected</div><div class="sub">${sel?'owned '+sel.n+' time'+(sel.n===1?'':'s'):'no ownership data tracked yet'}</div></div>
-        <div class="stat"><div class="k tnum">${pts?pts.player:'–'}</div><div class="l">Most points earned</div><div class="sub">${pts?NF(pts.pts)+' pts · only when it counted':'no gameweek data tracked yet'}</div></div>
+        <div class="stat"><div class="k tnum">${pts?pts.player:'–'}</div><div class="l">Most points earned</div><div class="sub">${pts?NF(pts.pts)+' pts':'no gameweek data tracked yet'}</div></div>
         <div class="stat"><div class="k tnum">${gp?gp.player:'–'}</div><div class="l">Most played</div><div class="sub">${gp?gp.n+' gameweek'+(gp.n===1?'':'s')+' contributed':'no gameweek data tracked yet'}</div></div>
       </div>
     </div>
@@ -653,7 +653,7 @@ function renderSeason(s){
       </div>
       <div class="grid g3" style="margin-top:16px">
         <div class="stat"><div class="k tnum">${sel?sel.player:'–'}</div><div class="l">Most selected</div><div class="sub">${sel?'owned '+sel.n+' time'+(sel.n===1?'':'s'):'no ownership data tracked yet'}</div></div>
-        <div class="stat"><div class="k tnum">${pts?pts.player:'–'}</div><div class="l">Most points earned</div><div class="sub">${pts?NF(pts.pts)+' pts · only when it counted':'no gameweek data tracked yet'}</div></div>
+        <div class="stat"><div class="k tnum">${pts?pts.player:'–'}</div><div class="l">Most points earned</div><div class="sub">${pts?NF(pts.pts)+' pts':'no gameweek data tracked yet'}</div></div>
         <div class="stat"><div class="k tnum">${gp?gp.player:'–'}</div><div class="l">Most played</div><div class="sub">${gp?gp.n+' gameweek'+(gp.n===1?'':'s')+' contributed':'no gameweek data tracked yet'}</div></div>
       </div>
     </div>`;
