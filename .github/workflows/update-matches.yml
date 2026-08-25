@@ -24,14 +24,17 @@ jobs:
       - name: Fetch latest player ownership
         run: python scripts/update_ownership.py
 
+      - name: Fetch latest player gameweek points
+        run: python scripts/update_player_gameweeks.py
+
       - name: Commit and push if changed
         run: |
-          if git diff --quiet -- data/matches.csv data/ownership.csv; then
+          if git diff --quiet -- data/matches.csv data/ownership.csv data/player-gameweeks.csv; then
             echo "No changes."
             exit 0
           fi
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add data/matches.csv data/ownership.csv
-          git commit -m "Update matches.csv/ownership.csv: $(date -u +%Y-%m-%d)"
+          git add data/matches.csv data/ownership.csv data/player-gameweeks.csv
+          git commit -m "Update matches.csv/ownership.csv/player-gameweeks.csv: $(date -u +%Y-%m-%d)"
           git push

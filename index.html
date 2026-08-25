@@ -248,6 +248,15 @@ try{
   O=[];
 }
 
+let G=[];
+try{
+  G=(await loadCSV("data/player-gameweeks.csv")).map(r=>({season:r.season,event:+r.event,
+    manager:r.manager,elementId:+r.element_id,player:r.player,points:+r.points}));
+}catch(err){
+  console.warn("data/player-gameweeks.csv not available yet:",err.message);
+  G=[];
+}
+
 const played=M.filter(m=>m.points!==null&&m.opp!==null);
 
 // ---- all-play expected wins ----
@@ -290,6 +299,28 @@ function avgPlacement(m){const ps=D.filter(d=>d.manager===m&&d.placement).map(d=
 
 // ---- most-selected FPL player (from ownership.csv - one row per ownership stint) ----
 function mostSelected(rows){
+  if(!rows.length)return null;
+  const counts={};
+  rows.forEach(r=>{counts[r.player]=(counts[r.player]||0)+1;});
+  let best=null;
+  Object.entries(counts).forEach(([player,n])=>{
+    if(!best||n>best.n||(n===best.n&&player<best.player))best={player,n};
+  });
+  return best;
+}
+
+// ---- most points earned / most played from a single FPL player (from player-gameweeks.csv - one row per started gameweek) ----
+function mostPointsEarned(rows){
+  if(!rows.length)return null;
+  const totals={};
+  rows.forEach(r=>{totals[r.player]=(totals[r.player]||0)+r.points;});
+  let best=null;
+  Object.entries(totals).forEach(([player,pts])=>{
+    if(!best||pts>best.pts||(pts===best.pts&&player<best.player))best={player,pts};
+  });
+  return best;
+}
+function mostPlayed(rows){
   if(!rows.length)return null;
   const counts={};
   rows.forEach(r=>{counts[r.player]=(counts[r.player]||0)+1;});
@@ -396,6 +427,8 @@ function renderProfile(m){
   const winRun=longestRun(seq,"W"),lossRun=longestRun(seq,"L");
   const fr=fiveRound(m);
   const sel=mostSelected(O.filter(o=>o.manager===m));
+  const pts=mostPointsEarned(G.filter(g=>g.manager===m));
+  const gp=mostPlayed(G.filter(g=>g.manager===m));
   const rank=[...managers].sort((x,y)=>A[y].tp-A[x].tp).indexOf(m)+1;
   const seasons=D.filter(d=>d.manager===m).sort((x,y)=>SEASON_ORDER.indexOf(x.season)-SEASON_ORDER.indexOf(y.season));
   let seasonRows="";
@@ -427,8 +460,8 @@ function renderProfile(m){
       </div>
       <div class="grid g3" style="margin-top:16px">
         <div class="stat"><div class="k tnum">${sel?sel.player:'–'}</div><div class="l">Most selected</div><div class="sub">${sel?'owned '+sel.n+' time'+(sel.n===1?'':'s'):'no ownership data tracked yet'}</div></div>
-        <div class="stat"><div class="k tnum">–</div><div class="l">Most points earned</div><div class="sub">coming soon · only when it counted</div></div>
-        <div class="stat"><div class="k tnum">–</div><div class="l">Most played</div><div class="sub">coming soon · gameweeks contributed</div></div>
+        <div class="stat"><div class="k tnum">${pts?pts.player:'–'}</div><div class="l">Most points earned</div><div class="sub">${pts?NF(pts.pts)+' pts · only when it counted':'no gameweek data tracked yet'}</div></div>
+        <div class="stat"><div class="k tnum">${gp?gp.player:'–'}</div><div class="l">Most played</div><div class="sub">${gp?gp.n+' gameweek'+(gp.n===1?'':'s')+' contributed':'no gameweek data tracked yet'}</div></div>
       </div>
     </div>
     <div class="tablewrap"><table>
@@ -576,6 +609,8 @@ function renderSeason(s){
 
   function seasonProfileHTML(r){
     const sel=mostSelected(O.filter(o=>o.season===s&&o.manager===r.m));
+    const pts=mostPointsEarned(G.filter(g=>g.season===s&&g.manager===r.m));
+    const gp=mostPlayed(G.filter(g=>g.season===s&&g.manager===r.m));
     return `
     <div class="profcard">
       <div class="top"><span class="nm">${r.m}</span>
@@ -599,8 +634,8 @@ function renderSeason(s){
       </div>
       <div class="grid g3" style="margin-top:16px">
         <div class="stat"><div class="k tnum">${sel?sel.player:'–'}</div><div class="l">Most selected</div><div class="sub">${sel?'owned '+sel.n+' time'+(sel.n===1?'':'s'):'no ownership data tracked yet'}</div></div>
-        <div class="stat"><div class="k tnum">–</div><div class="l">Most points earned</div><div class="sub">coming soon · only when it counted</div></div>
-        <div class="stat"><div class="k tnum">–</div><div class="l">Most played</div><div class="sub">coming soon · gameweeks contributed</div></div>
+        <div class="stat"><div class="k tnum">${pts?pts.player:'–'}</div><div class="l">Most points earned</div><div class="sub">${pts?NF(pts.pts)+' pts · only when it counted':'no gameweek data tracked yet'}</div></div>
+        <div class="stat"><div class="k tnum">${gp?gp.player:'–'}</div><div class="l">Most played</div><div class="sub">${gp?gp.n+' gameweek'+(gp.n===1?'':'s')+' contributed':'no gameweek data tracked yet'}</div></div>
       </div>
     </div>`;
   }
