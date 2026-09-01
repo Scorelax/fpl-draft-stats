@@ -1,9 +1,7 @@
 name: Update current-season matches
 
 on:
-  schedule:
-    - cron: "30 9 * * *"  # 09:30 UTC daily (after FPL's 9AM UK bonus-points finalization cutoff)
-  workflow_dispatch:        # allows manual runs from the Actions tab
+  workflow_dispatch:        # daily run now happens via cron on the Pi (11:30 Oslo time); this is a manual fallback
 
 permissions:
   contents: write

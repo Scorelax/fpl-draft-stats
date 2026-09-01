@@ -103,7 +103,9 @@ No build step, no dependencies — it's a static site.
 
 `scripts/update_matches.py` pulls the current season's finished matches from the public FPL Draft API (`GET /api/league/2485/details` — no login needed) and rewrites that season's block in `data/matches.csv`. It re-fetches and replaces the whole season's block every run (not an incremental append), so a late score correction from FPL is picked up automatically rather than left stale. If someone joins the league whose `entry_id` isn't in `manager-map.json` yet, the script exits with an error instead of guessing — add them to the map and re-run.
 
-`.github/workflows/update-matches.yml` runs that script once a day (00:00 UTC — adjust the cron if you want it closer to Oslo midnight, which drifts between UTC+1/+2 with DST) and commits+pushes `data/matches.csv` only if it actually changed. It can also be triggered manually from the repo's **Actions** tab (`workflow_dispatch`). Once a season is fully finished, just stop caring about the workflow's runs — a "no changes" run is a harmless no-op — or disable it from the Actions tab.
+The daily run happens via **cron on the home Pi**, not GitHub Actions — GitHub's own `schedule` trigger for hosted runners can be delayed by hours on low-activity repos, which isn't precise enough here. The Pi has its own clone at `~/fpl-draft-stats` (pushing via a repo-scoped, write-enabled deploy key at `~/.ssh/github_deploy_fpl`) and runs `~/fpl-draft-stats/update.sh` (pulls, runs all three scripts, commits+pushes only if the CSVs changed, logs to `~/logs/fpl/update.log`) via crontab at **11:30 Oslo time** daily — chosen as a 30-minute buffer after FPL's ~10 AM UK data cutoff; since Oslo and the UK shift DST on the same dates, this stays pinned to UK time year-round without needing a timezone override.
+
+`.github/workflows/update-matches.yml` no longer runs on a schedule — it's kept as a manual `workflow_dispatch` fallback only, so it can't race the Pi's cron and double-commit.
 
 To run either by hand instead:
 ```bash
