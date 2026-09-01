@@ -187,7 +187,7 @@
   </section>
 
   <section class="block" id="h2h">
-    <div class="head"><h2 class="disp">Head-to-head</h2></div>
+    <div class="head"><h2 class="disp" id="h2hHeading">Head-to-head</h2></div>
     <div class="selrow"><select id="h2hA"></select><span class="vs">vs</span><select id="h2hB"></select></div>
     <div id="h2hView"></div>
   </section>
@@ -195,14 +195,18 @@
   <section class="block" id="records">
     <div class="head"><h2 class="disp">Records</h2></div>
 
-    <div class="subhead">Hall of fame</div>
-    <div class="grid g3" id="hofGrid" style="margin-bottom:32px"></div>
+    <div id="hofBlock">
+      <div class="subhead">Hall of fame</div>
+      <div class="grid g3" id="hofGrid" style="margin-bottom:32px"></div>
+    </div>
 
-    <div class="subhead">All-time records</div>
+    <div class="subhead" id="recordsSubhead">All-time records</div>
     <div class="grid g3" id="recordsGrid"></div>
 
-    <div class="subhead" style="margin-top:32px">Draft pick order</div>
-    <div class="tablewrap"><table id="pickTable"></table></div>
+    <div id="pickBlock" style="margin-top:32px">
+      <div class="subhead">Draft pick order</div>
+      <div class="tablewrap"><table id="pickTable"></table></div>
+    </div>
   </section>
 </main>
 
@@ -212,6 +216,7 @@
 "use strict";
 const SEASON_ORDER=["2020/21","2021/22","2022/23","2023/24","2024/25","2025/26","2026/27"];
 const NF=n=>n.toLocaleString("en-US");
+let activeSeason=SEASON_ORDER[SEASON_ORDER.length-1];
 
 function parseCSV(txt){
   const lines=txt.trim().split(/\r?\n/);
@@ -361,9 +366,9 @@ function careerSeq(m){
 function longestRun(seq,ch){let best=0,cur=0;seq.forEach(r=>{if(r===ch){cur++;best=Math.max(best,cur);}else cur=0;});return best;}
 
 // ---- best/worst 5-round (per season, kept as global best/worst) ----
-function fiveRound(m){
+function fiveRound(m,seasons=SEASON_ORDER){
   let best=null,worst=null;
-  SEASON_ORDER.forEach(s=>{
+  seasons.forEach(s=>{
     const list=played.filter(x=>x.manager===m&&x.season===s).sort((a,b)=>a.round-b.round);
     for(let i=0;i+5<=list.length;i++){
       const win=list.slice(i,i+5);const sum=win.reduce((t,x)=>t+x.points,0);
@@ -497,7 +502,7 @@ const seasonTabs=document.getElementById("seasonTabs");
   const seasonRows=s==="all"?[]:D.filter(d=>d.season===s);
   const inProgress=seasonRows.length>0&&seasonRows.some(d=>!d.placement);
   b.innerHTML=(s==="all"?"All-time":s)+(inProgress?' <span class="livedot" style="margin:0 0 0 6px"></span>':'');
-  b.onclick=()=>{seasonTabs.querySelectorAll(".tab").forEach(t=>t.classList.remove("active"));b.classList.add("active");renderStandingsTab(s);};
+  b.onclick=()=>{seasonTabs.querySelectorAll(".tab").forEach(t=>t.classList.remove("active"));b.classList.add("active");selectSeason(s);};
   seasonTabs.appendChild(b);
 });
 function renderStandingsTab(s){
@@ -507,6 +512,17 @@ function renderStandingsTab(s){
   }else{
     renderSeason(s);
   }
+}
+function selectSeason(s){
+  activeSeason=s;
+  document.getElementById("managers").style.display=s==="all"?"":"none";
+  document.getElementById("hofBlock").style.display=s==="all"?"":"none";
+  document.getElementById("pickBlock").style.display=s==="all"?"":"none";
+  document.getElementById("recordsSubhead").textContent=s==="all"?"All-time records":`${s} records`;
+  document.getElementById("h2hHeading").textContent=s==="all"?"Head-to-head":`Head-to-head — ${s}`;
+  renderStandingsTab(s);
+  if(s==="all")renderAllTimeRecordsGrid();
+  renderH2H();
 }
 function renderSeason(s){
   const seasonPlayed=played.filter(x=>x.season===s);
@@ -524,6 +540,7 @@ function renderSeason(s){
         <thead><tr><th>Pick</th><th>Manager</th></tr></thead>
         <tbody>${draftRows.map(d=>`<tr><td>${d.pick}</td><td>${d.manager}</td></tr>`).join("")}</tbody>
       </table></div>`:""}`;
+    document.getElementById("recordsGrid").innerHTML="";
     return;
   }
 
@@ -700,8 +717,9 @@ function renderSeason(s){
     document.getElementById("seasonProfile").innerHTML=seasonProfileHTML(r);
     fitStatBoxes(document.getElementById("seasonProfile"));
   };
+
+  renderSeasonRecordsGrid(s,tab);
 }
-renderStandingsTab(SEASON_ORDER[SEASON_ORDER.length-1]);
 
 // ---------- RENDER: head-to-head ----------
 const h2hA=document.getElementById("h2hA"),h2hB=document.getElementById("h2hB");
@@ -711,8 +729,9 @@ h2hA.value=sortedM[0];h2hB.value=sortedM[1];
 function renderH2H(){
   const A2=h2hA.value,B=h2hB.value;
   if(A2===B){document.getElementById("h2hView").innerHTML=`<div class="rec">Pick two different managers.</div>`;return;}
-  const games=played.filter(x=>x.manager===A2&&x.opponent===B);
-  if(!games.length){document.getElementById("h2hView").innerHTML=`<div class="rec"><div class="cap">No meetings</div><div class="det">${A2} and ${B} haven't met in a completed round.</div></div>`;return;}
+  let games=played.filter(x=>x.manager===A2&&x.opponent===B);
+  if(activeSeason!=="all")games=games.filter(x=>x.season===activeSeason);
+  if(!games.length){document.getElementById("h2hView").innerHTML=`<div class="rec"><div class="cap">No meetings</div><div class="det">${A2} and ${B} haven't met${activeSeason==="all"?" in a completed round":" in "+activeSeason}.</div></div>`;return;}
   let aw=0,dr=0,bw=0,apf=0,bpf=0,bigA=null,bigB=null;
   games.forEach(g=>{apf+=g.points;bpf+=g.opp;const m=g.points-g.opp;
     if(m>0){aw++;if(!bigA||m>bigA.m)bigA={m,g};}else if(m===0)dr++;else{bw++;if(!bigB||-m>bigB.m)bigB={m:-m,g};}});
@@ -733,7 +752,7 @@ function renderH2H(){
       </div>
     </div>`;
 }
-h2hA.onchange=renderH2H;h2hB.onchange=renderH2H;renderH2H();
+h2hA.onchange=renderH2H;h2hB.onchange=renderH2H;
 
 // ---------- RENDER: records ----------
 function tiedExtreme(items,valFn,dir=1,eps=1e-9){
@@ -749,7 +768,7 @@ function joinNames(arr){
   if(arr.length<=1)return arr[0]||'';
   return arr.slice(0,-1).join(', ')+' & '+arr[arr.length-1];
 }
-(function(){
+function renderAllTimeRecordsGrid(){
   const seqByM={};managers.forEach(m=>{seqByM[m]=careerSeq(m);});
   const fiveByM={};managers.forEach(m=>{fiveByM[m]=fiveRound(m);});
 
@@ -801,7 +820,43 @@ function joinNames(arr){
   ];
   document.getElementById("recordsGrid").innerHTML=cards.map(c=>
     `<div class="rec"><div class="cap">${c.cap}</div><div class="who big">${c.who}</div><div class="det">${c.det}</div></div>`).join("");
-})();
+}
+
+// ---------- RENDER: records (season-scoped) ----------
+function renderSeasonRecordsGrid(s,tab){
+  const seasonPlayed=played.filter(x=>x.season===s);
+  const hi=tiedExtreme(seasonPlayed,x=>x.points,1);
+  const lo=tiedExtreme(seasonPlayed,x=>x.points,-1);
+  const wins=seasonPlayed.filter(x=>x.points>x.opp);
+  const blow=tiedExtreme(wins,x=>x.points-x.opp,1);
+  const winStreak=tiedExtreme(tab,r=>r.winStreak,1);
+  const lossStreak=tiedExtreme(tab,r=>r.lossStreak,1);
+  const has5=tab.map(r=>({m:r.m,fr:fiveRound(r.m,[s])}));
+  const best5=tiedExtreme(has5.filter(x=>x.fr.best),x=>x.fr.best.sum,1);
+  const worst5=tiedExtreme(has5.filter(x=>x.fr.worst),x=>x.fr.worst.sum,-1);
+  const gwWins=tiedExtreme(tab.filter(r=>r.wonGW>0),r=>r.wonGW,1);
+  const bestLuck=tiedExtreme(tab,r=>r.luck,1);
+  const worstLuck=tiedExtreme(tab,r=>r.luck,-1);
+  const seasonPts=tiedExtreme(tab,r=>r.pf,1);
+  const seasonTp=tiedExtreme(tab,r=>r.tp,1);
+
+  const cards=[
+    {cap:"Highest round score",who:hi.value,det:hi.items.map(x=>`${x.manager} · R${x.round}`).join(', ')},
+    {cap:"Lowest round score",who:lo.value,det:lo.items.map(x=>`${x.manager} · R${x.round}`).join(', ')},
+    {cap:"Biggest win margin",who:"+"+blow.value,det:blow.items.map(x=>`${x.manager} beat ${x.opponent} ${x.points}–${x.opp}`).join('; ')},
+    {cap:"Most points",who:NF(seasonPts.value),det:joinNames(seasonPts.items.map(r=>r.m))},
+    {cap:"Most table points",who:seasonTp.value,det:joinNames(seasonTp.items.map(r=>r.m))},
+    {cap:"Longest win streak",who:winStreak.value,det:joinNames(winStreak.items.map(r=>r.m))+` · ${winStreak.value} straight wins`},
+    {cap:"Longest losing streak",who:lossStreak.value,det:joinNames(lossStreak.items.map(r=>r.m))+` · ${lossStreak.value} straight losses`},
+    {cap:"Best 5-round haul",who:best5.value,det:best5.items.map(x=>`${x.m} · R${x.fr.best.from}–${x.fr.best.to}`).join(', ')},
+    {cap:"Worst 5-round haul",who:worst5.value,det:worst5.items.map(x=>`${x.m} · R${x.fr.worst.from}–${x.fr.worst.to}`).join(', ')},
+    {cap:"Most gameweek wins",who:gwWins.value||0,det:gwWins.items.length?joinNames(gwWins.items.map(r=>r.m)):''},
+    {cap:"Luckiest / unluckiest",who:`${joinNames(bestLuck.items.map(r=>r.m))} / ${joinNames(worstLuck.items.map(r=>r.m))}`,
+      det:`${bestLuck.value>0?'+':''}${bestLuck.value.toFixed(1)} vs ${worstLuck.value.toFixed(1)} luck`},
+  ];
+  document.getElementById("recordsGrid").innerHTML=cards.map(c=>
+    `<div class="rec"><div class="cap">${c.cap}</div><div class="who big">${c.who}</div><div class="det">${c.det}</div></div>`).join("");
+}
 
 // ---------- RENDER: draft pick order ----------
 const PICK_COLS=[
@@ -845,6 +900,8 @@ function renderPickTable(){
   });
 }
 renderPickTable();
+
+selectSeason(activeSeason);
 
 })();
 </script>
