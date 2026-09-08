@@ -522,6 +522,7 @@ function selectSeason(s){
   document.getElementById("h2hHeading").textContent=s==="all"?"Head-to-head":`Head-to-head — ${s}`;
   renderStandingsTab(s);
   if(s==="all")renderAllTimeRecordsGrid();
+  populateH2HSelects(s);
   renderH2H();
 }
 function renderSeason(s){
@@ -723,9 +724,17 @@ function renderSeason(s){
 
 // ---------- RENDER: head-to-head ----------
 const h2hA=document.getElementById("h2hA"),h2hB=document.getElementById("h2hB");
-const sortedM=[...managers].sort();
-sortedM.forEach(m=>{[h2hA,h2hB].forEach(sel=>{const o=document.createElement("option");o.value=m;o.textContent=m;sel.appendChild(o);});});
-h2hA.value=sortedM[0];h2hB.value=sortedM[1];
+function seasonManagerList(s){
+  return s==="all"?[...managers].sort():[...new Set(played.filter(x=>x.season===s).map(x=>x.manager))].sort();
+}
+function populateH2HSelects(s){
+  const list=seasonManagerList(s);
+  const prevA=h2hA.value,prevB=h2hB.value;
+  const opts=list.map(m=>`<option value="${m}">${m}</option>`).join("");
+  h2hA.innerHTML=opts;h2hB.innerHTML=opts;
+  h2hA.value=list.includes(prevA)?prevA:(list[0]||"");
+  h2hB.value=(list.includes(prevB)&&prevB!==h2hA.value)?prevB:(list.find(m=>m!==h2hA.value)||list[0]||"");
+}
 function renderH2H(){
   const A2=h2hA.value,B=h2hB.value;
   if(A2===B){document.getElementById("h2hView").innerHTML=`<div class="rec">Pick two different managers.</div>`;return;}
@@ -837,15 +846,19 @@ function renderSeasonRecordsGrid(s,tab){
   const gwWins=tiedExtreme(tab.filter(r=>r.wonGW>0),r=>r.wonGW,1);
   const bestLuck=tiedExtreme(tab,r=>r.luck,1);
   const worstLuck=tiedExtreme(tab,r=>r.luck,-1);
-  const seasonPts=tiedExtreme(tab,r=>r.pf,1);
-  const seasonTp=tiedExtreme(tab,r=>r.tp,1);
+  const duelT4x=tiedExtreme(tab.filter(r=>r.duelT4>0),r=>r.duelT4,1);
+  const duelB4x=tiedExtreme(tab.filter(r=>r.duelB4>0),r=>r.duelB4,1);
+  const metT4x=tiedExtreme(tab,r=>r.metT4,1);
+  const metB4x=tiedExtreme(tab,r=>r.metB4,1);
+  const metWinnerX=tiedExtreme(tab.filter(r=>r.metWinner>0),r=>r.metWinner,1);
+  const metLoserX=tiedExtreme(tab.filter(r=>r.metLoser>0),r=>r.metLoser,1);
+  const ptsEarnedByM=tab.map(r=>({m:r.m,pe:mostPointsEarned(G.filter(g=>g.season===s&&g.manager===r.m))})).filter(x=>x.pe);
+  const ptsEarnedX=ptsEarnedByM.length?tiedExtreme(ptsEarnedByM,x=>x.pe.pts,1):null;
 
   const cards=[
     {cap:"Highest round score",who:hi.value,det:hi.items.map(x=>`${x.manager} · R${x.round}`).join(', ')},
     {cap:"Lowest round score",who:lo.value,det:lo.items.map(x=>`${x.manager} · R${x.round}`).join(', ')},
     {cap:"Biggest win margin",who:"+"+blow.value,det:blow.items.map(x=>`${x.manager} beat ${x.opponent} ${x.points}–${x.opp}`).join('; ')},
-    {cap:"Most points",who:NF(seasonPts.value),det:joinNames(seasonPts.items.map(r=>r.m))},
-    {cap:"Most table points",who:seasonTp.value,det:joinNames(seasonTp.items.map(r=>r.m))},
     {cap:"Longest win streak",who:winStreak.value,det:joinNames(winStreak.items.map(r=>r.m))+` · ${winStreak.value} straight wins`},
     {cap:"Longest losing streak",who:lossStreak.value,det:joinNames(lossStreak.items.map(r=>r.m))+` · ${lossStreak.value} straight losses`},
     {cap:"Best 5-round haul",who:best5.value,det:best5.items.map(x=>`${x.m} · R${x.fr.best.from}–${x.fr.best.to}`).join(', ')},
@@ -853,6 +866,15 @@ function renderSeasonRecordsGrid(s,tab){
     {cap:"Most gameweek wins",who:gwWins.value||0,det:gwWins.items.length?joinNames(gwWins.items.map(r=>r.m)):''},
     {cap:"Luckiest / unluckiest",who:`${joinNames(bestLuck.items.map(r=>r.m))} / ${joinNames(worstLuck.items.map(r=>r.m))}`,
       det:`${bestLuck.value>0?'+':''}${bestLuck.value.toFixed(1)} vs ${worstLuck.value.toFixed(1)} luck`},
+    {cap:"Most duels in top half",who:duelT4x.value||0,det:duelT4x.items.length?joinNames(duelT4x.items.map(r=>r.m)):''},
+    {cap:"Most duels in bottom half",who:duelB4x.value||0,det:duelB4x.items.length?joinNames(duelB4x.items.map(r=>r.m)):''},
+    {cap:"Most opponents met in top half",who:metT4x.value,det:joinNames(metT4x.items.map(r=>r.m))},
+    {cap:"Most opponents met in bottom half",who:metB4x.value,det:joinNames(metB4x.items.map(r=>r.m))},
+    {cap:"Met the GW winner most",who:metWinnerX.value||0,det:metWinnerX.items.length?joinNames(metWinnerX.items.map(r=>r.m)):''},
+    {cap:"Met the GW loser most",who:metLoserX.value||0,det:metLoserX.items.length?joinNames(metLoserX.items.map(r=>r.m)):''},
+    {cap:"Most points earned",
+      who:ptsEarnedX?joinNames(ptsEarnedX.items.map(x=>x.pe.player)):'–',
+      det:ptsEarnedX?ptsEarnedX.items.map(x=>`${x.pe.player} (${x.m}) · ${NF(x.pe.pts)} pts`).join('; '):'no gameweek data tracked yet'},
   ];
   document.getElementById("recordsGrid").innerHTML=cards.map(c=>
     `<div class="rec"><div class="cap">${c.cap}</div><div class="who big">${c.who}</div><div class="det">${c.det}</div></div>`).join("");
