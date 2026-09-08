@@ -777,9 +777,47 @@ function joinNames(arr){
   if(arr.length<=1)return arr[0]||'';
   return arr.slice(0,-1).join(', ')+' & '+arr[arr.length-1];
 }
+// per-round league context (top/bottom half, outright winner/loser), used to tally career duel-type stats
+function roundHalves(season){
+  const rounds=[...new Set(played.filter(x=>x.season===season).map(x=>x.round))];
+  const ctx={};
+  rounds.forEach(rnd=>{
+    const list=played.filter(x=>x.season===season&&x.round===rnd);
+    const maxP=Math.max(...list.map(x=>x.points)),minP=Math.min(...list.map(x=>x.points));
+    const sorted=[...list].sort((a,b)=>b.points-a.points);
+    const half=Math.floor(sorted.length/2);
+    ctx[rnd]={
+      topSet:new Set(sorted.slice(0,half).map(x=>x.manager)),
+      bottomSet:new Set(sorted.slice(sorted.length-half).map(x=>x.manager)),
+      winners:new Set(list.filter(x=>x.points===maxP).map(x=>x.manager)),
+      losers:new Set(list.filter(x=>x.points===minP).map(x=>x.manager)),
+    };
+  });
+  return ctx;
+}
+function careerDuelStats(){
+  const stats={};managers.forEach(m=>{stats[m]={duelT4:0,duelB4:0,metT4:0,metB4:0,metWinner:0,metLoser:0};});
+  SEASON_ORDER.forEach(season=>{
+    const ctxByRound=roundHalves(season);
+    played.filter(x=>x.season===season).forEach(x=>{
+      const ctx=ctxByRound[x.round];if(!ctx)return;
+      const st=stats[x.manager];
+      const meTop=ctx.topSet.has(x.manager),meBot=ctx.bottomSet.has(x.manager);
+      const oppTop=ctx.topSet.has(x.opponent),oppBot=ctx.bottomSet.has(x.opponent);
+      if(meTop&&oppTop)st.duelT4++;
+      if(meBot&&oppBot)st.duelB4++;
+      if(oppTop)st.metT4++;
+      if(oppBot)st.metB4++;
+      if(ctx.winners.has(x.opponent))st.metWinner++;
+      if(ctx.losers.has(x.opponent))st.metLoser++;
+    });
+  });
+  return stats;
+}
 function renderAllTimeRecordsGrid(){
   const seqByM={};managers.forEach(m=>{seqByM[m]=careerSeq(m);});
   const fiveByM={};managers.forEach(m=>{fiveByM[m]=fiveRound(m);});
+  const duelStats=careerDuelStats();
 
   const seasonAgg={};
   played.forEach(x=>{
@@ -811,6 +849,14 @@ function renderAllTimeRecordsGrid(){
   const worstLuck=tiedExtreme(managers,m=>A[m].luck,-1);
   const seasonPts=tiedExtreme(seasonAggList,a=>a.pf,1);
   const seasonTp=tiedExtreme(seasonAggList,a=>a.tp,1);
+  const duelT4x=tiedExtreme(managers.filter(m=>duelStats[m].duelT4>0),m=>duelStats[m].duelT4,1);
+  const duelB4x=tiedExtreme(managers.filter(m=>duelStats[m].duelB4>0),m=>duelStats[m].duelB4,1);
+  const metT4x=tiedExtreme(managers,m=>duelStats[m].metT4,1);
+  const metB4x=tiedExtreme(managers,m=>duelStats[m].metB4,1);
+  const metWinnerX=tiedExtreme(managers.filter(m=>duelStats[m].metWinner>0),m=>duelStats[m].metWinner,1);
+  const metLoserX=tiedExtreme(managers.filter(m=>duelStats[m].metLoser>0),m=>duelStats[m].metLoser,1);
+  const ptsEarnedByM=managers.map(m=>({m,pe:mostPointsEarned(G.filter(g=>g.manager===m))})).filter(x=>x.pe);
+  const ptsEarnedX=ptsEarnedByM.length?tiedExtreme(ptsEarnedByM,x=>x.pe.pts,1):null;
 
   const cards=[
     {cap:"Highest round score",who:hi.value,det:hi.items.map(x=>`${x.manager} · ${x.season} R${x.round}`).join(', ')},
@@ -826,6 +872,15 @@ function renderAllTimeRecordsGrid(){
     {cap:"Most gameweek wins",who:gwWins.value||0,det:gwWins.items.length?joinNames(gwWins.items):''},
     {cap:"Luckiest / unluckiest",who:`${joinNames(bestLuck.items)} / ${joinNames(worstLuck.items)}`,
       det:`${bestLuck.value>0?'+':''}${bestLuck.value.toFixed(1)} vs ${worstLuck.value.toFixed(1)} luck`},
+    {cap:"Most duels in top half",who:duelT4x.value||0,det:duelT4x.items.length?joinNames(duelT4x.items):''},
+    {cap:"Most duels in bottom half",who:duelB4x.value||0,det:duelB4x.items.length?joinNames(duelB4x.items):''},
+    {cap:"Most opponents met in top half",who:metT4x.value,det:joinNames(metT4x.items)},
+    {cap:"Most opponents met in bottom half",who:metB4x.value,det:joinNames(metB4x.items)},
+    {cap:"Met the GW winner most",who:metWinnerX.value||0,det:metWinnerX.items.length?joinNames(metWinnerX.items):''},
+    {cap:"Met the GW loser most",who:metLoserX.value||0,det:metLoserX.items.length?joinNames(metLoserX.items):''},
+    {cap:"Most points earned",
+      who:ptsEarnedX?joinNames(ptsEarnedX.items.map(x=>x.pe.player)):'–',
+      det:ptsEarnedX?ptsEarnedX.items.map(x=>`${x.pe.player} (${x.m}) · ${NF(x.pe.pts)} pts`).join('; '):'no gameweek data tracked yet'},
   ];
   document.getElementById("recordsGrid").innerHTML=cards.map(c=>
     `<div class="rec"><div class="cap">${c.cap}</div><div class="who big">${c.who}</div><div class="det">${c.det}</div></div>`).join("");
