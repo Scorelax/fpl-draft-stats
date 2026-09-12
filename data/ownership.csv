@@ -26,19 +26,21 @@ season,manager,element_id,player,event_in,event_out
 2026/27,David,412,Senne Lammens,1,
 2026/27,David,427,Bryan Mbeumo,1,
 2026/27,David,496,Antonín Kinský,1,
-2026/27,David,527,Richarlison de Andrade,1,
+2026/27,David,527,Richarlison de Andrade,1,4
 2026/27,David,532,Daniel Ballard,1,
-2026/27,David,534,Trai Hume,1,
+2026/27,David,534,Trai Hume,1,4
 2026/27,David,552,Brian Brobbey,1,
 2026/27,David,556,Mamadou Sangaré,2,
 2026/27,David,464,Yoane Wissa,3,
-2026/27,Henrik,84,Nathan Collins,1,
+2026/27,David,469,Neco Williams,4,
+2026/27,David,553,Wilson Isidor,4,
+2026/27,Henrik,84,Nathan Collins,1,4
 2026/27,Henrik,200,Maxence Lacroix,1,
 2026/27,Henrik,208,Ismaïla Sarr,1,3
 2026/27,Henrik,262,Emile Smith Rowe,1,3
 2026/27,Henrik,277,John Egan,1,
-2026/27,Henrik,306,Jacob Greaves,1,
-2026/27,Henrik,313,Jack Clarke,1,
+2026/27,Henrik,306,Jacob Greaves,1,4
+2026/27,Henrik,313,Jack Clarke,1,4
 2026/27,Henrik,346,Dominic Calvert-Lewin,1,
 2026/27,Henrik,379,Alexander Isak,1,
 2026/27,Henrik,384,Gianluigi Donnarumma,1,
@@ -51,11 +53,14 @@ season,manager,element_id,player,event_in,event_out
 2026/27,Henrik,335,Anton Stach,3,
 2026/27,Henrik,367,Cody Gakpo,3,
 2026/27,Henrik,571,Konstantinos Tzolakis,3,
+2026/27,Henrik,87,Kristoffer Ajer,4,
+2026/27,Henrik,98,Vitaly Janelt,4,
+2026/27,Henrik,279,Semi Ajayi,4,
 2026/27,Henrik R,60,James Hill,1,
 2026/27,Henrik R,70,Justin Kluivert,1,3
 2026/27,Henrik R,112,Jan Paul van Hecke,1,3
 2026/27,Henrik R,125,Georginio Rutter,1,
-2026/27,Henrik R,130,Mats Wieffer,1,
+2026/27,Henrik R,130,Mats Wieffer,1,4
 2026/27,Henrik R,155,Enzo Fernández,1,
 2026/27,Henrik R,198,Dean Henderson,1,
 2026/27,Henrik R,248,Norberto Bercique Gomes Betuncal,1,1
@@ -70,6 +75,7 @@ season,manager,element_id,player,event_in,event_out
 2026/27,Henrik R,115,Maxim De Cuyper,2,
 2026/27,Henrik R,389,Matheus Nunes,3,
 2026/27,Henrik R,454,Anthony Elanga,3,
+2026/27,Henrik R,580,Ronald Araujo,4,
 2026/27,Kriss,1,David Raya Martín,1,
 2026/27,Kriss,8,Riccardo Calafiori,1,
 2026/27,Kriss,15,Martin Ødegaard,1,
@@ -86,10 +92,12 @@ season,manager,element_id,player,event_in,event_out
 2026/27,Kriss,453,Harvey Barnes,1,1
 2026/27,Kriss,491,Igor Jesus Maciel da Cruz,1,
 2026/27,Kriss,514,Mathys Tel,1,2
-2026/27,Kriss,88,Michael Kayode,2,
+2026/27,Kriss,88,Michael Kayode,2,4
 2026/27,Kriss,403,Sávio Moreira de Oliveira,2,3
 2026/27,Kriss,591,Julio Enciso,2,2
-2026/27,Kriss,41,Emiliano Buendía Stati,3,
+2026/27,Kriss,41,Emiliano Buendía Stati,3,4
+2026/27,Kriss,453,Harvey Barnes,4,
+2026/27,Kriss,595,Amar Dedic,4,
 2026/27,Morten,11,Cristhian Mosquera,1,
 2026/27,Morten,40,Morgan Rogers,1,
 2026/27,Morten,110,Carl Rushworth,1,3
@@ -98,7 +106,7 @@ season,manager,element_id,player,event_in,event_out
 2026/27,Morten,229,James Tarkowski,1,
 2026/27,Morten,260,Harry Wilson,1,
 2026/27,Morten,393,Abdukodir Khusanov,1,
-2026/27,Morten,400,Jérémy Doku,1,
+2026/27,Morten,400,Jérémy Doku,1,4
 2026/27,Morten,411,Erling Haaland,1,
 2026/27,Morten,417,Diogo Dalot Teixeira,1,2
 2026/27,Morten,452,Bruno Guimarães Rodriguez Moura,1,
@@ -111,6 +119,7 @@ season,manager,element_id,player,event_in,event_out
 2026/27,Morten,502,Andrew Robertson,2,3
 2026/27,Morten,28,Emiliano Martínez Romero,3,
 2026/27,Morten,449,Lewis Hall,3,
+2026/27,Morten,591,Julio Enciso,4,
 2026/27,Seb,4,Gabriel dos Santos Magalhães,1,
 2026/27,Seb,79,Francisco Evanilson de Lima Barbosa,1,
 2026/27,Seb,140,Robert Lynch Sánchez,1,3
@@ -131,7 +140,7 @@ season,manager,element_id,player,event_in,event_out
 2026/27,Seb,230,Jarrad Branthwaite,3,
 2026/27,Seb,566,Lukás Hornícek,3,
 2026/27,Seb,628,Bradley Barcola,3,
-2026/27,Simon,61,Adrien Truffert,1,
+2026/27,Simon,61,Adrien Truffert,1,4
 2026/27,Simon,69,Alex Scott,1,
 2026/27,Simon,106,Igor Thiago Nascimento Rodrigues,1,
 2026/27,Simon,124,Pascal Groß,1,
@@ -146,3 +155,4 @@ season,manager,element_id,player,event_in,event_out
 2026/27,Simon,481,Elliot Anderson,1,
 2026/27,Simon,498,Marcos Senesi Barón,1,
 2026/27,Simon,529,Robin Roefs,1,
+2026/27,Simon,330,Jayden Bogle,4,
