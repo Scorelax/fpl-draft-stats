@@ -105,14 +105,15 @@ season,manager,element_id,player,event_in,event_out
 2026/27,Kriss,403,Sávio Moreira de Oliveira,2,3
 2026/27,Kriss,591,Julio Enciso,2,2
 2026/27,Kriss,41,Emiliano Buendía Stati,3,4
-2026/27,Kriss,453,Harvey Barnes,4,
+2026/27,Kriss,453,Harvey Barnes,4,8
 2026/27,Kriss,595,Amar Dedic,4,5
 2026/27,Kriss,5,Jurriën Timber,5,
 2026/27,Kriss,264,Oscar Bobb,5,7
 2026/27,Kriss,447,Sven Botman,6,
 2026/27,Kriss,465,William Osula,6,
 2026/27,Kriss,400,Jérémy Doku,7,
-2026/27,Morten,11,Cristhian Mosquera,1,
+2026/27,Kriss,123,Jack Hinshelwood,8,
+2026/27,Morten,11,Cristhian Mosquera,1,8
 2026/27,Morten,40,Morgan Rogers,1,
 2026/27,Morten,110,Carl Rushworth,1,3
 2026/27,Morten,113,Ferdi Kadıoğlu,1,1
@@ -131,12 +132,14 @@ season,manager,element_id,player,event_in,event_out
 2026/27,Morten,542,Enzo Le Fée,1,
 2026/27,Morten,295,Oli McBurnie,2,
 2026/27,Morten,502,Andrew Robertson,2,3
-2026/27,Morten,28,Emiliano Martínez Romero,3,
+2026/27,Morten,28,Emiliano Martínez Romero,3,8
 2026/27,Morten,449,Lewis Hall,3,
 2026/27,Morten,591,Julio Enciso,4,
 2026/27,Morten,167,Liam Delap,5,
 2026/27,Morten,332,James Justin,5,
 2026/27,Morten,41,Emiliano Buendía Stati,6,
+2026/27,Morten,254,Antonee Robinson,8,
+2026/27,Morten,597,Zion Suzuki,8,
 2026/27,Seb,4,Gabriel dos Santos Magalhães,1,
 2026/27,Seb,79,Francisco Evanilson de Lima Barbosa,1,
 2026/27,Seb,140,Robert Lynch Sánchez,1,3
@@ -171,10 +174,11 @@ season,manager,element_id,player,event_in,event_out
 2026/27,Simon,362,Jeremy Jacquet,1,
 2026/27,Simon,388,Marc Guéhi,1,
 2026/27,Simon,397,Antoine Semenyo,1,
-2026/27,Simon,423,Luke Shaw,1,
+2026/27,Simon,423,Luke Shaw,1,8
 2026/27,Simon,439,Benjamin Sesko,1,
 2026/27,Simon,481,Elliot Anderson,1,
 2026/27,Simon,498,Marcos Senesi Barón,1,5
 2026/27,Simon,529,Robin Roefs,1,
 2026/27,Simon,330,Jayden Bogle,4,
 2026/27,Simon,258,Timothy Castagne,5,
+2026/27,Simon,114,Olivier Boscagli,8,
