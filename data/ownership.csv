@@ -60,10 +60,11 @@ season,manager,element_id,player,event_in,event_out
 2026/27,Henrik,571,Konstantinos Tzolakis,3,
 2026/27,Henrik,87,Kristoffer Ajer,4,
 2026/27,Henrik,98,Vitaly Janelt,4,
-2026/27,Henrik,279,Semi Ajayi,4,
+2026/27,Henrik,279,Semi Ajayi,4,9
 2026/27,Henrik,286,Mohamed Belloumi,6,
 2026/27,Henrik,637,Ainsley Maitland-Niles,6,
 2026/27,Henrik,127,Diego Gómez Amarilla,7,
+2026/27,Henrik,10,Benjamin White,9,
 2026/27,Henrik R,60,James Hill,1,
 2026/27,Henrik R,70,Justin Kluivert,1,3
 2026/27,Henrik R,112,Jan Paul van Hecke,1,3
@@ -136,10 +137,11 @@ season,manager,element_id,player,event_in,event_out
 2026/27,Morten,449,Lewis Hall,3,
 2026/27,Morten,591,Julio Enciso,4,
 2026/27,Morten,167,Liam Delap,5,
-2026/27,Morten,332,James Justin,5,
+2026/27,Morten,332,James Justin,5,9
 2026/27,Morten,41,Emiliano Buendía Stati,6,
 2026/27,Morten,254,Antonee Robinson,8,
 2026/27,Morten,597,Zion Suzuki,8,
+2026/27,Morten,555,António João Pereira de Albuquerque Tavares da Silva,9,
 2026/27,Seb,4,Gabriel dos Santos Magalhães,1,
 2026/27,Seb,79,Francisco Evanilson de Lima Barbosa,1,
 2026/27,Seb,140,Robert Lynch Sánchez,1,3
@@ -164,7 +166,8 @@ season,manager,element_id,player,event_in,event_out
 2026/27,Seb,358,Milos Kerkez,7,
 2026/27,Seb,502,Andrew Robertson,7,
 2026/27,Seb,512,Mohammed Kudus,7,
-2026/27,Seb,16,Noni Madueke,8,
+2026/27,Seb,16,Noni Madueke,8,9
+2026/27,Seb,78,Junior Kroupi,9,
 2026/27,Simon,61,Adrien Truffert,1,4
 2026/27,Simon,69,Alex Scott,1,
 2026/27,Simon,106,Igor Thiago Nascimento Rodrigues,1,
